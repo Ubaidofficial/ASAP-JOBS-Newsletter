@@ -1031,7 +1031,7 @@
       languages: "Languages"
     };
 
-    // Filters that MUST have at least one selection for ALL roles (others optional)
+    // Filters that MUST have at least one selection (others optional)
     const REQUIRED_FILTERS = ["locations", "employment", "experience", "jobCategories"];
 
     // ---------- Step 1: gate Step 2 ----------
@@ -1289,6 +1289,7 @@
       };
 
       try {
+        // Assuming you have a Netlify redirect /api/subscribe -> /.netlify/functions/subscribe
         const resp = await fetch("/api/subscribe", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
