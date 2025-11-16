@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ASAP Jobs – High-Paying Remote Jobs to Your Inbox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="description" content="Tell us what kind of remote job you want and get curated, high-paying roles sent straight to your inbox." />
+
+  <style>
+    :root {
+      --bg: #f5f5fb;
+      --surface: #ffffff;
+      --surface-soft: #f1f5f9;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --text-main: #020617;
+      --text-muted: #64748b;
+      --accent-blue: #2563eb;
+      --accent-green: #10b981;
+      --accent-orange: #f97316;
+      --badge-bg: #eff6ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #dbeafe 0, #f5f5fb 40%, #eef2ff 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem 2.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Brand */
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .brand-logo-img {
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at top left, #fee2e2 0, transparent 60%);
+      padding: 2px;
+    }
+
+    .brand-text-main {
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      color: #0f172a;
+    }
+
+    .brand-text-sub {
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
+
+    /* Hero */
+
+    .hero {
+      text-align: center;
+      margin-bottom: 1.8rem;
+      max-width: 620px;
+    }
+
+    .hero-title {
+      font-size: 1.9rem;
+      margin: 0 0 0.65rem;
+      font-weight: 750;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-title span.highlight { color: var(--accent-blue); }
+
+    .hero-subtitle {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* Subscribe card */
+
+    .subscribe-shell {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .subscribe-card {
+      width: 100%;
+      max-width: 720px;
+      background: var(--surface);
+      border-radius: 1.25rem;
+      padding: 1.4rem 1.2rem 1.7rem;
+      border: 1px solid var(--border);
+      box-shadow:
+        0 18px 60px rgba(15, 23, 42, 0.18),
+        0 0 0 1px rgba(255, 255, 255, 0.4);
+    }
+
+    .subscribe-kicker {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #22c55e;
+      margin-bottom: 0.3rem;
+    }
+
+    .subscribe-title {
+      font-size: 1.25rem;
+      font-weight: 650;
+      margin-bottom: 0.45rem;
+      color: #0f172a;
+    }
+
+    .subscribe-copy {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .subscribe-highlight {
+      display: inline-block;
+      padding: 0.22rem 0.62rem;
+      border-radius: 999px;
+      background: var(--badge-bg);
+      color: var(--accent-blue);
+      font-size: 0.76rem;
+      font-weight: 500;
+      margin-bottom: 0.9rem;
+    }
+
+    .email-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .email-input,
+    .name-input {
+      padding: 0.7rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      outline: none;
+      background: #f9fafb;
+      width: 100%;
+    }
+
+    .email-input::placeholder,
+    .name-input::placeholder { color: #9ca3af; }
+
+    .primary-btn {
+      width: 100%;
+      justify-content: center;
+      padding: 0.78rem 1.2rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #ffffff;
+      font-weight: 650;
+      font-size: 0.98rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      white-space: nowrap;
+      box-shadow: 0 14px 25px rgba(22, 163, 74, 0.35);
+    }
+
+    .primary-btn:disabled {
+      opacity: 0.7;
+      cursor: default;
+      box-shadow: none;
+    }
+
+    .stage-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+
+    /* Filters */
+
+    .filters-wrapper {
+      margin-top: 0.75rem;
+      padding-top: 0.8rem;
+      border-top: 1px dashed var(--border-strong);
+    }
+
+    .emoji-filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+
+    .emoji-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.42rem 0.85rem;
+      border-radius: 999px;
+      border: 2px solid #e5e7eb;
+      background: #ffffff;
+      font-size: 0.88rem;
+      cursor: pointer;
+      box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .emoji-chip span.emoji { font-size: 1.1rem; }
+
+    .emoji-chip.active {
+      border-color: #2563eb;
+      background: #e0edff;
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+
+    .toggle-row {
+      display: flex;
+      gap: 0.9rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 0.3rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    .toggle-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--text-main);
+    }
+
+    .toggle-label span.emoji { margin-right: 0.1rem; }
+
+    /* Dropdowns */
+
+    .filter-dropdowns { position: relative; }
+
+    .filter-panel {
+      position: absolute;
+      top: 110%;
+      left: 0;
+      z-index: 20;
+      background: #ffffff;
+      border-radius: 0.9rem;
+      box-shadow: 0 15px 35px rgba(15,23,42,0.18);
+      border: 1px solid var(--border);
+      min-width: min(280px, 90vw);
+      max-height: 320px;
+      overflow: hidden;
+      display: none;
+      flex-direction: column;
+    }
+
+    .filter-panel.active { display: flex; }
+
+    .filter-header {
+      padding: 0.6rem 0.9rem;
+      background: #ecfdf3;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #16a34a;
+    }
+
+    .filter-search {
+      padding: 0.5rem 0.9rem 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .filter-search input {
+      width: 100%;
+      padding: 0.4rem 0.6rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .filter-options {
+      list-style: none;
+      margin: 0;
+      padding: 0.25rem 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .filter-option {
+      padding: 0.45rem 0.9rem;
+      font-size: 0.88rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .filter-option:hover { background: #f1f5f9; }
+
+    .filter-option.selected {
+      font-weight: 600;
+      background: #e0edff;
+      color: #1d4ed8;
+    }
+
+    .subscribe-fineprint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+    }
+
+    /* Desktop */
+
+    @media (min-width: 640px) {
+      .page { padding: 2.5rem 1.5rem 3.5rem; }
+      .hero-title { font-size: clamp(2.2rem, 5vw, 3rem); }
+      .hero-subtitle { font-size: 1rem; }
+
+      .subscribe-card {
+        padding: 1.7rem 1.7rem 1.9rem;
+        border-radius: 1.4rem;
+      }
+
+      .email-row { flex-direction: row; align-items: center; }
+      .name-input { flex: 0.9; min-width: 140px; }
+      .email-input { flex: 1.3; min-width: 190px; }
+
+      .primary-btn {
+        width: auto;
+        padding-inline: 1.45rem;
+      }
+
+      .filter-panel {
+        min-width: 260px;
+        max-width: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Brand -->
+    <div class="brand">
+      <img src="asap-logo.png" alt="ASAP logo" class="brand-logo-img" />
+      <div>
+        <div class="brand-text-main">ASAP JOBS</div>
+        <div class="brand-text-sub">High-paying remote roles, delivered fast</div>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1 class="hero-title">
+        Get the <span class="highlight">best remote jobs</span> sent to you.
+      </h1>
+      <p class="hero-subtitle">
+        Tap from your feed, set a few filters, and we’ll send curated, high-paying remote roles (including AI jobs) straight to your inbox.
+      </p>
+    </section>
+
+    <!-- Centered subscribe widget -->
+    <div class="subscribe-shell">
+      <div class="subscribe-card">
+        <div class="subscribe-kicker">Step 1 · Your details</div>
+        <div class="subscribe-title">Start your personalized job feed.</div>
+        <p class="subscribe-copy">
+          Tell us who you are, then we’ll ask a few quick questions about location, experience,
+          salary and tech stack so we only send you relevant roles.
+        </p>
+        <div class="subscribe-highlight">
+          ⚡ Hand-picked from hundreds of job sites & company pages
+        </div>
+
+        <form id="subscribeForm">
+          <div class="email-row">
+            <input
+              type="text"
+              id="firstNameInput"
+              required
+              autocomplete="given-name"
+              placeholder="First name"
+              class="name-input"
+            />
+            <input
+              type="email"
+              id="emailInput"
+              required
+              autocomplete="email"
+              placeholder="you@example.com"
+              class="email-input"
+            />
+            <button type="submit" class="primary-btn">
+              Next: choose filters ⚡
+            </button>
+          </div>
+
+          <p class="stage-hint" id="stageHint">
+            We’ll never share your details. Next step: we’ll ask for your job preferences.
+          </p>
+
+          <!-- Filters section -->
+          <div id="filtersSection" style="display:none;">
+            <div class="filters-wrapper">
+              <div class="subscribe-kicker" style="color:#2563eb; margin-bottom:0.4rem;">
+                Step 2 · Your job preferences
+              </div>
+              <p class="stage-hint" style="margin-bottom:0.7rem;">
+                Choose one or more options for every filter so we can tailor your job alerts.
+              </p>
+
+              <div class="emoji-filters" id="emojiFilters">
+                <button type="button" class="emoji-chip" data-filter="location" data-default-label="Location"><span class="emoji">🌍</span><span>Location</span></button>
+                <button type="button" class="emoji-chip" data-filter="employment" data-default-label="Employment"><span class="emoji">💼</span><span>Employment</span></button>
+                <button type="button" class="emoji-chip" data-filter="experience" data-default-label="Experience"><span class="emoji">⭐</span><span>Experience</span></button>
+                <button type="button" class="emoji-chip" data-filter="category" data-default-label="Job Category"><span class="emoji">📦</span><span>Job Category</span></button>
+                <button type="button" class="emoji-chip" data-filter="benefits" data-default-label="Benefits"><span class="emoji">🏖️</span><span>Benefits</span></button>
+                <button type="button" class="emoji-chip" data-filter="technologies" data-default-label="Technologies"><span class="emoji">👾</span><span>Technologies</span></button>
+                <button type="button" class="emoji-chip" data-filter="languages" data-default-label="Languages"><span class="emoji">🗣️</span><span>Languages</span></button>
+              </div>
+
+              <div class="toggle-row">
+                <label class="toggle-item">
+                  <input type="checkbox" id="salaryToggle" />
+                  <span class="toggle-label"><span class="emoji">💰</span> High salary only ($100k+)</span>
+                </label>
+              </div>
+
+              <!-- Dropdown panels -->
+              <div class="filter-dropdowns">
+                <div class="filter-panel" id="locationPanel">
+                  <div class="filter-header">All Locations</div>
+                  <div class="filter-search">
+                    <input type="text" id="locationSearch" placeholder="Search locations..." />
+                  </div>
+                  <ul class="filter-options" id="locationOptions"></ul>
+                </div>
+
+                <div class="filter-panel" id="employmentPanel">
+                  <div class="filter-header">All Types</div>
+                  <div class="filter-search">
+                    <input type="text" id="employmentSearch" placeholder="Search employment types..." />
+                  </div>
+                  <ul class="filter-options" id="employmentOptions"></ul>
+                </div>
+
+                <div class="filter-panel" id="experiencePanel">
+                  <div class="filter-header">All Levels</div>
+                  <div class="filter-search">
+                    <input type="text" id="experienceSearch" placeholder="Search experience levels..." />
+                  </div>
+                  <ul class="filter-options" id="experienceOptions"></ul>
+                </div>
+
+                <div class="filter-panel" id="categoryPanel">
+                  <div class="filter-header">All Categories</div>
+                  <div class="filter-search">
+                    <input type="text" id="categorySearch" placeholder="Search job categories..." />
+                  </div>
+                  <ul class="filter-options" id="categoryOptions"></ul>
+                </div>
+
+                <div class="filter-panel" id="benefitsPanel">
+                  <div class="filter-header">All Benefits</div>
+                  <div class="filter-search">
+                    <input type="text" id="benefitsSearch" placeholder="Search benefits..." />
+                  </div>
+                  <ul class="filter-options" id="benefitsOptions"></ul>
+                </div>
+
+                <div class="filter-panel" id="technologiesPanel">
+                  <div class="filter-header">All Technologies</div>
+                  <div class="filter-search">
+                    <input type="text" id="technologiesSearch" placeholder="Search technologies..." />
+                  </div>
+                  <ul class="filter-options" id="technologiesOptions"></ul>
+                </div>
+
+                <div class="filter-panel" id="languagesPanel">
+                  <div class="filter-header">All Languages</div>
+                  <div class="filter-search">
+                    <input type="text" id="languagesSearch" placeholder="Search languages..." />
+                  </div>
+                  <ul class="filter-options" id="languagesOptions"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="subscribe-fineprint">
+            No spam, ever. Unsubscribe in one click. You’ll only receive remote jobs and occasional
+            job-search tips from ASAP.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---------- DATA (emoji lists) ----------
+
+    const locationOptionsData = [
+      "All Locations",
+      "🌍 Worldwide",
+      "🌎 North America",
+      "🌎 Latin America",
+      "🇪🇺 Europe",
+      "🦁 Africa",
+      "🛕 Middle East",
+      "🗼 Asia",
+      "🌊 Oceania",
+      "🇺🇸 United States",
+      "🇨🇦 Canada",
+      "🇬🇧 United Kingdom",
+      "🇦🇺 Australia",
+      "🇳🇿 New Zealand",
+      "🇮🇪 Ireland",
+      "🇩🇪 Germany",
+      "🇫🇷 France",
+      "🇪🇸 Spain",
+      "🇵🇹 Portugal",
+      "🇮🇹 Italy",
+      "🇳🇱 Netherlands",
+      "🇧🇪 Belgium",
+      "🇨🇭 Switzerland",
+      "🇦🇹 Austria",
+      "🇸🇪 Sweden",
+      "🇳🇴 Norway",
+      "🇩🇰 Denmark",
+      "🇫🇮 Finland",
+      "🇵🇱 Poland",
+      "🇨🇿 Czech Republic",
+      "🇭🇺 Hungary",
+      "🇷🇴 Romania",
+      "🇬🇷 Greece",
+      "🇹🇷 Turkey",
+      "🇮🇱 Israel",
+      "🇦🇪 UAE",
+      "🇸🇦 Saudi Arabia",
+      "🇶🇦 Qatar",
+      "🇪🇬 Egypt",
+      "🇿🇦 South Africa",
+      "🇳🇬 Nigeria",
+      "🇰🇪 Kenya",
+      "🇲🇦 Morocco",
+      "🇮🇳 India",
+      "🇵🇰 Pakistan",
+      "🇧🇩 Bangladesh",
+      "🇱🇰 Sri Lanka",
+      "🇨🇳 China",
+      "🇯🇵 Japan",
+      "🇰🇷 South Korea",
+      "🇸🇬 Singapore",
+      "🇲🇾 Malaysia",
+      "🇮🇩 Indonesia",
+      "🇵🇭 Philippines",
+      "🇹🇭 Thailand",
+      "🇻🇳 Vietnam",
+      "🇲🇽 Mexico",
+      "🇧🇷 Brazil",
+      "🇦🇷 Argentina",
+      "🇨🇱 Chile",
+      "🇨🇴 Colombia",
+      "🇵🇪 Peru",
+      "🌐 Other"
+    ];
+
+    const employmentOptionsData = [
+      "All Types",
+      "⏰ Full-time",
+      "🕒 Part-time",
+      "💼 Freelance",
+      "📄 Contract",
+      "📆 Temporary",
+      "🗓 4-day week"
+    ];
+
+    const experienceOptionsData = [
+      "All Levels",
+      "🍼 Entry Level",
+      "👶 Junior",
+      "🧑‍💻 Mid-Level",
+      "⭐ Senior",
+      "🧭 Lead",
+      "🏛 Staff",
+      "🏔 Principal",
+      "👔 Executive",
+      "📈 Director"
+    ];
+
+    const categoryOptionsData = [
+      "All Categories",
+      "🎧 Support",
+      "🧑‍💻 Engineer",
+      "👶 Junior",
+      "⭐ Senior",
+      "💼 Management",
+      "💻 Software",
+      "🛠 Technical",
+      "🧭 Lead",
+      "🎨 Design",
+      "🚀 Growth",
+      "👔 Manager",
+      "💰 Sales",
+      "📣 Marketing",
+      "💵 Financial",
+      "🔐 Security",
+      "♾ Operations",
+      "📎 Non Tech",
+      "☁️ Cloud",
+      "🧠 Strategy",
+      "🧑‍💻 Code",
+      "✍️ Content",
+      "🏥 Healthcare",
+      "🏛 Executive",
+      "📊 Analytics",
+      "🏫 Education",
+      "🎒 Students",
+      "🎮 Game",
+      "🧑‍💻 Developer",
+      "🌐 Web",
+      "🎨 UI / UX",
+      "📱 Mobile",
+      "🧑‍💼 HR / People",
+      "⚖️ Legal",
+      "🧮 Accounting",
+      "🧑‍💻 DevOps",
+      "🍑 Back End",
+      "🎨 Front End",
+      "🧱 Full Stack",
+      "🧪 QA / Testing",
+      "🎯 Recruiter",
+      "👥 Recruitment",
+      "📦 Customer Support",
+      "📊 Product",
+      "🧑‍💼 Product Manager",
+      "📈 Growth Marketing",
+      "📣 Brand / Marketing",
+      "💹 Finance",
+      "🏦 Banking / Fintech",
+      "🧪 Data / Analytics",
+      "🤖 AI / Machine Learning",
+      "🧠 Data, AI / ML",
+      "💻 IT / Sysadmin",
+      "🧑‍💼 Consulting",
+      "📦 Operations",
+      "🧑‍🏫 Training",
+      "🏗 Architect",
+      "🧩 Other"
+    ];
+
+    const benefitsOptionsData = [
+      "All Benefits",
+      "💰 401(k)",
+      "💰 401k matching",
+      "🌍 Distributed team",
+      "⏰ Async",
+      "👓 Vision insurance",
+      "🦷 Dental insurance",
+      "🚑 Medical insurance",
+      "🏥 Health insurance",
+      "🏖 Unlimited vacation",
+      "🏝 Paid time off",
+      "📆 4 day workweek",
+      "🏕 Company retreats",
+      "🏢 Coworking budget",
+      "📚 Learning budget",
+      "💪 Free gym membership",
+      "🧘 Mental wellness budget",
+      "🖥 Home office budget",
+      "🪙 Pay in crypto",
+      "🕵️‍♀️ Pseudonymous / privacy",
+      "🤝 Profit sharing",
+      "📈 Equity compensation",
+      "🍼 Parental leave",
+      "🕒 Flexible schedule",
+      "🏡 Work from anywhere policy",
+      "📋 No whiteboard interview",
+      "👀 No monitoring system",
+      "🚫 No politics at work",
+      "🧓 We hire old (and young)",
+      "🧑‍🎓 Professional development allowance"
+    ];
+
+    const technologiesOptionsData = [
+      "All Technologies",
+      "🐍 Python",
+      "⚛ React",
+      "📜 JavaScript",
+      "📘 TypeScript",
+      "🟦 Node.js",
+      "🧱 Next.js",
+      "💎 Ruby",
+      "🛤 Ruby on Rails",
+      "☕ Java",
+      "🐹 Go",
+      "🧊 C# / .NET",
+      "📱 Swift",
+      "🤖 Kotlin",
+      "🐘 PostgreSQL",
+      "🟢 MySQL",
+      "🍃 MongoDB",
+      "💾 Redis",
+      "🐳 Docker",
+      "☸️ Kubernetes",
+      "☁️ AWS",
+      "☁️ GCP",
+      "☁️ Azure",
+      "🧠 AI / ML",
+      "✨ Generative AI",
+      "🧾 LLMs",
+      "🧩 LangChain",
+      "🧱 Vector Databases",
+      "📈 Analytics / BI",
+      "🧮 Excel",
+      "💳 Fintech / Payments",
+      "🪙 Crypto / Web3",
+      "💎 Ethereum",
+      "₿ Bitcoin",
+      "📱 iOS",
+      "📱 Android",
+      "🧑‍💻 DevOps / SRE",
+      "🧑‍💻 API / Integrations",
+      "📡 Voice / Video",
+      "🏗 Architecture"
+    ];
+
+    // only major langs
+    const languagesOptionsData = [
+      "All Languages",
+      "🇺🇸 English",
+      "🇪🇸 Spanish",
+      "🇫🇷 French",
+      "🇩🇪 German",
+      "🇮🇹 Italian",
+      "🇵🇹 Portuguese",
+      "🇳🇱 Dutch",
+      "🇷🇺 Russian",
+      "🇹🇷 Turkish",
+      "🇸🇦 Arabic",
+      "🇮🇳 Hindi",
+      "🇨🇳 Chinese (Mandarin)",
+      "🇯🇵 Japanese",
+      "🇰🇷 Korean",
+      "🌐 Other"
+    ];
+
+    // ---------- CHIPS & DROPDOWNS (multi-select) ----------
+
+    const emojiFiltersEl = document.getElementById("emojiFilters");
+    const filterDropdownsEl = document.querySelector(".filter-dropdowns");
+
+    const panels = {
+      location: document.getElementById("locationPanel"),
+      employment: document.getElementById("employmentPanel"),
+      experience: document.getElementById("experiencePanel"),
+      category: document.getElementById("categoryPanel"),
+      benefits: document.getElementById("benefitsPanel"),
+      technologies: document.getElementById("technologiesPanel"),
+      languages: document.getElementById("languagesPanel"),
+    };
+
+    let selectedFilters = {
+      location: [],
+      employment: [],
+      experience: [],
+      category: [],
+      benefits: [],
+      technologies: [],
+      languages: [],
+    };
+
+    function closeAllPanels() {
+      Object.values(panels).forEach((p) => p.classList.remove("active"));
+      Array.from(emojiFiltersEl.querySelectorAll(".emoji-chip")).forEach((chip) =>
+        chip.classList.remove("active")
+      );
+    }
+
+    // NEW: show all selected items (comma separated, no "+2")
+    function updateChipLabel(filterKey) {
+      const chip = document.querySelector(`.emoji-chip[data-filter="${filterKey}"]`);
+      if (!chip) return;
+
+      const defaultLabel = chip.dataset.defaultLabel || "";
+      const labelSpan = chip.querySelector("span:last-child");
+      const values = selectedFilters[filterKey] || [];
+
+      if (!values.length) {
+        labelSpan.textContent = defaultLabel;
+        chip.classList.remove("active");
+      } else {
+        labelSpan.textContent = values.join(", ");
+        chip.classList.add("active");
+      }
+    }
+
+    function buildOptions(list, containerId, filterKey) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      selectedFilters[filterKey] = [];
+
+      list.forEach((label, idx) => {
+        const li = document.createElement("li");
+        li.className = "filter-option";
+        li.textContent = label;
+        if (idx === 0) {
+          li.dataset.all = "true";
+          li.classList.add("selected"); // "All" by default
+        }
+
+        li.addEventListener("click", () => {
+          const allOption = container.querySelector("[data-all='true']");
+          const current = selectedFilters[filterKey] || [];
+
+          if (idx === 0) {
+            // clicked "All"
+            selectedFilters[filterKey] = [];
+            Array.from(container.children).forEach((c) =>
+              c.classList.remove("selected")
+            );
+            li.classList.add("selected");
+          } else {
+            const pos = current.indexOf(label);
+            if (pos === -1) {
+              current.push(label);
+              li.classList.add("selected");
+              if (allOption) allOption.classList.remove("selected");
+            } else {
+              current.splice(pos, 1);
+              li.classList.remove("selected");
+              if (current.length === 0 && allOption) {
+                allOption.classList.add("selected");
+              }
+            }
+            selectedFilters[filterKey] = current;
+          }
+
+          updateChipLabel(filterKey);
+        });
+
+        container.appendChild(li);
+      });
+    }
+
+    buildOptions(locationOptionsData, "locationOptions", "location");
+    buildOptions(employmentOptionsData, "employmentOptions", "employment");
+    buildOptions(experienceOptionsData, "experienceOptions", "experience");
+    buildOptions(categoryOptionsData, "categoryOptions", "category");
+    buildOptions(benefitsOptionsData, "benefitsOptions", "benefits");
+    buildOptions(technologiesOptionsData, "technologiesOptions", "technologies");
+    buildOptions(languagesOptionsData, "languagesOptions", "languages");
+
+    function attachSearch(inputId, listId) {
+      const input = document.getElementById(inputId);
+      const list = document.getElementById(listId);
+      if (!input || !list) return;
+
+      input.addEventListener("input", () => {
+        const q = input.value.trim().toLowerCase();
+        Array.from(list.children).forEach((li) => {
+          if (li.dataset.all === "true") {
+            li.style.display = "";
+            return;
+          }
+          li.style.display = li.textContent.toLowerCase().includes(q) ? "" : "none";
+        });
+      });
+    }
+
+    attachSearch("locationSearch", "locationOptions");
+    attachSearch("employmentSearch", "employmentOptions");
+    attachSearch("experienceSearch", "experienceOptions");
+    attachSearch("categorySearch", "categoryOptions");
+    attachSearch("benefitsSearch", "benefitsOptions");
+    attachSearch("technologiesSearch", "technologiesOptions");
+    attachSearch("languagesSearch", "languagesOptions");
+
+    emojiFiltersEl.addEventListener("click", (e) => {
+      const chip = e.target.closest(".emoji-chip");
+      if (!chip) return;
+
+      const key = chip.dataset.filter;
+      const panel = panels[key];
+      if (!panel) return;
+
+      const isActivePanel = panel.classList.contains("active");
+      closeAllPanels();
+
+      if (!isActivePanel) {
+        chip.classList.add("active");
+        panel.classList.add("active");
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!emojiFiltersEl.contains(e.target) && !filterDropdownsEl.contains(e.target)) {
+        closeAllPanels();
+      }
+    });
+
+    // ---------- SUBSCRIBE FLOW ----------
+
+    const subscribeForm = document.getElementById("subscribeForm");
+    const firstNameInput = document.getElementById("firstNameInput");
+    const emailInput = document.getElementById("emailInput");
+    const filtersSection = document.getElementById("filtersSection");
+    const salaryToggle = document.getElementById("salaryToggle");
+    const stageHint = document.getElementById("stageHint");
+
+    let signupStage = 1;
+
+    function getPreferences() {
+      const labels = Array.from(
+        document.querySelectorAll(".emoji-chip")
+      ).map((chip) => chip.querySelector("span:last-child").textContent.trim());
+
+      const stringify = (arr) => (arr && arr.length ? arr.join(", ") : "");
+
+      return {
+        searchTerm: "",
+        highSalaryOnly: salaryToggle?.checked || false,
+        activeFilters: labels.join(", "),
+        location: stringify(selectedFilters.location),
+        employmentType: stringify(selectedFilters.employment),
+        experienceLevel: stringify(selectedFilters.experience),
+        jobCategory: stringify(selectedFilters.category),
+        benefits: stringify(selectedFilters.benefits),
+        technologies: stringify(selectedFilters.technologies),
+        languages: stringify(selectedFilters.languages),
+      };
+    }
+
+    function allFiltersSelected(prefs) {
+      return (
+        prefs.location &&
+        prefs.employmentType &&
+        prefs.experienceLevel &&
+        prefs.jobCategory &&
+        prefs.benefits &&
+        prefs.technologies &&
+        prefs.languages
+      );
+    }
+
+    if (subscribeForm) {
+      subscribeForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const firstName = firstNameInput.value.trim();
+        const email = emailInput.value.trim();
+
+        if (!firstName) {
+          alert("Please enter your first name.");
+          return;
+        }
+        if (!email) {
+          alert("Please enter your email to get started.");
+          return;
+        }
+
+        const submitBtn = subscribeForm.querySelector("button[type='submit']");
+
+        if (signupStage === 1) {
+          filtersSection.style.display = "block";
+          signupStage = 2;
+          submitBtn.textContent = "Save filters & get jobs ASAP ⚡";
+          stageHint.textContent =
+            "Step 2: choose one or more options for every filter so we can personalise your job alerts.";
+          filtersSection.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+
+        const preferences = getPreferences();
+
+        if (!allFiltersSelected(preferences)) {
+          alert(
+            "Please complete all filters (Location, Employment, Experience, Job Category, Benefits, Technologies, Languages) before subscribing."
+          );
+          return;
+        }
+
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Subscribing…";
+
+        try {
+          const res = await fetch("/.netlify/functions/subscribe", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, firstName, preferences }),
+          });
+
+          if (!res.ok) {
+            console.error("Subscription failed", await res.text());
+            alert("Something went wrong subscribing. Please try again.");
+          } else {
+            alert("Thanks! Your filters are saved and we’ll use them for job alerts. 💌");
+            // easiest clean reset so chips + dropdowns go back to defaults
+            window.location.reload();
+          }
+        } catch (err) {
+          console.error("Subscription error", err);
+          alert("Network error. Please try again.");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
