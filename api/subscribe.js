@@ -61,7 +61,7 @@ export default async function handler(req, res) {
     // 1) Build a simple key → value map for your custom fields
     // These names MUST exactly match the custom field names in Beehiiv
     const customFieldMap = {
-      first_name: firstName || "",
+      first_name: firstName || "", // <-- make sure you created this field in Beehiiv
       high_salary_only: highSalaryOnly ? "true" : "false",
       active_filters: Object.keys(filters)
         .filter((k) => Array.isArray(filters[k]) && filters[k].length)
@@ -79,21 +79,19 @@ export default async function handler(req, res) {
       search_term: searchTerm || "",
     };
 
-    // 2) Convert that map into Beehiiv's expected array of { name, value } objects
-    const customFieldsArray = Object.entries(customFieldMap)
-      .filter(([, value]) => value && String(value).trim() !== "")
-      .map(([name, value]) => ({
-        name,
-        value: String(value),
-      }));
+    // 2) Clean the map into Beehiiv's expected OBJECT shape (not an array)
+    const customFields = Object.fromEntries(
+      Object.entries(customFieldMap)
+        .map(([name, value]) => [name, value == null ? "" : String(value).trim()])
+        .filter(([, value]) => value !== "")
+    );
 
     const payload = {
       email,
       reactivate_existing: true,
       send_welcome_email: true,
       utm_source: "asap-jobs-landing",
-      // Beehiiv expects an *array* here:
-      custom_fields: customFieldsArray,
+      custom_fields: customFields,
     };
 
     const response = await fetch(
