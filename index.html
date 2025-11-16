@@ -34,8 +34,7 @@
     }
 
     .page {
-      max-width: 1400px;          /* widened for option C */
-      width: 95%;
+      max-width: 1120px;
       margin: 0 auto;
       padding: 1.5rem 1.25rem 3rem;
     }
@@ -45,35 +44,35 @@
     .brand-row {
       display: flex;
       align-items: center;
-      gap: 1.25rem;
-      margin-bottom: 1.75rem;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     .brand-logo {
-      width: 96px;                /* bigger logo */
-      height: 96px;
-      border-radius: 2rem;
+      width: 88px;
+      height: 88px;
+      border-radius: 1.8rem;
       object-fit: contain;
-      background: radial-gradient(circle at top left, #1f2937 0, #020617 40%, #020617 100%);
-      padding: 10px;
-      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.65); /* stronger shadow */
+      background: #0f172a;
+      padding: 8px;
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.55);
     }
 
     .brand-text-main {
-      font-size: 1.1rem;          /* slightly larger */
+      font-size: 1rem;
       text-transform: uppercase;
       letter-spacing: 0.18em;
       font-weight: 800;
     }
 
     .brand-text-sub {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
-      margin-top: 0.15rem;
+      margin-top: 0.1rem;
     }
 
     .hero-title {
-      font-size: clamp(2.1rem, 4vw, 2.8rem);
+      font-size: clamp(2rem, 4vw, 2.6rem);
       font-weight: 800;
       letter-spacing: -0.04em;
       margin: 0 0 0.5rem;
@@ -257,10 +256,9 @@
 
     .filter-tabs {
       display: flex;
-      flex-wrap: wrap;        /* allow wrapping to multiple rows */
-      gap: 0.75rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
       margin-bottom: 0.9rem;
-      overflow-x: visible;    /* no horizontal scroll */
       padding-bottom: 0.2rem;
     }
 
@@ -275,7 +273,8 @@
       cursor: pointer;
       font-size: 0.85rem;
       white-space: nowrap;
-      transition: border-color 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
+      transition: border-color 0.12s ease, background 0.12s ease, box-shadow 0.12s ease,
+        color 0.12s ease;
     }
 
     .filter-tab.active {
@@ -295,6 +294,20 @@
     .filter-tab-summary {
       font-size: 0.75rem;
       color: var(--text-muted);
+    }
+
+    /* Missing filter highlight */
+
+    .filter-tab.missing {
+      border-color: #ef4444 !important;
+      background: #fee2e2 !important;
+      box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.3) !important;
+      color: #b91c1c !important;
+    }
+
+    .filter-tab-missing-icon {
+      font-size: 0.85rem;
+      margin-left: 0.25rem;
     }
 
     /* Filter panel */
@@ -431,6 +444,13 @@
     }
 
     /* Mobile tweaks */
+
+    @media (max-width: 720px) {
+      .filter-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+      }
+    }
 
     @media (max-width: 600px) {
       .card {
@@ -802,9 +822,20 @@
         `[data-tab-summary="${key}"]`
       );
       if (tabSummarySpan) tabSummarySpan.textContent = summaryText;
+
       // Panel summary (only if this filter is active)
       if (key === activeFilterKey && filterPanelSummaryEl) {
         filterPanelSummaryEl.textContent = summaryText;
+      }
+
+      // If this filter now has selections, clear missing state
+      if (filterState[key] && filterState[key].length > 0) {
+        const tab = document.querySelector(`.filter-tab[data-filter="${key}"]`);
+        if (tab) {
+          tab.classList.remove("missing");
+          const icon = tab.querySelector(".filter-tab-missing-icon");
+          if (icon) icon.remove();
+        }
       }
     }
 
@@ -919,12 +950,39 @@
         return;
       }
 
+      // Clear previous error states on tabs
+      document.querySelectorAll(".filter-tab").forEach(tab => {
+        tab.classList.remove("missing");
+        const oldIcon = tab.querySelector(".filter-tab-missing-icon");
+        if (oldIcon) oldIcon.remove();
+      });
+
       // Ensure at least one value per filter
       const missingFilters = Object.keys(filterState).filter(
         (key) => !filterState[key] || filterState[key].length === 0
       );
+
       if (missingFilters.length) {
-        alert("Please choose at least one option in every filter before subscribing.");
+        // Highlight missing tabs
+        missingFilters.forEach(key => {
+          const tab = document.querySelector(`.filter-tab[data-filter="${key}"]`);
+          if (tab) {
+            tab.classList.add("missing");
+            const icon = document.createElement("span");
+            icon.className = "filter-tab-missing-icon";
+            icon.textContent = "❗";
+            tab.appendChild(icon);
+          }
+        });
+
+        // Scroll to the first missing tab
+        const firstMissing = document.querySelector(
+          `.filter-tab[data-filter="${missingFilters[0]}"]`
+        );
+        if (firstMissing) {
+          firstMissing.scrollIntoView({ behavior: "smooth", inline: "center" });
+        }
+
         return;
       }
 
