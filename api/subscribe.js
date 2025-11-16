@@ -18,14 +18,16 @@ export default async function handler(req, res) {
   }
 
   try {
-    const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
+    const body =
+      typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
 
     // Frontend payload shape:
     // {
     //   email,
     //   firstName,
     //   filters: {
-    //     locations, employment, experience, jobCategories, benefits, technologies, languages
+    //     locations, employment, experience, jobCategories,
+    //     benefits, technologies, languages
     //   },
     //   highSalaryOnly,
     //   searchTerm?   // optional
@@ -56,11 +58,9 @@ export default async function handler(req, res) {
     const join = (val) =>
       Array.isArray(val) && val.length ? val.join(" | ") : "";
 
-    // Match your Beehiiv custom field keys:
-    // languages_pref, technologies_pref, benefits_pref,
-    // job_category, experience_level, employment_type,
-    // location_pref, active_filters, high_salary_only, search_term
-    const customFields = {
+    // 1) Build a simple key → value map for your custom fields
+    // These names MUST exactly match the custom field names in Beehiiv
+    const customFieldMap = {
       first_name: firstName || "",
       high_salary_only: highSalaryOnly ? "true" : "false",
       active_filters: Object.keys(filters)
@@ -79,12 +79,21 @@ export default async function handler(req, res) {
       search_term: searchTerm || "",
     };
 
+    // 2) Convert that map into Beehiiv's expected array of { name, value } objects
+    const customFieldsArray = Object.entries(customFieldMap)
+      .filter(([, value]) => value && String(value).trim() !== "")
+      .map(([name, value]) => ({
+        name,
+        value: String(value),
+      }));
+
     const payload = {
       email,
       reactivate_existing: true,
       send_welcome_email: true,
       utm_source: "asap-jobs-landing",
-      custom_fields: customFields,
+      // Beehiiv expects an *array* here:
+      custom_fields: customFieldsArray,
     };
 
     const response = await fetch(
