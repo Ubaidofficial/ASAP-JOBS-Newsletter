@@ -494,7 +494,7 @@
         <h2 class="step-title">Start your personalized job feed.</h2>
         <p class="step-copy">
           Pop in your first name and email. Next, we’ll ask a few quick questions about location,
-          experience, salary and tech stack so we only send you relevant roles.
+          experience, salary and job preferences so we only send you relevant roles.
         </p>
         <div class="pill-highlight">
           ⚡ Hand-picked from hundreds of job boards & company pages
@@ -540,7 +540,7 @@
         <div class="step2-header">
           <h2 class="step-title">Tell us what kind of roles you want.</h2>
           <p class="step2-subcopy">
-            Choose at least one option for the required filters. Benefits, technologies and languages are optional
+            Choose at least one option for the filters marked with *. Benefits, technologies and languages are optional
             but help us personalize your job alerts.
           </p>
         </div>
@@ -654,7 +654,7 @@
         { value: '4-day week', label: '🌴 4-day week' }
       ],
       experience: [
-        { value: 'Entry Level', label: '🪴 Entry Level', keywords: ['junior', 'new grad', 'graduate'] },
+        { value: 'Entry Level', label: '🪴 Entry Level', keywords: ['entry', 'junior', 'new grad', 'graduate'] },
         { value: 'Junior', label: '👶 Junior', keywords: ['junior', 'jr'] },
         { value: 'Mid-Level', label: '⭐ Mid-Level', keywords: ['mid', 'intermediate'] },
         { value: 'Senior', label: '🌟 Senior', keywords: ['senior', 'sr'] },
@@ -667,227 +667,132 @@
           value: 'Growth',
           label: '🚀 Growth (SEO / Paid)',
           keywords: [
-            'growth',
-            'growth marketing',
-            'seo',
-            'search',
-            'sem',
-            'paid',
-            'ppc',
-            'performance marketing',
-            'paid social',
-            'acquisition',
-            'user acquisition',
-            'demand gen',
-            'ua'
+            'seo', 'search', 'sem', 'paid', 'ppc', 'performance', 'performance marketing',
+            'paid social', 'growth', 'growth marketer', 'growth marketing',
+            'demand gen', 'user acquisition', 'ua'
           ]
         },
         {
           value: 'Marketing',
           label: '📣 Marketing (Brand / Content)',
           keywords: [
-            'marketing',
-            'content',
-            'content writing',
-            'content marketer',
-            'content marketing',
-            'copywriting',
-            'copywriter',
-            'brand',
-            'brand marketing',
-            'email marketing',
-            'crm',
-            'lifecycle',
-            'social media manager',
-            'community manager'
+            'marketing', 'brand', 'brand marketing',
+            'content', 'content writing', 'content marketing', 'content marketer',
+            'copywriting', 'copywriter',
+            'email marketing', 'newsletter', 'crm', 'lifecycle',
+            'social media manager', 'community manager'
           ]
         },
         {
           value: 'Sales',
           label: '💼 Sales',
           keywords: [
-            'sales',
-            'sales rep',
-            'sales development',
-            'sdr',
-            'bdr',
-            'account executive',
-            'ae',
-            'closer',
-            'inside sales',
-            'outbound',
-            'inbound',
-            'account manager'
+            'sales', 'sales rep', 'sales development', 'sdr', 'bdr',
+            'account executive', 'ae', 'closer', 'inside sales',
+            'outbound', 'inbound', 'account manager'
           ]
         },
         {
           value: 'Customer Success',
           label: '🎧 Customer Success / Support',
           keywords: [
-            'customer support',
-            'support',
-            'cx',
-            'customer experience',
-            'customer success',
-            'cs',
-            'account manager',
-            'implementation specialist'
+            'customer success', 'cs', 'customer support', 'support',
+            'cx', 'customer experience', 'implementation specialist'
           ]
         },
         {
           value: 'Analytics',
           label: '📊 Data & Analytics',
           keywords: [
-            'analytics',
-            'data analyst',
-            'business intelligence',
-            'bi',
-            'data science',
-            'product analytics',
-            'marketing analytics',
-            'experiment',
-            'a/b testing',
-            'ab testing'
+            'analytics', 'data analyst', 'business intelligence', 'bi',
+            'data science', 'product analytics', 'marketing analytics',
+            'experiment', 'a/b testing', 'ab testing'
           ]
         },
         {
           value: 'Engineering',
           label: '👨‍💻 Engineering',
           keywords: [
-            'software engineer',
-            'developer',
-            'frontend',
-            'backend',
-            'fullstack',
-            'full stack',
-            'mobile engineer',
-            'ios',
-            'android'
+            'software engineer', 'developer', 'frontend', 'front-end',
+            'backend', 'back-end', 'fullstack', 'full stack',
+            'mobile engineer', 'ios', 'android'
           ]
         },
         {
           value: 'Product',
           label: '📦 Product Management',
           keywords: [
-            'product manager',
-            'pm',
-            'product owner',
-            'group product manager',
-            'gpm',
-            'product lead'
+            'product manager', 'pm', 'product owner', 'group product manager', 'gpm', 'product lead'
           ]
         },
         {
           value: 'Design',
           label: '🎨 Design (Product / UI/UX)',
           keywords: [
-            'designer',
-            'product design',
-            'ux',
-            'ui',
-            'ui/ux',
-            'ux researcher',
-            'interaction design'
+            'designer', 'product design', 'ux', 'ui', 'ui/ux',
+            'ux researcher', 'interaction design'
           ]
         },
         {
           value: 'Data',
           label: '🧱 Data Engineering / Platform',
           keywords: [
-            'data engineer',
-            'analytics engineer',
-            'data platform',
-            'etl',
-            'elt',
-            'dbt',
-            'data pipeline'
+            'data engineer', 'analytics engineer', 'data platform', 'etl',
+            'elt', 'dbt', 'data pipeline'
           ]
         },
         {
           value: 'DevOps',
           label: '🔁 DevOps / SRE / Platform',
           keywords: [
-            'devops',
-            'sre',
-            'site reliability',
-            'platform engineer',
-            'infrastructure',
-            'infra',
-            'cloud',
-            'kubernetes',
-            'k8s'
+            'devops', 'sre', 'site reliability', 'platform engineer',
+            'infrastructure', 'infra', 'cloud', 'kubernetes', 'k8s'
           ]
         },
         {
           value: 'Security',
           label: '🔑 Security',
           keywords: [
-            'security engineer',
-            'application security',
-            'appsec',
-            'infosec',
-            'cybersecurity'
+            'security engineer', 'appsec', 'application security', 'infosec', 'cybersecurity'
           ]
         },
         {
           value: 'Finance',
           label: '💰 Finance / Accounting',
           keywords: [
-            'finance',
-            'financial analyst',
-            'accountant',
-            'fp&a',
-            'controller',
-            'cfo'
+            'finance', 'financial analyst', 'accountant', 'accounting',
+            'fp&a', 'controller', 'cfo'
           ]
         },
         {
           value: 'Operations',
-          label: '⚙️ Operations',
+          label: '⚙️ Operations / Strategy',
           keywords: [
-            'operations',
-            'bizops',
-            'business operations',
-            'strategy',
-            'chief of staff',
-            'program manager'
+            'operations', 'ops', 'bizops', 'business operations',
+            'strategy', 'chief of staff', 'program manager'
           ]
         },
         {
           value: 'HR',
           label: '🙋 People / HR / Talent',
           keywords: [
-            'recruiter',
-            'talent acquisition',
-            'hr',
-            'people ops',
-            'people operations',
-            'hr manager'
+            'recruiter', 'talent acquisition', 'ta', 'hr', 'people ops',
+            'people operations', 'hr manager'
           ]
         },
         {
           value: 'Legal',
           label: '⚖️ Legal',
           keywords: [
-            'legal',
-            'counsel',
-            'lawyer',
-            'compliance'
+            'legal', 'counsel', 'lawyer', 'compliance'
           ]
         },
         {
           value: 'Executive',
           label: '🏛️ Executive / Leadership',
           keywords: [
-            'founder',
-            'co-founder',
-            'ceo',
-            'cto',
-            'cpo',
-            'cmo',
-            'vp',
-            'head of',
-            'executive'
+            'founder', 'co-founder', 'ceo', 'cto', 'cpo', 'cmo',
+            'vp', 'head of', 'executive', 'c-suite'
           ]
         }
       ],
@@ -1126,7 +1031,7 @@
       languages: "Languages"
     };
 
-    // Filters that MUST have at least one selection
+    // Filters that MUST have at least one selection for ALL roles (others optional)
     const REQUIRED_FILTERS = ["locations", "employment", "experience", "jobCategories"];
 
     // ---------- Step 1: gate Step 2 ----------
@@ -1231,7 +1136,7 @@
         locations: "Search locations…",
         employment: "Search employment types…",
         experience: "Search levels…",
-        jobCategories: "Search job roles…",
+        jobCategories: "Search job roles, categories…",
         benefits: "Search benefits…",
         technologies: "Search technologies…",
         languages: "Search languages…"
@@ -1345,7 +1250,7 @@
         if (oldIcon) oldIcon.remove();
       });
 
-      // Ensure at least one value per *required* filter
+      // Ensure at least one value per *required* filter (others stay optional)
       const missingFilters = REQUIRED_FILTERS.filter(
         (key) => !filterState[key] || filterState[key].length === 0
       );
