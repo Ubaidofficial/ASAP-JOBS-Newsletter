@@ -6,20 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg: radial-gradient(circle at top, #dbeafe 0, #f5f3ff 32%, #f9fafb 65%, #f1f5f9 100%);
-      --card: #ffffff;
-      --border: #e2e8f0;
-      --border-strong: #cbd5e1;
+      --bg: #eef2ff;
+      --bg-soft: #f5f5ff;
+      --surface: #ffffff;
       --text-main: #020617;
       --text-muted: #6b7280;
-      --accent-blue: #2563eb;
-      --accent-blue-soft: #e0edff;
-      --accent-green: #16a34a;
-      --accent-green-soft: #dcfce7;
-      --accent-purple: #4f46e5;
-      --danger: #dc2626;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.12);
-      --chip-bg: #f8fafc;
+      --accent: #2563eb;
+      --accent-soft: #e0ebff;
+      --success: #16a34a;
+      --danger: #ef4444;
+      --border: #e2e8f0;
+      --border-soft: #e5e7eb;
+      --pill-bg: #f9fafb;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.18);
     }
 
     * {
@@ -28,9 +27,9 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #e0f2fe 0, #eef2ff 45%, #e5e7eb 100%);
       color: var(--text-main);
     }
 
@@ -40,941 +39,932 @@
       padding: 1.5rem 1.25rem 3rem;
     }
 
+    /* Brand + hero */
+
     .brand-row {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1.75rem;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     .brand-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: radial-gradient(circle at top left, #fee2e2 0, transparent 60%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .brand-logo img {
-      width: 32px;
-      height: auto;
-      display: block;
+      width: 72px;
+      height: 72px;
+      border-radius: 1.6rem;
+      object-fit: contain;
+      background: #0f172a;
+      padding: 6px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.45);
     }
 
     .brand-text-main {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
+      font-size: 1rem;
       text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-weight: 800;
     }
 
     .brand-text-sub {
-      font-size: 0.8rem;
-      color: #6b7280;
-    }
-
-    .hero {
-      text-align: left;
-      margin-bottom: 1.75rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
     }
 
     .hero-title {
-      font-size: clamp(1.9rem, 5vw, 2.6rem);
-      margin: 0 0 0.6rem;
+      font-size: clamp(2rem, 4vw, 2.6rem);
       font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin: 0 0 0.5rem;
     }
 
     .hero-title span.highlight {
-      color: var(--accent-blue);
+      background: linear-gradient(120deg, #2563eb, #4f46e5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .hero-subtitle {
       margin: 0;
-      font-size: 0.98rem;
-      line-height: 1.6;
+      font-size: 0.95rem;
       color: var(--text-muted);
-      max-width: 520px;
+      max-width: 560px;
+      line-height: 1.6;
     }
+
+    /* Card */
 
     .card {
       margin-top: 1.75rem;
-      background: var(--card);
-      border-radius: 1.25rem;
-      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 1.4rem;
+      padding: 1.5rem 1.25rem 1.75rem;
       box-shadow: var(--shadow-soft);
-      padding: 1.4rem 1.3rem 1.6rem;
+      border: 1px solid rgba(148, 163, 184, 0.15);
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 768px) {
       .card {
-        padding: 1.7rem 1.9rem 1.9rem;
+        padding: 1.75rem 2rem 2rem;
       }
     }
 
-    .kicker {
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
+    .step-label {
+      font-size: 0.76rem;
       text-transform: uppercase;
-      font-weight: 600;
+      letter-spacing: 0.18em;
       color: #22c55e;
-      margin-bottom: 0.45rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
     }
 
     .step-title {
-      font-size: 1.15rem;
+      margin: 0 0 0.4rem;
+      font-size: 1.05rem;
       font-weight: 700;
-      margin-bottom: 0.3rem;
     }
 
-    .step-subtitle {
-      font-size: 0.92rem;
+    .step-copy {
+      margin: 0 0 0.9rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
-      margin-bottom: 0.85rem;
+      max-width: 640px;
     }
 
-    .pill-note {
+    .pill-highlight {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      font-size: 0.78rem;
-      padding: 0.26rem 0.6rem;
+      gap: 0.25rem;
+      padding: 0.35rem 0.7rem;
       border-radius: 999px;
-      background: var(--accent-blue-soft);
-      color: var(--accent-blue);
+      background: #ecfeff;
+      color: #0369a1;
+      font-size: 0.75rem;
       font-weight: 500;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.9rem;
     }
+
+    /* Form basics */
 
     .field-row {
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      gap: 0.75rem;
       margin-bottom: 0.9rem;
     }
 
     @media (min-width: 640px) {
-      .field-row {
+      .field-row--2 {
         flex-direction: row;
-        align-items: center;
       }
+    }
+
+    .field {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .field-label {
+      font-size: 0.8rem;
+      font-weight: 500;
     }
 
     .input {
       width: 100%;
       border-radius: 999px;
       border: 1px solid var(--border);
-      padding: 0.75rem 1rem;
-      font-size: 0.95rem;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.9rem;
       outline: none;
-      background: #ffffff;
-      color: var(--text-main);
+      background: #f9fafb;
+      transition: border-color 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
     }
 
     .input:focus {
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 0 1px var(--accent-blue-soft);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.22);
+      background: #ffffff;
     }
 
-    .btn-primary {
-      border: none;
+    .input-error {
+      border-color: var(--danger);
+      box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.25);
+    }
+
+    /* Buttons */
+
+    .btn {
       border-radius: 999px;
-      padding: 0.8rem 1.4rem;
-      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
       font-weight: 600;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.4rem;
-      cursor: pointer;
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: #ffffff;
+      padding: 0.7rem 1.4rem;
       white-space: nowrap;
-      box-shadow: 0 12px 25px rgba(22, 163, 74, 0.35);
     }
 
-    .btn-primary[disabled] {
-      cursor: not-allowed;
+    .btn-primary {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #f9fafb;
+      box-shadow: 0 14px 30px rgba(22, 163, 74, 0.45);
+    }
+
+    .btn-primary:disabled {
       opacity: 0.7;
+      cursor: default;
       box-shadow: none;
     }
 
-    .helper-text {
+    .step1-footer-text {
+      margin: 0.55rem 0 0;
       font-size: 0.78rem;
       color: var(--text-muted);
-      margin-top: 0.4rem;
     }
+
+    /* Step separation */
 
     .step-divider {
-      margin: 1.6rem 0 1.1rem;
-      border-top: 1px dashed var(--border-strong);
+      height: 1px;
+      margin: 1.5rem 0 1.2rem;
+      background: linear-gradient(to right, transparent, #e5e7eb, transparent);
     }
 
-    .step-label {
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent-purple);
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-    }
+    /* Step 2 */
 
-    .pref-title-row {
+    .step2-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 0.5rem;
       flex-wrap: wrap;
-      margin-bottom: 0.75rem;
+      gap: 0.4rem;
+      align-items: baseline;
+      margin-bottom: 0.7rem;
     }
 
-    .pref-title-row small {
-      font-size: 0.8rem;
+    .step2-subcopy {
+      font-size: 0.82rem;
       color: var(--text-muted);
     }
 
-    .filters-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 0.65rem;
-      margin-bottom: 0.55rem;
-    }
+    /* Horizontal filter tabs */
 
-    @media (min-width: 640px) {
-      .filters-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    .filter-chip {
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--chip-bg);
-      padding: 0.6rem 0.9rem;
+    .filter-tabs {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      gap: 0.75rem;
-      font-size: 0.9rem;
+      flex-wrap: nowrap;
+      gap: 0.5rem;
+      margin-bottom: 0.9rem;
+      overflow-x: auto;
+      padding-bottom: 0.2rem;
     }
 
-    .filter-chip-main {
+    .filter-tab {
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: var(--pill-bg);
+      padding: 0.45rem 0.85rem;
       display: inline-flex;
       align-items: center;
-      gap: 0.55rem;
-    }
-
-    .filter-chip-emoji {
-      font-size: 1.05rem;
-    }
-
-    .filter-chip-label {
-      font-weight: 600;
-    }
-
-    .filter-chip-value {
-      font-size: 0.84rem;
-      color: var(--text-muted);
+      gap: 0.35rem;
+      cursor: pointer;
+      font-size: 0.85rem;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 10rem;
+      transition: border-color 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
     }
 
-    @media (min-width: 768px) {
-      .filter-chip-value {
-        max-width: 13rem;
-      }
+    .filter-tab.active {
+      border-color: var(--accent);
+      background: #eef2ff;
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.12);
     }
 
-    .filter-chip-arrow {
-      font-size: 0.9rem;
-      color: #9ca3af;
+    .filter-icon {
+      flex-shrink: 0;
     }
 
-    .filter-chip.active {
-      background: #e0e7ff;
-      border-color: #4f46e5;
-      box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.2);
+    .filter-tab-label {
+      font-weight: 500;
     }
 
-    .filters-shell {
-      position: relative;
+    .filter-tab-summary {
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
+
+    /* Filter panel */
 
     .filter-panel {
-      margin-top: 0.65rem;
-      border-radius: 0.9rem;
-      border: 1px solid var(--border-strong);
-      background: #f9fafb;
-      padding: 0.6rem 0.7rem 0.7rem;
-      display: none;
-      max-height: 280px;
-      overflow: hidden;
-    }
-
-    .filter-panel.active {
-      display: block;
-    }
-
-    .filter-search {
-      width: 100%;
-      border-radius: 0.75rem;
+      border-radius: 1rem;
       border: 1px solid var(--border);
-      padding: 0.4rem 0.7rem;
-      font-size: 0.86rem;
-      margin-bottom: 0.45rem;
-      outline: none;
+      background: #f9fafb;
+      padding: 0.75rem 0.9rem 0.8rem;
     }
 
-    .filter-search:focus {
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 0 1px var(--accent-blue-soft);
-    }
-
-    .option-list {
-      max-height: 190px;
-      overflow-y: auto;
-      padding-right: 0.3rem;
-    }
-
-    .filter-option {
-      width: 100%;
-      border: none;
-      background: transparent;
-      border-radius: 0.6rem;
-      padding: 0.36rem 0.4rem;
-      text-align: left;
-      font-size: 0.9rem;
+    .filter-panel-top {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
-      cursor: pointer;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
     }
 
-    .filter-option-main {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .filter-option-emoji {
-      width: 1.3rem;
-      text-align: center;
-    }
-
-    .filter-option-label {
-      white-space: nowrap;
-    }
-
-    .filter-option-tag {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-    }
-
-    .filter-option.selected {
-      background: var(--accent-blue-soft);
-      color: var(--accent-blue);
+    .filter-panel-label {
+      font-size: 0.85rem;
       font-weight: 600;
     }
 
-    .filter-all {
-      font-size: 0.8rem;
-      font-weight: 500;
-      padding: 0.35rem 0.4rem;
-      margin-bottom: 0.2rem;
-      border-radius: 0.5rem;
-      background: #ecfdf3;
-      color: #15803d;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
+    .filter-panel-summary {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: right;
+      white-space: nowrap;
     }
 
-    .high-salary-row {
+    .filter-panel-search {
+      margin-bottom: 0.35rem;
+    }
+
+    .dropdown-search {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.84rem;
+      outline: none;
+      background: #f9fafb;
+    }
+
+    .dropdown-search:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.18);
+      background: #ffffff;
+    }
+
+    .dropdown-body {
+      padding: 0.25rem 0;
+      max-height: 220px;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .dropdown-item {
       display: flex;
       align-items: center;
       gap: 0.45rem;
-      margin-top: 0.55rem;
-      margin-bottom: 0.3rem;
-      font-size: 0.9rem;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.86rem;
+      cursor: pointer;
     }
 
-    .high-salary-row input {
-      width: 18px;
-      height: 18px;
+    .dropdown-item:hover {
+      background: #f3f4ff;
     }
 
-    .status-text {
+    .dropdown-item input {
+      margin: 0;
+    }
+
+    .dropdown-item-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .dropdown-empty {
+      padding: 0.5rem 0.9rem 0.75rem;
       font-size: 0.8rem;
-      margin-top: 0.5rem;
+      color: var(--text-muted);
     }
 
-    .status-text.error {
+    .hidden {
+      display: none !important;
+    }
+
+    /* Salary row */
+
+    .salary-row {
+      margin-top: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.86rem;
+    }
+
+    .salary-row input {
+      width: 16px;
+      height: 16px;
+    }
+
+    .salary-label span {
+      margin-right: 0.15rem;
+    }
+
+    .step2-footer-text {
+      margin-top: 0.5rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Final CTA */
+
+    .cta-row {
+      margin-top: 0.9rem;
+    }
+
+    .status-message {
+      margin-top: 0.6rem;
+      font-size: 0.82rem;
+    }
+
+    .status-message.success {
+      color: var(--success);
+    }
+
+    .status-message.error {
       color: var(--danger);
     }
 
-    .status-text.success {
-      color: var(--accent-green);
-    }
+    /* Mobile tweaks */
 
-    .footer-note {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 0.5rem;
+    @media (max-width: 600px) {
+      .card {
+        border-radius: 1.1rem;
+        padding: 1.25rem 1rem 1.4rem;
+      }
+
+      .filter-panel-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="page">
-    <!-- Brand -->
-    <header class="brand-row">
-      <div class="brand-logo">
-        <img src="asap-logo.png" alt="ASAP Jobs logo" />
+  <div class="page">
+    <!-- Brand + hero -->
+    <header>
+      <div class="brand-row">
+        <img src="asap-logo.png" alt="ASAP Jobs logo" class="brand-logo" />
+        <div>
+          <div class="brand-text-main">ASAP JOBS</div>
+          <div class="brand-text-sub">High-paying remote roles, delivered fast</div>
+        </div>
       </div>
-      <div>
-        <div class="brand-text-main">ASAP JOBS</div>
-        <div class="brand-text-sub">High-paying remote roles, delivered fast</div>
-      </div>
-    </header>
 
-    <!-- Hero -->
-    <section class="hero">
       <h1 class="hero-title">
         Get the <span class="highlight">best remote jobs</span> sent to you.
       </h1>
       <p class="hero-subtitle">
-        Tell us your email once, then choose exactly what you’re looking for.
-        We’ll only send curated, high-paying remote roles that match your filters.
+        Tell us your email once, then choose exactly what you’re looking for. We’ll only send curated,
+        high-paying remote roles that match your filters.
       </p>
-    </section>
+    </header>
 
-    <!-- Main card -->
-    <section class="card">
-      <!-- STEP 1: Email + name -->
-      <div>
-        <div class="kicker">Step 1 · Your email</div>
+    <!-- Card -->
+    <main class="card">
+      <!-- STEP 1 -->
+      <section>
+        <div class="step-label">Step 1 · Your email</div>
         <h2 class="step-title">Start your personalized job feed.</h2>
-        <p class="step-subtitle">
-          Pop in your email and first name. Next, we’ll ask a few quick questions
-          about location, experience, salary and tech stack so we only send you
-          relevant roles.
+        <p class="step-copy">
+          Pop in your first name and email. Next, we’ll ask a few quick questions about location,
+          experience, salary and tech stack so we only send you relevant roles.
         </p>
-
-        <div class="pill-note">
-          ⚡ Hand-picked from hundreds of job sites &amp; company pages
+        <div class="pill-highlight">
+          ⚡ Hand-picked from hundreds of job boards & company pages
         </div>
 
-        <div class="field-row">
-          <input
-            id="firstNameInput"
-            class="input"
-            type="text"
-            autocomplete="given-name"
-            placeholder="First name"
-          />
-          <input
-            id="emailInput"
-            class="input"
-            type="email"
-            autocomplete="email"
-            placeholder="you@example.com"
-          />
+        <div class="field-row field-row--2">
+          <div class="field">
+            <label class="field-label" for="firstNameInput">First name</label>
+            <input
+              id="firstNameInput"
+              type="text"
+              class="input"
+              autocomplete="given-name"
+              placeholder="Alex"
+            />
+          </div>
+          <div class="field">
+            <label class="field-label" for="emailInput">Email</label>
+            <input
+              id="emailInput"
+              type="email"
+              class="input"
+              autocomplete="email"
+              placeholder="you@example.com"
+            />
+          </div>
         </div>
 
-        <button id="step1NextBtn" class="btn-primary" type="button">
+        <button type="button" class="btn btn-primary" id="nextStepButton">
           Next: choose filters ⚡
         </button>
 
-        <p class="helper-text">
+        <p class="step1-footer-text">
           We’ll never share your email. Next step: we’ll ask for your job preferences.
         </p>
-      </div>
+      </section>
 
-      <!-- Divider -->
       <div class="step-divider"></div>
 
-      <!-- STEP 2: Filters -->
-      <div id="step2">
+      <!-- STEP 2 -->
+      <section id="step2" class="hidden">
         <div class="step-label">Step 2 · Your job preferences</div>
-        <div class="pref-title-row">
+        <div class="step2-header">
           <h2 class="step-title">Tell us what kind of roles you want.</h2>
-          <small>Choose one or more options for every filter so we can tailor your job alerts.</small>
+          <p class="step2-subcopy">
+            Choose one or more options for every filter so we can tailor your job alerts.
+          </p>
         </div>
 
-        <div class="filters-shell">
-          <!-- chips -->
-          <div class="filters-grid" id="filterChips"></div>
-          <!-- dynamic filter panels -->
-          <div id="filterPanels"></div>
+        <!-- Horizontal filter tabs -->
+        <div class="filter-tabs" id="filterTabs">
+          <button type="button" class="filter-tab active" data-filter="locations">
+            <span class="filter-icon">🌍</span>
+            <span class="filter-tab-label">Location</span>
+            <span class="filter-tab-summary" data-tab-summary="locations">Any location</span>
+          </button>
+          <button type="button" class="filter-tab" data-filter="employment">
+            <span class="filter-icon">💼</span>
+            <span class="filter-tab-label">Employment</span>
+            <span class="filter-tab-summary" data-tab-summary="employment">Select…</span>
+          </button>
+          <button type="button" class="filter-tab" data-filter="experience">
+            <span class="filter-icon">⭐</span>
+            <span class="filter-tab-label">Experience</span>
+            <span class="filter-tab-summary" data-tab-summary="experience">Select…</span>
+          </button>
+          <button type="button" class="filter-tab" data-filter="jobCategories">
+            <span class="filter-icon">📦</span>
+            <span class="filter-tab-label">Job Category</span>
+            <span class="filter-tab-summary" data-tab-summary="jobCategories">Select…</span>
+          </button>
+          <button type="button" class="filter-tab" data-filter="benefits">
+            <span class="filter-icon">🏖️</span>
+            <span class="filter-tab-label">Benefits</span>
+            <span class="filter-tab-summary" data-tab-summary="benefits">Select…</span>
+          </button>
+          <button type="button" class="filter-tab" data-filter="technologies">
+            <span class="filter-icon">👾</span>
+            <span class="filter-tab-label">Technologies</span>
+            <span class="filter-tab-summary" data-tab-summary="technologies">Select…</span>
+          </button>
+          <button type="button" class="filter-tab" data-filter="languages">
+            <span class="filter-icon">🗣️</span>
+            <span class="filter-tab-label">Languages</span>
+            <span class="filter-tab-summary" data-tab-summary="languages">Select…</span>
+          </button>
         </div>
 
-        <label class="high-salary-row">
-          <input type="checkbox" id="highSalaryToggle" />
-          <span>💰 High salary only <strong>($100k+)</strong></span>
-        </label>
+        <!-- Active filter panel -->
+        <div class="filter-panel">
+          <div class="filter-panel-top">
+            <div class="filter-panel-label" id="filterPanelLabel">Location preferences</div>
+            <div class="filter-panel-summary" id="filterPanelSummary">Any location</div>
+          </div>
+          <div class="filter-panel-search">
+            <input
+              type="text"
+              id="filterSearchInput"
+              class="dropdown-search"
+              placeholder="Search locations…"
+            />
+          </div>
+          <div id="filterOptionsBody" class="dropdown-body"></div>
+        </div>
 
-        <button id="subscribeBtn" class="btn-primary" type="button">
-          Get remote jobs ASAP ⚡
-        </button>
+        <div class="salary-row">
+          <input type="checkbox" id="highSalaryOnly" />
+          <label for="highSalaryOnly" class="salary-label">
+            <span>💰</span> High salary only ($100k+)
+          </label>
+        </div>
 
-        <p id="statusMessage" class="status-text" style="display:none;"></p>
-
-        <p class="footer-note">
-          No spam, ever. Unsubscribe in one click. You’ll only receive remote jobs and
-          occasional job-search tips from ASAP.
+        <p class="step2-footer-text">
+          No spam, ever. Unsubscribe in one click. You’ll only receive remote jobs and occasional job-search tips from ASAP.
         </p>
-      </div>
-    </section>
-  </main>
+
+        <div class="cta-row">
+          <button type="button" id="subscribeButton" class="btn btn-primary">
+            Get remote jobs ASAP ⚡
+          </button>
+          <p id="statusMessage" class="status-message"></p>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <script>
-    /***********************
-     * FILTER CONFIG
-     **********************/
-    const FILTERS = {
-      location: {
-        key: "location",
-        label: "Location",
-        emoji: "🌍",
-        allLabel: "All locations",
-        searchPlaceholder: "Search locations…",
-        options: [
-          // Remote / hybrid
-          { value: "remote", label: "Remote", emoji: "🏡" },
-          { value: "hybrid", label: "Hybrid", emoji: "🏙️" },
+    // ---------- Filter data (with emojis) ----------
 
-          // Regions & continents
-          { value: "worldwide", label: "Worldwide", emoji: "🌐" },
-          { value: "north-america", label: "North America", emoji: "🌎" },
-          { value: "latin-america", label: "Latin America", emoji: "🪅" },
-          { value: "europe", label: "Europe", emoji: "🇪🇺" },
-          { value: "emea", label: "EMEA", emoji: "🌍" },
-          { value: "apac", label: "APAC", emoji: "🌏" },
-          { value: "asia", label: "Asia", emoji: "🗺️" },
-          { value: "oceania", label: "Oceania", emoji: "🌊" },
-          { value: "africa", label: "Africa", emoji: "🦁" },
-          { value: "middle-east", label: "Middle East", emoji: "🕌" },
-
-          // Key countries
-          { value: "us", label: "United States", emoji: "🇺🇸" },
-          { value: "canada", label: "Canada", emoji: "🇨🇦" },
-          { value: "uk", label: "United Kingdom", emoji: "🇬🇧" },
-          { value: "germany", label: "Germany", emoji: "🇩🇪" },
-          { value: "france", label: "France", emoji: "🇫🇷" },
-          { value: "spain", label: "Spain", emoji: "🇪🇸" },
-          { value: "portugal", label: "Portugal", emoji: "🇵🇹" },
-          { value: "netherlands", label: "Netherlands", emoji: "🇳🇱" },
-          { value: "sweden", label: "Sweden", emoji: "🇸🇪" },
-          { value: "switzerland", label: "Switzerland", emoji: "🇨🇭" },
-          { value: "australia", label: "Australia", emoji: "🇦🇺" },
-          { value: "new-zealand", label: "New Zealand", emoji: "🇳🇿" },
-          { value: "india", label: "India", emoji: "🇮🇳" },
-          { value: "brazil", label: "Brazil", emoji: "🇧🇷" },
-          { value: "mexico", label: "Mexico", emoji: "🇲🇽" }
-        ]
-      },
-      employment: {
-        key: "employment",
-        label: "Employment",
-        emoji: "💼",
-        allLabel: "All types",
-        searchPlaceholder: "Search employment types…",
-        options: [
-          { value: "full-time", label: "Full-time", emoji: "⏰" },
-          { value: "part-time", label: "Part-time", emoji: "🕒" },
-          { value: "freelance", label: "Freelance", emoji: "🧾" },
-          { value: "contract", label: "Contract", emoji: "📃" },
-          { value: "temporary", label: "Temporary", emoji: "📆" },
-          { value: "four-day-week", label: "4-day week", emoji: "🏖️" },
-          { value: "internship", label: "Internship", emoji: "🎓" }
-        ]
-      },
-      experience: {
-        key: "experience",
-        label: "Experience",
-        emoji: "⭐",
-        allLabel: "All levels",
-        searchPlaceholder: "Search levels…",
-        options: [
-          { value: "entry", label: "Entry Level", emoji: "🌱" },
-          { value: "junior", label: "Junior", emoji: "👶" },
-          { value: "mid", label: "Mid-Level", emoji: "⭐" },
-          { value: "senior", label: "Senior", emoji: "💼" },
-          { value: "lead", label: "Lead", emoji: "🧠" },
-          { value: "manager", label: "Manager / Head of", emoji: "📊" },
-          { value: "director", label: "Director", emoji: "🎯" },
-          { value: "vp", label: "VP / C-level", emoji: "🏆" }
-        ]
-      },
-      jobCategory: {
-        key: "jobCategory",
-        label: "Job Category",
-        emoji: "📦",
-        allLabel: "All categories",
-        searchPlaceholder: "Search categories…",
-        options: [
-          { value: "engineering", label: "Engineering", emoji: "💻" },
-          { value: "product", label: "Product", emoji: "📦" },
-          { value: "design", label: "Design / UX", emoji: "🎨" },
-          { value: "data", label: "Data / Analytics", emoji: "📊" },
-          { value: "ai-ml", label: "AI / ML", emoji: "🤖" },
-          { value: "devops", label: "DevOps / SRE", emoji: "🧰" },
-          { value: "mobile", label: "Mobile", emoji: "📱" },
-          { value: "marketing", label: "Marketing / Growth", emoji: "📈" },
-          { value: "sales", label: "Sales", emoji: "💼" },
-          { value: "customer-success", label: "Customer Success", emoji: "🎧" },
-          { value: "operations", label: "Operations", emoji: "⚙️" },
-          { value: "support", label: "Support", emoji: "🛟" },
-          { value: "finance", label: "Finance", emoji: "💰" },
-          { value: "people", label: "People / HR / Recruiting", emoji: "🧑‍💼" },
-          { value: "founder-exec", label: "Founder / Executive", emoji: "🏛️" }
-        ]
-      },
-      benefits: {
-        key: "benefits",
-        label: "Benefits",
-        emoji: "🏖️",
-        allLabel: "All benefits",
-        searchPlaceholder: "Search benefits…",
-        options: [
-          { value: "remote-first", label: "Remote-first", emoji: "🏝️" },
-          { value: "async", label: "Async team", emoji: "⏳" },
-          { value: "home-office", label: "Home office budget", emoji: "🖥️" },
-          { value: "learning", label: "Learning budget", emoji: "📚" },
-          { value: "coworking", label: "Coworking budget", emoji: "🏢" },
-          { value: "company-retreats", label: "Company retreats", emoji: "⛰️" },
-          { value: "equity", label: "Equity / Stocks", emoji: "📈" },
-          { value: "bonus", label: "Performance bonus", emoji: "🎯" },
-          { value: "health-insurance", label: "Health insurance", emoji: "🩺" },
-          { value: "mental-health", label: "Mental health support", emoji: "🧠" },
-          { value: "parental-leave", label: "Parental leave", emoji: "👶" },
-          { value: "unlimited-time-off", label: "Unlimited time off", emoji: "🌴" },
-          { value: "four-day-week", label: "4-day work week", emoji: "📆" },
-          { value: "flexible-hours", label: "Flexible schedule", emoji: "🕰️" }
-        ]
-      },
-      technologies: {
-        key: "technologies",
-        label: "Technologies",
-        emoji: "👾",
-        allLabel: "All technologies",
-        searchPlaceholder: "Search technologies…",
-        options: [
-          { value: "python", label: "Python", emoji: "🐍" },
-          { value: "javascript", label: "JavaScript", emoji: "📜" },
-          { value: "typescript", label: "TypeScript", emoji: "🔷" },
-          { value: "react", label: "React", emoji: "⚛️" },
-          { value: "node", label: "Node.js", emoji: "🟢" },
-          { value: "nextjs", label: "Next.js", emoji: "⏭️" },
-          { value: "java", label: "Java", emoji: "☕" },
-          { value: "go", label: "Go", emoji: "🐹" },
-          { value: "ruby", label: "Ruby / Rails", emoji: "💎" },
-          { value: "php", label: "PHP", emoji: "🐘" },
-          { value: "aws", label: "AWS", emoji: "☁️" },
-          { value: "gcp", label: "GCP", emoji: "🌩️" },
-          { value: "azure", label: "Azure", emoji: "🌀" },
-          { value: "postgres", label: "PostgreSQL", emoji: "🐘" },
-          { value: "mongodb", label: "MongoDB", emoji: "🍃" },
-          { value: "kubernetes", label: "Kubernetes", emoji: "📦" },
-          { value: "docker", label: "Docker", emoji: "🐳" },
-          { value: "llms", label: "LLMs / GenAI", emoji: "🤖" },
-          { value: "data-eng", label: "Data engineering", emoji: "🧱" }
-        ]
-      },
-      languages: {
-        key: "languages",
-        label: "Languages",
-        emoji: "🗣️",
-        allLabel: "All languages",
-        searchPlaceholder: "Search languages…",
-        options: [
-          { value: "english", label: "English", emoji: "🇬🇧" },
-          { value: "spanish", label: "Spanish", emoji: "🇪🇸" },
-          { value: "portuguese", label: "Portuguese", emoji: "🇵🇹" },
-          { value: "german", label: "German", emoji: "🇩🇪" },
-          { value: "french", label: "French", emoji: "🇫🇷" },
-          { value: "italian", label: "Italian", emoji: "🇮🇹" },
-          { value: "dutch", label: "Dutch", emoji: "🇳🇱" },
-          { value: "swedish", label: "Swedish", emoji: "🇸🇪" },
-          { value: "norwegian", label: "Norwegian", emoji: "🇳🇴" },
-          { value: "danish", label: "Danish", emoji: "🇩🇰" },
-          { value: "polish", label: "Polish", emoji: "🇵🇱" },
-          { value: "turkish", label: "Turkish", emoji: "🇹🇷" },
-          { value: "russian", label: "Russian", emoji: "🇷🇺" },
-          { value: "arabic", label: "Arabic", emoji: "🇸🇦" },
-          { value: "hindi", label: "Hindi", emoji: "🇮🇳" },
-          { value: "urdu", label: "Urdu", emoji: "🇵🇰" },
-          { value: "japanese", label: "Japanese", emoji: "🇯🇵" },
-          { value: "korean", label: "Korean", emoji: "🇰🇷" },
-          { value: "chinese", label: "Chinese (Mandarin)", emoji: "🇨🇳" }
-        ]
-      }
+    const FILTER_OPTIONS = {
+      locations: [
+        { value: 'Remote', label: '🏡 Remote' },
+        { value: 'Hybrid', label: '📍 Hybrid' },
+        { value: 'Worldwide', label: '🌍 Worldwide' },
+        { value: 'North America', label: '🌎 North America' },
+        { value: 'Latin America', label: '🌎 Latin America' },
+        { value: 'Europe', label: '🇪🇺 Europe' },
+        { value: 'EMEA', label: '🌍 EMEA' },
+        { value: 'AMER', label: '🌎 AMER' },
+        { value: 'APAC', label: '🌏 APAC' },
+        { value: 'US', label: '🇺🇸 United States' },
+        { value: 'Canada', label: '🇨🇦 Canada' },
+        { value: 'United Kingdom', label: '🇬🇧 United Kingdom' },
+        { value: 'Australia', label: '🇦🇺 Australia' },
+        { value: 'New Zealand', label: '🇳🇿 New Zealand' },
+        { value: 'Africa', label: '🦁 Africa' },
+        { value: 'Asia', label: '🗼 Asia' },
+        { value: 'Oceania', label: '🌊 Oceania' }
+      ],
+      employment: [
+        { value: 'Full-time', label: '⏰ Full-time' },
+        { value: 'Part-time', label: '⏱️ Part-time' },
+        { value: 'Freelance', label: '🧾 Freelance' },
+        { value: 'Contract', label: '📄 Contract' },
+        { value: 'Temporary', label: '📆 Temporary' },
+        { value: '4-day week', label: '🌴 4-day week' }
+      ],
+      experience: [
+        { value: 'Entry Level', label: '🪴 Entry Level' },
+        { value: 'Junior', label: '👶 Junior' },
+        { value: 'Mid-Level', label: '⭐ Mid-Level' },
+        { value: 'Senior', label: '🌟 Senior' },
+        { value: 'Lead', label: '🧭 Lead' },
+        { value: 'Director', label: '🎯 Director' },
+        { value: 'Executive', label: '💼 Executive' }
+      ],
+      jobCategories: [
+        { value: 'Engineering', label: '👨‍💻 Engineering' },
+        { value: 'Product', label: '📦 Product' },
+        { value: 'Design', label: '🎨 Design' },
+        { value: 'Growth', label: '🚀 Growth' },
+        { value: 'Marketing', label: '📣 Marketing' },
+        { value: 'Sales', label: '💼 Sales' },
+        { value: 'Customer Support', label: '🎧 Customer Support' },
+        { value: 'Data', label: '📊 Data' },
+        { value: 'Finance', label: '💰 Finance' },
+        { value: 'Operations', label: '⚙️ Operations' },
+        { value: 'HR', label: '🙋 HR' },
+        { value: 'Legal', label: '⚖️ Legal' },
+        { value: 'Analytics', label: '📈 Analytics' },
+        { value: 'Security', label: '🔑 Security' },
+        { value: 'DevOps', label: '🔁 DevOps' },
+        { value: 'Executive', label: '🏛️ Executive' }
+      ],
+      benefits: [
+        { value: 'Health insurance', label: '🩺 Health insurance' },
+        { value: 'Dental insurance', label: '🦷 Dental insurance' },
+        { value: 'Vision insurance', label: '👓 Vision insurance' },
+        { value: 'Unlimited vacation', label: '🏝️ Unlimited vacation' },
+        { value: 'Paid time off', label: '📅 Paid time off' },
+        { value: '4 day workweek', label: '🌴 4 day workweek' },
+        { value: 'Company retreats', label: '🏔️ Company retreats' },
+        { value: 'Coworking budget', label: '🏢 Coworking budget' },
+        { value: 'Learning budget', label: '📚 Learning budget' },
+        { value: 'Home office budget', label: '🖥️ Home office budget' },
+        { value: 'Remote first', label: '🌐 Remote first' },
+        { value: 'Flexible schedule', label: '🧘 Flexible schedule' },
+        { value: 'Equity / Stocks', label: '📈 Equity / Stocks' },
+        { value: 'Profit sharing', label: '💸 Profit sharing' }
+      ],
+      technologies: [
+        { value: 'Python', label: '🐍 Python' },
+        { value: 'JavaScript', label: '✨ JavaScript' },
+        { value: 'TypeScript', label: '🔷 TypeScript' },
+        { value: 'React', label: '⚛️ React' },
+        { value: 'Node.js', label: '🟢 Node.js' },
+        { value: 'Next.js', label: '⏭️ Next.js' },
+        { value: 'Go', label: '🐹 Go' },
+        { value: 'Ruby', label: '💎 Ruby' },
+        { value: 'Rails', label: '🛤️ Rails' },
+        { value: 'Java', label: '☕ Java' },
+        { value: 'C#', label: '💻 C#' },
+        { value: 'Golang', label: '🐹 Golang' },
+        { value: 'PostgreSQL', label: '🐘 PostgreSQL' },
+        { value: 'MySQL', label: '💾 MySQL' },
+        { value: 'MongoDB', label: '🍃 MongoDB' },
+        { value: 'AWS', label: '☁️ AWS' },
+        { value: 'GCP', label: '☁️ GCP' },
+        { value: 'Azure', label: '☁️ Azure' },
+        { value: 'AI / ML', label: '🤖 AI / ML' },
+        { value: 'Data Engineering', label: '🧱 Data Engineering' },
+        { value: 'DevOps', label: '🔁 DevOps' }
+      ],
+      languages: [
+        { value: 'English', label: '🇬🇧 English' },
+        { value: 'Spanish', label: '🇪🇸 Spanish' },
+        { value: 'Portuguese', label: '🇧🇷 Portuguese' },
+        { value: 'French', label: '🇫🇷 French' },
+        { value: 'German', label: '🇩🇪 German' },
+        { value: 'Italian', label: '🇮🇹 Italian' },
+        { value: 'Dutch', label: '🇳🇱 Dutch' }
+      ]
     };
 
-    // state
-    const filterState = {};
-    Object.keys(FILTERS).forEach((k) => (filterState[k] = new Set()));
+    const filterState = {
+      locations: [],
+      employment: [],
+      experience: [],
+      jobCategories: [],
+      benefits: [],
+      technologies: [],
+      languages: []
+    };
 
-    const chipsContainer = document.getElementById("filterChips");
-    const panelsContainer = document.getElementById("filterPanels");
-    const highSalaryToggle = document.getElementById("highSalaryToggle");
-    const statusEl = document.getElementById("statusMessage");
-    const subscribeBtn = document.getElementById("subscribeBtn");
-    const step1NextBtn = document.getElementById("step1NextBtn");
-    const emailInput = document.getElementById("emailInput");
+    const FILTER_LABELS = {
+      locations: "Location",
+      employment: "Employment",
+      experience: "Experience",
+      jobCategories: "Job Category",
+      benefits: "Benefits",
+      technologies: "Technologies",
+      languages: "Languages"
+    };
+
+    // ---------- Step 1: gate Step 2 ----------
+
     const firstNameInput = document.getElementById("firstNameInput");
+    const emailInput = document.getElementById("emailInput");
+    const nextStepButton = document.getElementById("nextStepButton");
+    const step2Section = document.getElementById("step2");
 
-    /***********************
-     * RENDER UI
-     **********************/
-    function createChip(filter) {
-      const chip = document.createElement("button");
-      chip.type = "button";
-      chip.className = "filter-chip";
-      chip.dataset.filterKey = filter.key;
-
-      chip.innerHTML = `
-        <div class="filter-chip-main">
-          <span class="filter-chip-emoji">${filter.emoji}</span>
-          <span class="filter-chip-label">${filter.label}</span>
-        </div>
-        <div class="filter-chip-value" data-chip-value="${filter.key}">Select…</div>
-        <span class="filter-chip-arrow">▾</span>
-      `;
-
-      chip.addEventListener("click", () => openPanel(filter.key));
-      return chip;
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
-    function createPanel(filter) {
-      const panel = document.createElement("div");
-      panel.className = "filter-panel";
-      panel.dataset.filterKey = filter.key;
-
-      panel.innerHTML = `
-        <button type="button" class="filter-all" data-filter-key="${filter.key}">
-          ✅ ${filter.allLabel}
-        </button>
-        <input type="text" class="filter-search" placeholder="${filter.searchPlaceholder}" data-search-key="${filter.key}" />
-        <div class="option-list" data-options-key="${filter.key}">
-        </div>
-      `;
-
-      const listEl = panel.querySelector(`[data-options-key="${filter.key}"]`);
-
-      filter.options.forEach((opt) => {
-        const optBtn = document.createElement("button");
-        optBtn.type = "button";
-        optBtn.className = "filter-option";
-        optBtn.dataset.filterKey = filter.key;
-        optBtn.dataset.value = opt.value;
-
-        optBtn.innerHTML = `
-          <div class="filter-option-main">
-            <span class="filter-option-emoji">${opt.emoji || ""}</span>
-            <span class="filter-option-label">${opt.label}</span>
-          </div>
-        `;
-        optBtn.addEventListener("click", () => toggleOption(filter.key, opt.value));
-        listEl.appendChild(optBtn);
-      });
-
-      // clear / all
-      panel.querySelector(".filter-all").addEventListener("click", () => {
-        filterState[filter.key].clear();
-        updateUI();
-      });
-
-      // search
-      const searchInput = panel.querySelector(`[data-search-key="${filter.key}"]`);
-      searchInput.addEventListener("input", () => filterOptions(filter.key, searchInput.value));
-
-      return panel;
-    }
-
-    function renderFilters() {
-      Object.values(FILTERS).forEach((filter) => {
-        chipsContainer.appendChild(createChip(filter));
-        panelsContainer.appendChild(createPanel(filter));
-      });
-    }
-
-    /***********************
-     * BEHAVIOUR
-     **********************/
-    function openPanel(key) {
-      document.querySelectorAll(".filter-panel").forEach((p) => {
-        p.classList.toggle("active", p.dataset.filterKey === key);
-      });
-      document.querySelectorAll(".filter-chip").forEach((c) => {
-        c.classList.toggle("active", c.dataset.filterKey === key);
-      });
-    }
-
-    function filterOptions(key, term) {
-      const filter = FILTERS[key];
-      if (!filter) return;
-      const lc = term.trim().toLowerCase();
-      const listEl = document.querySelector(`.option-list[data-options-key="${key}"]`);
-      listEl.querySelectorAll(".filter-option").forEach((btn) => {
-        const label = btn.querySelector(".filter-option-label").textContent.toLowerCase();
-        btn.style.display = !lc || label.includes(lc) ? "flex" : "none";
-      });
-    }
-
-    function toggleOption(key, value) {
-      const set = filterState[key];
-      if (set.has(value)) {
-        set.delete(value);
-      } else {
-        set.add(value);
-      }
-      updateUI();
-    }
-
-    function describeSelection(key) {
-      const set = filterState[key];
-      if (!set || set.size === 0) return "Select…";
-      const filter = FILTERS[key];
-      const labels = [];
-      filter.options.forEach((opt) => {
-        if (set.has(opt.value)) labels.push(opt.label);
-      });
-      return labels.join(", ");
-    }
-
-    function updateUI() {
-      // update chip labels
-      Object.keys(FILTERS).forEach((key) => {
-        const valueEl = document.querySelector(`[data-chip-value="${key}"]`);
-        if (!valueEl) return;
-        valueEl.textContent = describeSelection(key);
-      });
-
-      // mark selected options
-      document.querySelectorAll(".filter-option").forEach((btn) => {
-        const key = btn.dataset.filterKey;
-        const value = btn.dataset.value;
-        btn.classList.toggle("selected", filterState[key].has(value));
-      });
-    }
-
-    function allFiltersHaveSelection() {
-      return Object.keys(FILTERS).every((key) => filterState[key].size > 0);
-    }
-
-    function showStatus(message, type) {
-      statusEl.style.display = "block";
-      statusEl.textContent = message;
-      statusEl.className = `status-text ${type}`;
-    }
-
-    function clearStatus() {
-      statusEl.style.display = "none";
-      statusEl.textContent = "";
-      statusEl.className = "status-text";
-    }
-
-    /***********************
-     * STEP 1 BUTTON
-     **********************/
-    step1NextBtn.addEventListener("click", () => {
-      clearStatus();
-      const email = emailInput.value.trim();
+    nextStepButton.addEventListener("click", () => {
       const firstName = firstNameInput.value.trim();
+      const email = emailInput.value.trim();
+      let hasError = false;
 
       if (!firstName) {
-        showStatus("Please add your first name to personalize your alerts.", "error");
-        firstNameInput.focus();
+        firstNameInput.classList.add("input-error");
+        hasError = true;
+      } else {
+        firstNameInput.classList.remove("input-error");
+      }
+
+      if (!email || !isValidEmail(email)) {
+        emailInput.classList.add("input-error");
+        hasError = true;
+      } else {
+        emailInput.classList.remove("input-error");
+      }
+
+      if (hasError) {
+        alert("Please enter your first name and a valid email to continue.");
         return;
       }
 
-      if (!email || !email.includes("@")) {
-        showStatus("Please enter a valid email address to continue.", "error");
-        emailInput.focus();
-        return;
-      }
-
-      // scroll to preferences
-      document.getElementById("step2").scrollIntoView({ behavior: "smooth", block: "start" });
+      step2Section.classList.remove("hidden");
+      step2Section.scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
-    /***********************
-     * SUBSCRIBE BUTTON
-     **********************/
-    subscribeBtn.addEventListener("click", async () => {
-      clearStatus();
+    // ---------- Horizontal filter tabs + panel ----------
 
-      const email = emailInput.value.trim();
-      const firstName = firstNameInput.value.trim();
+    let activeFilterKey = "locations";
+    let currentSearchTerm = "";
 
-      if (!firstName || !email || !email.includes("@")) {
-        showStatus("Please complete Step 1 (first name and email) before subscribing.", "error");
+    const filterTabsEl = document.getElementById("filterTabs");
+    const filterPanelLabelEl = document.getElementById("filterPanelLabel");
+    const filterPanelSummaryEl = document.getElementById("filterPanelSummary");
+    const filterSearchInput = document.getElementById("filterSearchInput");
+    const filterOptionsBody = document.getElementById("filterOptionsBody");
+
+    function baseSummaryForEmpty(key) {
+      return key === "locations" ? "Any location" : "Select…";
+    }
+
+    function getSummaryForFilter(key) {
+      const selected = filterState[key] || [];
+      if (!selected.length) {
+        return baseSummaryForEmpty(key);
+      }
+      const options = FILTER_OPTIONS[key] || [];
+      const labels = options
+        .filter((o) => selected.includes(o.value))
+        .map((o) => o.label);
+      return labels.join(" · ");
+    }
+
+    function updateSummariesForFilter(key) {
+      const summaryText = getSummaryForFilter(key);
+      // Tab summary
+      const tabSummarySpan = document.querySelector(
+        `[data-tab-summary="${key}"]`
+      );
+      if (tabSummarySpan) tabSummarySpan.textContent = summaryText;
+      // Panel summary (only if this filter is active)
+      if (key === activeFilterKey && filterPanelSummaryEl) {
+        filterPanelSummaryEl.textContent = summaryText;
+      }
+    }
+
+    function renderActiveFilterPanel() {
+      const key = activeFilterKey;
+      const options = FILTER_OPTIONS[key] || [];
+
+      // Update label + summary + search placeholder
+      filterPanelLabelEl.textContent = FILTER_LABELS[key] + " preferences";
+      filterPanelSummaryEl.textContent = getSummaryForFilter(key);
+
+      const placeholderMap = {
+        locations: "Search locations…",
+        employment: "Search employment types…",
+        experience: "Search levels…",
+        jobCategories: "Search categories…",
+        benefits: "Search benefits…",
+        technologies: "Search technologies…",
+        languages: "Search languages…"
+      };
+      filterSearchInput.placeholder = placeholderMap[key] || "Search…";
+
+      // Filtered options
+      const term = (currentSearchTerm || "").toLowerCase();
+      const filtered = options.filter((opt) =>
+        opt.label.toLowerCase().includes(term)
+      );
+
+      filterOptionsBody.innerHTML = "";
+
+      if (!filtered.length) {
+        const empty = document.createElement("div");
+        empty.className = "dropdown-empty";
+        empty.textContent = "No options match your search.";
+        filterOptionsBody.appendChild(empty);
         return;
       }
 
-      if (!allFiltersHaveSelection()) {
-        showStatus("Please choose at least one option for every filter so we can match you with the right jobs.", "error");
-        return;
-      }
+      filtered.forEach((opt) => {
+        const item = document.createElement("div");
+        item.className = "dropdown-item";
 
-      subscribeBtn.disabled = true;
-      subscribeBtn.textContent = "Subscribing…";
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = (filterState[key] || []).includes(opt.value);
 
-      const prefs = {};
-      Object.keys(FILTERS).forEach((key) => {
-        const labels = [];
-        FILTERS[key].options.forEach((opt) => {
-          if (filterState[key].has(opt.value)) labels.push(opt.label);
+        const label = document.createElement("span");
+        label.className = "dropdown-item-label";
+        label.textContent = opt.label;
+
+        item.appendChild(checkbox);
+        item.appendChild(label);
+
+        item.addEventListener("click", () => {
+          const current = new Set(filterState[key] || []);
+          if (current.has(opt.value)) {
+            current.delete(opt.value);
+          } else {
+            current.add(opt.value);
+          }
+          filterState[key] = Array.from(current);
+          updateSummariesForFilter(key);
+          renderActiveFilterPanel();
         });
-        prefs[key] = labels.join(", ");
-      });
 
-      prefs.highSalaryOnly = highSalaryToggle.checked;
-      prefs.activeFilters = Object.keys(FILTERS)
-        .map((key) => `${FILTERS[key].label}: ${prefs[key] || "Any"}`)
-        .join(" | ");
+        filterOptionsBody.appendChild(item);
+      });
+    }
+
+    // Tab click behaviour
+    filterTabsEl.querySelectorAll(".filter-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const key = tab.getAttribute("data-filter");
+        if (!key || key === activeFilterKey) return;
+        activeFilterKey = key;
+        currentSearchTerm = "";
+        filterSearchInput.value = "";
+
+        // Update tab active states
+        filterTabsEl.querySelectorAll(".filter-tab").forEach((t) => {
+          t.classList.toggle("active", t === tab);
+        });
+
+        renderActiveFilterPanel();
+      });
+    });
+
+    // Search in active panel
+    filterSearchInput.addEventListener("input", (e) => {
+      currentSearchTerm = e.target.value;
+      renderActiveFilterPanel();
+    });
+
+    // Initial render
+    renderActiveFilterPanel();
+
+    // ---------- Subscribe handler ----------
+
+    const subscribeButton = document.getElementById("subscribeButton");
+    const statusMessageEl = document.getElementById("statusMessage");
+    const highSalaryToggle = document.getElementById("highSalaryOnly");
+
+    subscribeButton.addEventListener("click", async () => {
+      const firstName = firstNameInput.value.trim();
+      const email = emailInput.value.trim();
+      statusMessageEl.textContent = "";
+      statusMessageEl.className = "status-message";
+
+      // Validate email + name again
+      if (!firstName || !isValidEmail(email)) {
+        alert("Please enter your first name and a valid email first.");
+        return;
+      }
+
+      // Ensure at least one value per filter
+      const missingFilters = Object.keys(filterState).filter(
+        (key) => !filterState[key] || filterState[key].length === 0
+      );
+      if (missingFilters.length) {
+        alert("Please choose at least one option in every filter before subscribing.");
+        return;
+      }
+
+      subscribeButton.disabled = true;
+
+      const payload = {
+        firstName,
+        email,
+        filters: filterState,
+        highSalaryOnly: !!highSalaryToggle.checked
+      };
 
       try {
-        const resp = await fetch("/.netlify/functions/subscribe", {
+        const resp = await fetch("/api/subscribe", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email,
-            firstName,
-            preferences: prefs
-          })
+          body: JSON.stringify(payload)
         });
 
+        const data = await resp.json().catch(() => ({}));
+
         if (!resp.ok) {
-          const text = await resp.text();
-          console.error("Subscribe error:", text);
-          showStatus("Something went wrong subscribing. Please try again in a moment.", "error");
+          const msg =
+            data && data.error
+              ? data.error
+              : "Something went wrong subscribing. Please try again.";
+          statusMessageEl.textContent = msg;
+          statusMessageEl.classList.add("error");
         } else {
-          showStatus("You’re in! Check your inbox for a confirmation email and your first remote roles soon. 🚀", "success");
+          statusMessageEl.textContent =
+            "You’re in! Check your inbox for a confirmation email from ASAP.";
+          statusMessageEl.classList.add("success");
         }
       } catch (err) {
-        console.error(err);
-        showStatus("Network error while subscribing. Please try again.", "error");
+        statusMessageEl.textContent =
+          "Network error while subscribing. Please try again in a moment.";
+        statusMessageEl.classList.add("error");
       } finally {
-        subscribeBtn.disabled = false;
-        subscribeBtn.textContent = "Get remote jobs ASAP ⚡";
+        subscribeButton.disabled = false;
       }
     });
-
-    /***********************
-     * INIT
-     **********************/
-    renderFilters();
-    updateUI();
   </script>
 </body>
 </html>
