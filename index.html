@@ -893,7 +893,7 @@
     <!-- Trust strip -->
     <section class="trust-strip">
       <p class="trust-strip-count">
-        Join <span id="subscriberCount">99,950</span> world-class remote candidates from:
+        Join <span id="subscriberCount">99,950</span> world-class AI engineers from:
       </p>
       <div class="trust-logos">
         <span class="trust-logo">META</span>
@@ -1322,7 +1322,7 @@
 
     const firstNameInput = document.getElementById("firstNameInput");
     const emailInput = document.getElementById("emailInput");
-    the_nextStepButton = document.getElementById("nextStepButton");
+    const the_nextStepButton = document.getElementById("nextStepButton");
     const step2Section = document.getElementById("step2");
 
     function isValidEmail(email) {
@@ -1604,9 +1604,9 @@
 
     // ---------- Animated counter under logos ----------
 
-    const SUBSCRIBER_TARGET = 99999;
+    const SUBSCRIBER_TARGET = 99999;       // final target
     const COUNT_START_MIN = 99950;
-    const COUNT_START_MAX = 99998; // keep start strictly below target
+    const COUNT_START_MAX = 99999;         // random start between 99,950 and 99,999
 
     (function initSubscriberCounter() {
       const el = document.getElementById("subscriberCount");
@@ -1620,6 +1620,10 @@
       const startTime = performance.now();
 
       function tick(now) {
+        if (start === end) {
+          el.textContent = end.toLocaleString("en-US");
+          return;
+        }
         const progress = Math.min((now - startTime) / duration, 1);
         const current = Math.floor(start + (end - start) * progress);
         el.textContent = current.toLocaleString("en-US");
