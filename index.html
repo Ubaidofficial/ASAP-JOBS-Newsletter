@@ -540,7 +540,8 @@
         <div class="step2-header">
           <h2 class="step-title">Tell us what kind of roles you want.</h2>
           <p class="step2-subcopy">
-            Choose one or more options for every filter so we can tailor your job alerts.
+            Choose at least one option for the required filters. Benefits, technologies and languages are optional
+            but help us personalize your job alerts.
           </p>
         </div>
 
@@ -548,22 +549,22 @@
         <div class="filter-tabs" id="filterTabs">
           <button type="button" class="filter-tab active" data-filter="locations">
             <span class="filter-icon">🌍</span>
-            <span class="filter-tab-label">Location</span>
+            <span class="filter-tab-label">Location*</span>
             <span class="filter-tab-summary" data-tab-summary="locations">Any location</span>
           </button>
           <button type="button" class="filter-tab" data-filter="employment">
             <span class="filter-icon">💼</span>
-            <span class="filter-tab-label">Employment</span>
+            <span class="filter-tab-label">Employment*</span>
             <span class="filter-tab-summary" data-tab-summary="employment">Select…</span>
           </button>
           <button type="button" class="filter-tab" data-filter="experience">
             <span class="filter-icon">⭐</span>
-            <span class="filter-tab-label">Experience</span>
+            <span class="filter-tab-label">Experience*</span>
             <span class="filter-tab-summary" data-tab-summary="experience">Select…</span>
           </button>
           <button type="button" class="filter-tab" data-filter="jobCategories">
             <span class="filter-icon">📦</span>
-            <span class="filter-tab-label">Job Category</span>
+            <span class="filter-tab-label">Job Category*</span>
             <span class="filter-tab-summary" data-tab-summary="jobCategories">Select…</span>
           </button>
           <button type="button" class="filter-tab" data-filter="benefits">
@@ -622,7 +623,7 @@
   </div>
 
   <script>
-    // ---------- Filter data (with emojis) ----------
+    // ---------- Filter data (with emojis + keywords) ----------
 
     const FILTER_OPTIONS = {
       locations: [
@@ -653,31 +654,242 @@
         { value: '4-day week', label: '🌴 4-day week' }
       ],
       experience: [
-        { value: 'Entry Level', label: '🪴 Entry Level' },
-        { value: 'Junior', label: '👶 Junior' },
-        { value: 'Mid-Level', label: '⭐ Mid-Level' },
-        { value: 'Senior', label: '🌟 Senior' },
-        { value: 'Lead', label: '🧭 Lead' },
-        { value: 'Director', label: '🎯 Director' },
-        { value: 'Executive', label: '💼 Executive' }
+        { value: 'Entry Level', label: '🪴 Entry Level', keywords: ['junior', 'new grad', 'graduate'] },
+        { value: 'Junior', label: '👶 Junior', keywords: ['junior', 'jr'] },
+        { value: 'Mid-Level', label: '⭐ Mid-Level', keywords: ['mid', 'intermediate'] },
+        { value: 'Senior', label: '🌟 Senior', keywords: ['senior', 'sr'] },
+        { value: 'Lead', label: '🧭 Lead', keywords: ['lead', 'principal'] },
+        { value: 'Director', label: '🎯 Director', keywords: ['director', 'head of'] },
+        { value: 'Executive', label: '💼 Executive', keywords: ['vp', 'c-level', 'chief', 'executive'] }
       ],
       jobCategories: [
-        { value: 'Engineering', label: '👨‍💻 Engineering' },
-        { value: 'Product', label: '📦 Product' },
-        { value: 'Design', label: '🎨 Design' },
-        { value: 'Growth', label: '🚀 Growth' },
-        { value: 'Marketing', label: '📣 Marketing' },
-        { value: 'Sales', label: '💼 Sales' },
-        { value: 'Customer Support', label: '🎧 Customer Support' },
-        { value: 'Data', label: '📊 Data' },
-        { value: 'Finance', label: '💰 Finance' },
-        { value: 'Operations', label: '⚙️ Operations' },
-        { value: 'HR', label: '🙋 HR' },
-        { value: 'Legal', label: '⚖️ Legal' },
-        { value: 'Analytics', label: '📈 Analytics' },
-        { value: 'Security', label: '🔑 Security' },
-        { value: 'DevOps', label: '🔁 DevOps' },
-        { value: 'Executive', label: '🏛️ Executive' }
+        {
+          value: 'Growth',
+          label: '🚀 Growth (SEO / Paid)',
+          keywords: [
+            'growth',
+            'growth marketing',
+            'seo',
+            'search',
+            'sem',
+            'paid',
+            'ppc',
+            'performance marketing',
+            'paid social',
+            'acquisition',
+            'user acquisition',
+            'demand gen',
+            'ua'
+          ]
+        },
+        {
+          value: 'Marketing',
+          label: '📣 Marketing (Brand / Content)',
+          keywords: [
+            'marketing',
+            'content',
+            'content writing',
+            'content marketer',
+            'content marketing',
+            'copywriting',
+            'copywriter',
+            'brand',
+            'brand marketing',
+            'email marketing',
+            'crm',
+            'lifecycle',
+            'social media manager',
+            'community manager'
+          ]
+        },
+        {
+          value: 'Sales',
+          label: '💼 Sales',
+          keywords: [
+            'sales',
+            'sales rep',
+            'sales development',
+            'sdr',
+            'bdr',
+            'account executive',
+            'ae',
+            'closer',
+            'inside sales',
+            'outbound',
+            'inbound',
+            'account manager'
+          ]
+        },
+        {
+          value: 'Customer Success',
+          label: '🎧 Customer Success / Support',
+          keywords: [
+            'customer support',
+            'support',
+            'cx',
+            'customer experience',
+            'customer success',
+            'cs',
+            'account manager',
+            'implementation specialist'
+          ]
+        },
+        {
+          value: 'Analytics',
+          label: '📊 Data & Analytics',
+          keywords: [
+            'analytics',
+            'data analyst',
+            'business intelligence',
+            'bi',
+            'data science',
+            'product analytics',
+            'marketing analytics',
+            'experiment',
+            'a/b testing',
+            'ab testing'
+          ]
+        },
+        {
+          value: 'Engineering',
+          label: '👨‍💻 Engineering',
+          keywords: [
+            'software engineer',
+            'developer',
+            'frontend',
+            'backend',
+            'fullstack',
+            'full stack',
+            'mobile engineer',
+            'ios',
+            'android'
+          ]
+        },
+        {
+          value: 'Product',
+          label: '📦 Product Management',
+          keywords: [
+            'product manager',
+            'pm',
+            'product owner',
+            'group product manager',
+            'gpm',
+            'product lead'
+          ]
+        },
+        {
+          value: 'Design',
+          label: '🎨 Design (Product / UI/UX)',
+          keywords: [
+            'designer',
+            'product design',
+            'ux',
+            'ui',
+            'ui/ux',
+            'ux researcher',
+            'interaction design'
+          ]
+        },
+        {
+          value: 'Data',
+          label: '🧱 Data Engineering / Platform',
+          keywords: [
+            'data engineer',
+            'analytics engineer',
+            'data platform',
+            'etl',
+            'elt',
+            'dbt',
+            'data pipeline'
+          ]
+        },
+        {
+          value: 'DevOps',
+          label: '🔁 DevOps / SRE / Platform',
+          keywords: [
+            'devops',
+            'sre',
+            'site reliability',
+            'platform engineer',
+            'infrastructure',
+            'infra',
+            'cloud',
+            'kubernetes',
+            'k8s'
+          ]
+        },
+        {
+          value: 'Security',
+          label: '🔑 Security',
+          keywords: [
+            'security engineer',
+            'application security',
+            'appsec',
+            'infosec',
+            'cybersecurity'
+          ]
+        },
+        {
+          value: 'Finance',
+          label: '💰 Finance / Accounting',
+          keywords: [
+            'finance',
+            'financial analyst',
+            'accountant',
+            'fp&a',
+            'controller',
+            'cfo'
+          ]
+        },
+        {
+          value: 'Operations',
+          label: '⚙️ Operations',
+          keywords: [
+            'operations',
+            'bizops',
+            'business operations',
+            'strategy',
+            'chief of staff',
+            'program manager'
+          ]
+        },
+        {
+          value: 'HR',
+          label: '🙋 People / HR / Talent',
+          keywords: [
+            'recruiter',
+            'talent acquisition',
+            'hr',
+            'people ops',
+            'people operations',
+            'hr manager'
+          ]
+        },
+        {
+          value: 'Legal',
+          label: '⚖️ Legal',
+          keywords: [
+            'legal',
+            'counsel',
+            'lawyer',
+            'compliance'
+          ]
+        },
+        {
+          value: 'Executive',
+          label: '🏛️ Executive / Leadership',
+          keywords: [
+            'founder',
+            'co-founder',
+            'ceo',
+            'cto',
+            'cpo',
+            'cmo',
+            'vp',
+            'head of',
+            'executive'
+          ]
+        }
       ],
       benefits: [
         { value: 'Health insurance', label: '🩺 Health insurance' },
@@ -696,36 +908,201 @@
         { value: 'Profit sharing', label: '💸 Profit sharing' }
       ],
       technologies: [
-        { value: 'Python', label: '🐍 Python' },
-        { value: 'JavaScript', label: '✨ JavaScript' },
-        { value: 'TypeScript', label: '🔷 TypeScript' },
-        { value: 'React', label: '⚛️ React' },
-        { value: 'Node.js', label: '🟢 Node.js' },
-        { value: 'Next.js', label: '⏭️ Next.js' },
-        { value: 'Go', label: '🐹 Go' },
-        { value: 'Ruby', label: '💎 Ruby' },
-        { value: 'Rails', label: '🛤️ Rails' },
-        { value: 'Java', label: '☕ Java' },
-        { value: 'C#', label: '💻 C#' },
-        { value: 'Golang', label: '🐹 Golang' },
-        { value: 'PostgreSQL', label: '🐘 PostgreSQL' },
-        { value: 'MySQL', label: '💾 MySQL' },
-        { value: 'MongoDB', label: '🍃 MongoDB' },
-        { value: 'AWS', label: '☁️ AWS' },
-        { value: 'GCP', label: '☁️ GCP' },
-        { value: 'Azure', label: '☁️ Azure' },
-        { value: 'AI / ML', label: '🤖 AI / ML' },
-        { value: 'Data Engineering', label: '🧱 Data Engineering' },
-        { value: 'DevOps', label: '🔁 DevOps' }
+        // Web / frontend
+        {
+          value: 'JavaScript',
+          label: '✨ JavaScript',
+          keywords: ['js', 'frontend', 'front-end']
+        },
+        {
+          value: 'TypeScript',
+          label: '🔷 TypeScript',
+          keywords: ['ts', 'typescript', 'typed javascript']
+        },
+        {
+          value: 'React',
+          label: '⚛️ React',
+          keywords: ['reactjs', 'react.js', 'frontend']
+        },
+        {
+          value: 'Next.js',
+          label: '⏭️ Next.js',
+          keywords: ['nextjs', 'next', 'react']
+        },
+        {
+          value: 'Vue.js',
+          label: '🖼️ Vue.js',
+          keywords: ['vue', 'vuejs', 'frontend']
+        },
+        {
+          value: 'Angular',
+          label: '🅰️ Angular',
+          keywords: ['angularjs', 'angular']
+        },
+
+        // Backend
+        {
+          value: 'Node.js',
+          label: '🟢 Node.js',
+          keywords: ['node', 'nodejs', 'backend', 'fullstack']
+        },
+        {
+          value: 'Python',
+          label: '🐍 Python',
+          keywords: ['python', 'django', 'flask', 'fastapi']
+        },
+        {
+          value: 'Ruby on Rails',
+          label: '💎 Ruby on Rails',
+          keywords: ['ruby', 'rails', 'ror']
+        },
+        {
+          value: 'Go',
+          label: '🐹 Go',
+          keywords: ['golang', 'go']
+        },
+        {
+          value: 'Java',
+          label: '☕ Java',
+          keywords: ['java', 'spring', 'spring boot']
+        },
+        {
+          value: 'C# / .NET',
+          label: '💻 C# / .NET',
+          keywords: ['c#', '.net', 'dotnet']
+        },
+        {
+          value: 'PHP / Laravel',
+          label: '🐘 PHP / Laravel',
+          keywords: ['php', 'laravel', 'symfony']
+        },
+
+        // Mobile
+        {
+          value: 'React Native',
+          label: '📱 React Native',
+          keywords: ['react native', 'mobile', 'ios', 'android']
+        },
+        {
+          value: 'Flutter',
+          label: '📱 Flutter',
+          keywords: ['flutter', 'dart', 'mobile']
+        },
+        {
+          value: 'iOS (Swift)',
+          label: '📱 iOS (Swift)',
+          keywords: ['ios', 'swift', 'iphone']
+        },
+        {
+          value: 'Android (Kotlin)',
+          label: '🤖 Android (Kotlin)',
+          keywords: ['android', 'kotlin']
+        },
+
+        // Data
+        {
+          value: 'SQL',
+          label: '🧮 SQL',
+          keywords: ['sql', 'postgres', 'mysql']
+        },
+        {
+          value: 'PostgreSQL',
+          label: '🐘 PostgreSQL',
+          keywords: ['postgresql', 'postgres', 'sql']
+        },
+        {
+          value: 'MySQL',
+          label: '💾 MySQL',
+          keywords: ['mysql', 'sql']
+        },
+        {
+          value: 'Snowflake',
+          label: '❄️ Snowflake',
+          keywords: ['snowflake', 'data warehouse']
+        },
+        {
+          value: 'BigQuery',
+          label: '📊 BigQuery',
+          keywords: ['bigquery', 'gcp', 'data warehouse']
+        },
+        {
+          value: 'dbt',
+          label: '🧱 dbt',
+          keywords: ['dbt', 'analytics engineering']
+        },
+
+        // Cloud / DevOps
+        {
+          value: 'AWS',
+          label: '☁️ AWS',
+          keywords: ['aws', 'amazon web services']
+        },
+        {
+          value: 'GCP',
+          label: '☁️ GCP',
+          keywords: ['gcp', 'google cloud']
+        },
+        {
+          value: 'Azure',
+          label: '☁️ Azure',
+          keywords: ['azure', 'microsoft azure']
+        },
+        {
+          value: 'Docker',
+          label: '🐳 Docker',
+          keywords: ['docker', 'containers']
+        },
+        {
+          value: 'Kubernetes',
+          label: '☸️ Kubernetes',
+          keywords: ['kubernetes', 'k8s']
+        },
+        {
+          value: 'Terraform',
+          label: '🧱 Terraform',
+          keywords: ['terraform', 'iac', 'infrastructure as code']
+        },
+        {
+          value: 'CI/CD',
+          label: '🔁 CI/CD',
+          keywords: ['ci', 'cd', 'github actions', 'gitlab ci', 'circleci']
+        },
+
+        // AI / ML
+        {
+          value: 'Machine Learning',
+          label: '🤖 Machine Learning',
+          keywords: ['ml', 'machine learning', 'ml engineer', 'ml scientist']
+        },
+        {
+          value: 'Deep Learning',
+          label: '🧠 Deep Learning',
+          keywords: ['deep learning', 'dl', 'neural networks']
+        },
+        {
+          value: 'PyTorch',
+          label: '🔥 PyTorch',
+          keywords: ['pytorch']
+        },
+        {
+          value: 'TensorFlow',
+          label: '🧠 TensorFlow',
+          keywords: ['tensorflow']
+        },
+        {
+          value: 'LLMs / GenAI',
+          label: '✨ LLMs / GenAI',
+          keywords: ['llm', 'large language model', 'gpt', 'gen ai', 'generative ai']
+        }
       ],
       languages: [
-        { value: 'English', label: '🇬🇧 English' },
-        { value: 'Spanish', label: '🇪🇸 Spanish' },
-        { value: 'Portuguese', label: '🇧🇷 Portuguese' },
-        { value: 'French', label: '🇫🇷 French' },
-        { value: 'German', label: '🇩🇪 German' },
-        { value: 'Italian', label: '🇮🇹 Italian' },
-        { value: 'Dutch', label: '🇳🇱 Dutch' }
+        { value: 'English', label: '🇬🇧 English', keywords: ['english', 'en'] },
+        { value: 'Spanish', label: '🇪🇸 Spanish', keywords: ['spanish', 'es', 'español'] },
+        { value: 'Portuguese', label: '🇧🇷 Portuguese', keywords: ['portuguese', 'pt', 'português'] },
+        { value: 'French', label: '🇫🇷 French', keywords: ['french', 'fr', 'français'] },
+        { value: 'German', label: '🇩🇪 German', keywords: ['german', 'de', 'deutsch'] },
+        { value: 'Italian', label: '🇮🇹 Italian', keywords: ['italian', 'it', 'italiano'] },
+        { value: 'Dutch', label: '🇳🇱 Dutch', keywords: ['dutch', 'nl', 'nederlands'] }
       ]
     };
 
@@ -748,6 +1125,9 @@
       technologies: "Technologies",
       languages: "Languages"
     };
+
+    // Filters that MUST have at least one selection
+    const REQUIRED_FILTERS = ["locations", "employment", "experience", "jobCategories"];
 
     // ---------- Step 1: gate Step 2 ----------
 
@@ -851,18 +1231,26 @@
         locations: "Search locations…",
         employment: "Search employment types…",
         experience: "Search levels…",
-        jobCategories: "Search categories…",
+        jobCategories: "Search job roles…",
         benefits: "Search benefits…",
         technologies: "Search technologies…",
         languages: "Search languages…"
       };
       filterSearchInput.placeholder = placeholderMap[key] || "Search…";
 
-      // Filtered options
+      // Filtered options (label + value + keywords)
       const term = (currentSearchTerm || "").toLowerCase();
-      const filtered = options.filter((opt) =>
-        opt.label.toLowerCase().includes(term)
-      );
+      const filtered = options.filter((opt) => {
+        if (!term) return true;
+        const label = (opt.label || "").toLowerCase();
+        const value = (opt.value || "").toLowerCase();
+        const keywords = (opt.keywords || []).join(" ").toLowerCase();
+        return (
+          label.includes(term) ||
+          value.includes(term) ||
+          keywords.includes(term)
+        );
+      });
 
       filterOptionsBody.innerHTML = "";
 
@@ -957,8 +1345,8 @@
         if (oldIcon) oldIcon.remove();
       });
 
-      // Ensure at least one value per filter
-      const missingFilters = Object.keys(filterState).filter(
+      // Ensure at least one value per *required* filter
+      const missingFilters = REQUIRED_FILTERS.filter(
         (key) => !filterState[key] || filterState[key].length === 0
       );
 
