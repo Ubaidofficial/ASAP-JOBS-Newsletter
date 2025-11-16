@@ -1,5 +1,6 @@
 // netlify/functions/subscribe.js
 
+// Make sure these are set in Netlify -> Site settings -> Environment variables
 const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY;
 const BEEHIIV_PUBLICATION_ID = process.env.BEEHIIV_PUBLICATION_ID;
 
@@ -20,7 +21,8 @@ exports.handler = async (event) => {
   }
 
   try {
-    const { email, firstName, preferences } = JSON.parse(event.body || "{}");
+    const body = JSON.parse(event.body || "{}");
+    const { email, firstName, preferences = {} } = body;
 
     if (!email) {
       return {
@@ -36,20 +38,19 @@ exports.handler = async (event) => {
       utm_source: "asap-jobs-landing",
       custom_fields: {
         first_name: firstName || "",
-        search_term: preferences?.searchTerm || "",
-        high_salary_only: preferences?.highSalaryOnly ? "true" : "false",
-        active_filters: preferences?.activeFilters || "",
-        location: preferences?.location || "",
-        employment_type: preferences?.employmentType || "",
-        experience_level: preferences?.experienceLevel || "",
-        job_category: preferences?.jobCategory || "",
-        benefits: preferences?.benefits || "",
-        technologies: preferences?.technologies || "",
-        languages: preferences?.languages || "",
+        high_salary_only: preferences.highSalaryOnly ? "true" : "false",
+        active_filters: preferences.activeFilters || "",
+        location: preferences.location || "",
+        employment_type: preferences.employment || "",
+        experience_level: preferences.experience || "",
+        job_category: preferences.jobCategory || "",
+        benefits: preferences.benefits || "",
+        technologies: preferences.technologies || "",
+        languages: preferences.languages || "",
       },
     };
 
-    const resp = await fetch(
+    const response = await fetch(
       `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions`,
       {
         method: "POST",
@@ -61,16 +62,25 @@ exports.handler = async (event) => {
       }
     );
 
-    if (!resp.ok) {
-      const text = await resp.text();
-      console.error("Beehiiv error:", text);
+    const text = await response.text();
+    if (!response.ok) {
+      console.error("Beehiiv error:", response.status, text);
       return {
-        statusCode: resp.status,
-        body: JSON.stringify({ error: "Beehiiv API error", detail: text }),
+        statusCode: response.status,
+        body: JSON.stringify({
+          error: "Beehiiv API error",
+          detail: text,
+        }),
       };
     }
 
-    const data = await resp.json();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      data = { raw: text };
+    }
+
     return {
       statusCode: 200,
       body: JSON.stringify({ success: true, data }),
