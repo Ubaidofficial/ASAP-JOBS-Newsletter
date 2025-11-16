@@ -29,7 +29,7 @@
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #e0f2fe 0, #eef2ff 45%, #e5e7eb 100%);
+      background: radial-gradient(circle at top, #dbeafe 0, #e0f2fe 30%, #eef2ff 60%, #e5e7eb 100%);
       color: var(--text-main);
     }
 
@@ -39,37 +39,38 @@
       padding: 1.5rem 1.25rem 3rem;
     }
 
-    /* Brand + hero (updated for bigger centered logo) */
+    /* Brand + hero (bigger, animated logo) */
 
     header {
       text-align: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .brand-row {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1.25rem;
+      gap: 0.75rem;
+      margin-bottom: 1.4rem;
     }
 
     .brand-logo {
-      width: 120px;
-      height: 120px;
-      border-radius: 2rem;
+      width: 168px;
+      height: 168px;
+      border-radius: 2.4rem;
       object-fit: contain;
       background: #0f172a;
-      padding: 10px;
+      padding: 14px;
       box-shadow:
-        0 20px 55px rgba(15, 23, 42, 0.65),
+        0 26px 70px rgba(15, 23, 42, 0.7),
         0 0 0 1px rgba(148, 163, 184, 0.35);
+      animation: logoFloat 7s ease-in-out infinite;
     }
 
     .brand-text-main {
       font-size: 1.1rem;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.22em;
       font-weight: 800;
     }
 
@@ -80,9 +81,9 @@
     }
 
     .hero-title {
-      font-size: clamp(2.3rem, 4.5vw, 3rem);
+      font-size: clamp(2.5rem, 4.8vw, 3.2rem);
       font-weight: 800;
-      letter-spacing: -0.045em;
+      letter-spacing: -0.06em;
       margin: 0 0 0.8rem;
       text-align: center;
     }
@@ -97,11 +98,20 @@
     .hero-subtitle {
       margin: 0 auto;
       margin-top: 0.4rem;
-      font-size: 0.96rem;
+      font-size: 0.98rem;
       color: var(--text-muted);
-      max-width: 620px;
-      line-height: 1.65;
+      max-width: 640px;
+      line-height: 1.7;
       text-align: center;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
     }
 
     /* Card */
@@ -219,18 +229,50 @@
       gap: 0.4rem;
       padding: 0.7rem 1.4rem;
       white-space: nowrap;
+      transition: transform 0.12s ease;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #22c55e, #16a34a);
+      background-image: linear-gradient(120deg, #22c55e, #16a34a, #22c55e);
+      background-size: 200% 200%;
       color: #f9fafb;
       box-shadow: 0 14px 30px rgba(22, 163, 74, 0.45);
+      animation:
+        buttonGradient 4s ease-in-out infinite,
+        buttonGlow 2.6s ease-in-out infinite;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-1px) scale(1.015);
+      box-shadow: 0 18px 40px rgba(22, 163, 74, 0.55);
     }
 
     .btn-primary:disabled {
       opacity: 0.7;
       cursor: default;
       box-shadow: none;
+      animation: none;
+    }
+
+    @keyframes buttonGradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes buttonGlow {
+      0%, 100% {
+        box-shadow: 0 14px 30px rgba(22, 163, 74, 0.45);
+      }
+      50% {
+        box-shadow: 0 18px 45px rgba(22, 163, 74, 0.7);
+      }
     }
 
     .step1-footer-text {
@@ -454,12 +496,79 @@
       color: var(--danger);
     }
 
+    /* Animated trust strip */
+
+    .trust-strip {
+      margin-top: 1.75rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.84rem;
+    }
+
+    .trust-strip strong {
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .trust-logos {
+      margin-top: 0.7rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.8rem;
+    }
+
+    .trust-logo {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.7;
+      font-weight: 600;
+      animation: logoPulse 6s ease-in-out infinite;
+    }
+
+    .trust-logo:nth-child(2) {
+      animation-delay: 0.8s;
+    }
+
+    .trust-logo:nth-child(3) {
+      animation-delay: 1.6s;
+    }
+
+    .trust-logo:nth-child(4) {
+      animation-delay: 2.4s;
+    }
+
+    .trust-logo:nth-child(5) {
+      animation-delay: 3.2s;
+    }
+
+    .trust-logo:nth-child(6) {
+      animation-delay: 4s;
+    }
+
+    @keyframes logoPulse {
+      0%, 100% {
+        transform: translateY(0);
+        opacity: 0.65;
+      }
+      50% {
+        transform: translateY(-3px);
+        opacity: 1;
+      }
+    }
+
     /* Mobile tweaks */
 
     @media (max-width: 720px) {
       .filter-tabs {
         flex-wrap: nowrap;
         overflow-x: auto;
+      }
+
+      .brand-logo {
+        width: 146px;
+        height: 146px;
       }
     }
 
@@ -473,6 +582,10 @@
         flex-direction: column;
         align-items: flex-start;
       }
+
+      .trust-logos {
+        gap: 1.1rem;
+      }
     }
   </style>
 </head>
@@ -481,6 +594,7 @@
     <!-- Brand + hero -->
     <header>
       <div class="brand-row">
+        <!-- Make sure hero-logo.png exists next to index.html -->
         <img src="hero-logo.png" alt="ASAP Jobs logo" class="brand-logo" />
         <div>
           <div class="brand-text-main">ASAP JOBS</div>
@@ -631,6 +745,19 @@
         </div>
       </section>
     </main>
+
+    <!-- Trust strip -->
+    <section class="trust-strip">
+      <p>Join <strong>world-class talent</strong> hired at companies like:</p>
+      <div class="trust-logos">
+        <span class="trust-logo">Meta</span>
+        <span class="trust-logo">Microsoft</span>
+        <span class="trust-logo">Stripe</span>
+        <span class="trust-logo">Airbnb</span>
+        <span class="trust-logo">OpenAI</span>
+        <span class="trust-logo">Shopify</span>
+      </div>
+    </section>
   </div>
 
   <script>
