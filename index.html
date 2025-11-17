@@ -177,6 +177,73 @@
       text-align: center;
     }
 
+    /* Trust strip – now under hero, with sliders */
+
+    .trust-strip {
+      margin-top: 1.75rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.86rem;
+    }
+
+    .trust-strip-count {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .trust-strip-count #subscriberCount {
+      font-weight: 700;
+      color: #f9fafb;
+      text-shadow: 0 0 12px rgba(56, 189, 248, 0.55);
+    }
+
+    .trust-slider {
+      position: relative;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      margin-bottom: 0.7rem;
+    }
+
+    .trust-track {
+      display: inline-flex;
+      gap: 3rem;
+      padding: 0.4rem 0;
+      will-change: transform;
+      animation: trustMarquee 26s linear infinite;
+    }
+
+    .trust-slider--reverse .trust-track {
+      animation-direction: reverse;
+      animation-duration: 32s;
+    }
+
+    @keyframes trustMarquee {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .trust-logo {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      font-weight: 600;
+      color: #e5e7eb;
+      opacity: 0.9;
+      white-space: nowrap;
+      filter: drop-shadow(0 0 12px rgba(15, 23, 42, 0.7));
+    }
+
+    .trust-logo--accent {
+      color: #e5e7eb;
+      text-shadow: 0 0 14px rgba(56, 189, 248, 0.9);
+    }
+
     /* Card – glassy panel */
 
     .card {
@@ -321,7 +388,7 @@
       align-items: center;
       justify-content: center;
       gap: 0.4rem;
-      padding: 0.8rem 1.7rem;
+      padding: 0.9rem 1.9rem;
       white-space: nowrap;
       transition:
         transform 0.14s ease,
@@ -639,68 +706,6 @@
       color: var(--danger);
     }
 
-    /* Trust strip – bigger company “logos” */
-
-    .trust-strip {
-      margin-top: 2.2rem;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.86rem;
-    }
-
-    .trust-strip strong {
-      color: #f9fafb;
-      font-weight: 600;
-    }
-
-    .trust-strip-count {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 0.4rem;
-    }
-
-    .trust-strip-count #subscriberCount {
-      font-weight: 700;
-      color: #f9fafb;
-      text-shadow: 0 0 12px rgba(56, 189, 248, 0.55);
-    }
-
-    .trust-logos {
-      margin-top: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2.4rem;
-    }
-
-    .trust-logo {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      opacity: 0.9;
-      font-weight: 600;
-      color: #e5e7eb;
-      filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.35));
-      animation: logoPulse 7s ease-in-out infinite;
-    }
-
-    .trust-logo:nth-child(2) { animation-delay: 0.6s; }
-    .trust-logo:nth-child(3) { animation-delay: 1.2s; }
-    .trust-logo:nth-child(4) { animation-delay: 1.8s; }
-    .trust-logo:nth-child(5) { animation-delay: 2.4s; }
-    .trust-logo:nth-child(6) { animation-delay: 3s; }
-
-    @keyframes logoPulse {
-      0%, 100% {
-        transform: translateY(0);
-        opacity: 0.78;
-      }
-      50% {
-        transform: translateY(-3px);
-        opacity: 1;
-      }
-    }
-
     /* Mobile tweaks */
 
     @media (max-width: 720px) {
@@ -726,10 +731,6 @@
         flex-direction: column;
         align-items: flex-start;
       }
-
-      .trust-logos {
-        gap: 1.5rem;
-      }
     }
   </style>
 </head>
@@ -738,7 +739,6 @@
     <!-- Brand + hero -->
     <header>
       <div class="brand-row">
-        <!-- Make sure hero-logo.png exists next to index.html -->
         <img src="hero-logo.png" alt="ASAP Jobs logo" class="brand-logo" />
         <div>
           <div class="brand-text-main">ASAP JOBS</div>
@@ -753,6 +753,61 @@
         Tell us your email once, then choose exactly what you’re looking for. We’ll only send curated,
         high-paying remote roles that match your filters.
       </p>
+
+      <!-- Trust strip on top -->
+      <section class="trust-strip">
+        <p class="trust-strip-count">
+          Join <span id="subscriberCount">99,951</span> world-class remote candidates from:
+        </p>
+
+        <!-- Row 1 slider -->
+        <div class="trust-slider">
+          <div class="trust-track">
+            <span class="trust-logo trust-logo--accent">META</span>
+            <span class="trust-logo">MICROSOFT</span>
+            <span class="trust-logo">STRIPE</span>
+            <span class="trust-logo">AIRBNB</span>
+            <span class="trust-logo">OPENAI</span>
+            <span class="trust-logo">SHOPIFY</span>
+            <span class="trust-logo">GOOGLE</span>
+            <span class="trust-logo">APPLE</span>
+
+            <!-- duplicate sequence for seamless loop -->
+            <span class="trust-logo trust-logo--accent">META</span>
+            <span class="trust-logo">MICROSOFT</span>
+            <span class="trust-logo">STRIPE</span>
+            <span class="trust-logo">AIRBNB</span>
+            <span class="trust-logo">OPENAI</span>
+            <span class="trust-logo">SHOPIFY</span>
+            <span class="trust-logo">GOOGLE</span>
+            <span class="trust-logo">APPLE</span>
+          </div>
+        </div>
+
+        <!-- Row 2 slider -->
+        <div class="trust-slider trust-slider--reverse">
+          <div class="trust-track">
+            <span class="trust-logo">TESLA</span>
+            <span class="trust-logo">NVIDIA</span>
+            <span class="trust-logo">PERPLEXITY</span>
+            <span class="trust-logo">AMAZON</span>
+            <span class="trust-logo">NOTION</span>
+            <span class="trust-logo">COINBASE</span>
+            <span class="trust-logo">FIGMA</span>
+            <span class="trust-logo">SPOTIFY</span>
+
+            <!-- duplicate sequence for seamless loop -->
+            <span class="trust-logo">TESLA</span>
+            <span class="trust-logo">NVIDIA</span>
+            <span class="trust-logo">PERPLEXITY</span>
+            <span class="trust-logo">AMAZON</span>
+            <span class="trust-logo">NOTION</span>
+            <span class="trust-logo">COINBASE</span>
+            <span class="trust-logo">FIGMA</span>
+            <span class="trust-logo">SPOTIFY</span>
+          </div>
+        </div>
+      </section>
     </header>
 
     <!-- Card -->
@@ -889,21 +944,6 @@
         </div>
       </section>
     </main>
-
-    <!-- Trust strip -->
-    <section class="trust-strip">
-      <p class="trust-strip-count">
-        Join <span id="subscriberCount">99,950</span> world-class AI engineers from:
-      </p>
-      <div class="trust-logos">
-        <span class="trust-logo">META</span>
-        <span class="trust-logo">MICROSOFT</span>
-        <span class="trust-logo">STRIPE</span>
-        <span class="trust-logo">AIRBNB</span>
-        <span class="trust-logo">OPENAI</span>
-        <span class="trust-logo">SHOPIFY</span>
-      </div>
-    </section>
   </div>
 
   <script>
@@ -1605,8 +1645,8 @@
     // ---------- Animated counter under logos ----------
 
     const SUBSCRIBER_TARGET = 99999;       // final target
-    const COUNT_START_MIN = 99950;
-    const COUNT_START_MAX = 99999;         // random start between 99,950 and 99,999
+    const COUNT_START_MIN = 99951;        // minimum starting point
+    const COUNT_START_MAX = 99998;        // ensure it always animates up to 99,999
 
     (function initSubscriberCounter() {
       const el = document.getElementById("subscriberCount");
@@ -1620,10 +1660,6 @@
       const startTime = performance.now();
 
       function tick(now) {
-        if (start === end) {
-          el.textContent = end.toLocaleString("en-US");
-          return;
-        }
         const progress = Math.min((now - startTime) / duration, 1);
         const current = Math.floor(start + (end - start) * progress);
         el.textContent = current.toLocaleString("en-US");
