@@ -423,6 +423,38 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* Frequency selector */
+    .frequency-row {
+      margin-top: 0.4rem;
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .frequency-option {
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: var(--pill-bg);
+      padding: 0.45rem 0.9rem;
+      font-size: 0.82rem;
+      color: #e5e7eb;
+      cursor: pointer;
+      transition:
+        background 0.14s ease,
+        border-color 0.14s ease,
+        box-shadow 0.14s ease,
+        transform 0.14s ease;
+    }
+
+    .frequency-option.selected {
+      border-color: rgba(56, 189, 248, 0.9);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9));
+      box-shadow:
+        0 0 0 1px rgba(56, 189, 248, 0.4),
+        0 0 18px rgba(56, 189, 248, 0.55);
+      transform: translateY(-0.5px);
+    }
+
     .step1-footer-text {
       margin: 0.55rem 0 0;
       font-size: 0.8rem;
@@ -799,8 +831,8 @@
         <div class="step2-header">
           <h2 class="step-title">Tell us what kind of roles you want.</h2>
           <p class="step2-subcopy">
-            Choose at least one option for the filters marked with *. Benefits, technologies and languages are optional
-            but help us personalize your job alerts.
+            Choose at least one option for the filters marked with *. Job roles help us match more precisely,
+            but they’re optional. Benefits, technologies and languages are optional too, but help us personalize your job alerts.
           </p>
         </div>
 
@@ -822,13 +854,8 @@
           </button>
           <button type="button" class="filter-tab" data-filter="jobRoles">
             <span class="filter-icon">🧑‍💼</span>
-            <span class="filter-tab-label">Job Role</span>
+            <span class="filter-tab-label">Job Roles</span>
             <span class="filter-tab-summary" data-tab-summary="jobRoles">Search roles…</span>
-          </button>
-          <button type="button" class="filter-tab" data-filter="jobCategories">
-            <span class="filter-icon">📦</span>
-            <span class="filter-tab-label">Job Category*</span>
-            <span class="filter-tab-summary" data-tab-summary="jobCategories">Select…</span>
           </button>
           <button type="button" class="filter-tab" data-filter="benefits">
             <span class="filter-icon">🏖️</span>
@@ -870,6 +897,22 @@
           </label>
         </div>
 
+        <div class="field" style="margin-top: 1.1rem;">
+          <label class="field-label">How often should we send you remote jobs?</label>
+          <div class="frequency-row" id="frequencyRow">
+            <button type="button" class="frequency-option selected" data-value="biweekly">
+              2× per week
+            </button>
+            <button type="button" class="frequency-option" data-value="daily">
+              Daily
+            </button>
+            <button type="button" class="frequency-option" data-value="weekly">
+              Weekly
+            </button>
+          </div>
+          <input type="hidden" id="frequencyInput" value="biweekly" />
+        </div>
+
         <p class="step2-footer-text">
           No spam, ever. Unsubscribe in one click. You’ll only receive remote jobs and occasional job-search tips from ASAP.
         </p>
@@ -887,13 +930,15 @@
   <!-- Success popup overlay -->
   <div id="successOverlay" class="success-overlay hidden" role="dialog" aria-modal="true">
     <div class="success-modal">
-      <h2 class="success-modal-title">You’re in! 🎉</h2>
+      <h2 class="success-modal-title">You’re in ⚡</h2>
       <p class="success-modal-body">
-        Thanks for subscribing to ASAP Jobs.<br />
-        Check your inbox for a confirmation email so we can start sending you curated remote roles ASAP.
+        We’ve saved your preferences.<br /><br />
+        1️⃣ Check your inbox for a <strong>confirmation email from ASAP Jobs</strong>.<br />
+        2️⃣ Drag it to <strong>Primary</strong> in Gmail or <strong>Focused</strong> in Outlook so you never miss new roles.<br /><br />
+        Once you confirm, we’ll start sending you <strong>hand-picked remote jobs</strong> that match your filters.
       </p>
       <button type="button" id="successCloseButton" class="btn btn-primary success-modal-btn">
-        Back to the site
+        Okay, get me jobs ASAP
       </button>
     </div>
   </div>
@@ -930,16 +975,44 @@
         { value: '4-day week', label: '🌴 4-day week' }
       ],
       experience: [
-        { value: 'Entry Level', label: '🪴 Entry Level', keywords: ['entry', 'junior', 'new grad', 'graduate'] },
-        { value: 'Junior', label: '👶 Junior', keywords: ['junior', 'jr'] },
-        { value: 'Mid-Level', label: '⭐ Mid-Level', keywords: ['mid', 'intermediate'] },
-        { value: 'Senior', label: '🌟 Senior', keywords: ['senior', 'sr'] },
-        { value: 'Lead', label: '🧭 Lead', keywords: ['lead', 'principal'] },
-        { value: 'Director', label: '🎯 Director', keywords: ['director', 'head of'] },
-        { value: 'Executive', label: '💼 Executive', keywords: ['vp', 'c-level', 'chief', 'executive'] }
+        {
+          value: 'Entry Level',
+          label: '🪴 Entry Level · 0–1 yrs',
+          keywords: ['entry', 'junior', 'new grad', 'graduate']
+        },
+        {
+          value: 'Junior',
+          label: '👶 Junior · 1–3 yrs',
+          keywords: ['junior', 'jr']
+        },
+        {
+          value: 'Mid-Level',
+          label: '⭐ Mid-Level · 3–5 yrs',
+          keywords: ['mid', 'intermediate']
+        },
+        {
+          value: 'Senior',
+          label: '🌟 Senior · 5–8 yrs',
+          keywords: ['senior', 'sr']
+        },
+        {
+          value: 'Lead',
+          label: '🧭 Lead · 7–10 yrs',
+          keywords: ['lead', 'principal']
+        },
+        {
+          value: 'Director',
+          label: '🎯 Director · 10+ yrs',
+          keywords: ['director', 'head of']
+        },
+        {
+          value: 'Executive',
+          label: '💼 Executive · 10+ yrs (VP / C-level)',
+          keywords: ['vp', 'c-level', 'chief', 'executive']
+        }
       ],
 
-      // NEW: concrete job roles (100+), grouped via category + synonyms in keywords
+      // CONCRETE job roles (engineering, data, AI, growth, content, social, email, etc.)
       jobRoles: [
         // ENGINEERING / DEVELOPMENT
         {
@@ -1199,6 +1272,12 @@
           keywords: ['bi engineer', 'business intelligence', 'bi developer']
         },
         {
+          value: 'Data Analyst',
+          label: '📊 Data Analyst',
+          category: 'Data / Analytics',
+          keywords: ['data analyst', 'business analyst', 'bi analyst']
+        },
+        {
           value: 'Data Scientist',
           label: '📊 Data Scientist',
           category: 'Data',
@@ -1358,6 +1437,12 @@
           category: 'Product / AI',
           keywords: ['ai pm', 'ml product manager', 'llm product']
         },
+        {
+          value: 'Product Marketing Manager',
+          label: '📣 Product Marketing Manager',
+          category: 'Marketing',
+          keywords: ['product marketing manager', 'pmm', 'go-to-market', 'gtm']
+        },
 
         // DESIGN / UX
         {
@@ -1391,7 +1476,7 @@
           keywords: ['ux researcher', 'user research', 'design researcher']
         },
 
-        // MARKETING / GROWTH / SEO / ASO
+        // MARKETING / GROWTH / SEO / ASO / CONTENT / SOCIAL / EMAIL
         {
           value: 'Digital Marketing Manager',
           label: '📣 Digital Marketing Manager',
@@ -1423,6 +1508,12 @@
           keywords: ['growth marketer', 'growth marketing manager', 'performance marketing']
         },
         {
+          value: 'Head of Growth',
+          label: '🚀 Head of Growth',
+          category: 'Growth / Marketing',
+          keywords: ['head of growth', 'growth lead', 'growth director']
+        },
+        {
           value: 'Performance Marketing Manager',
           label: '📈 Performance Marketing Manager',
           category: 'Growth / Marketing',
@@ -1435,12 +1526,12 @@
           keywords: ['demand gen', 'demand generation', 'pipeline marketing']
         },
 
-        // SEO ROLES + SYNONYMS
+        // SEO ROLES
         {
           value: 'SEO Specialist',
           label: '🔍 SEO Specialist',
           category: 'Growth / SEO',
-          keywords: ['seo specialist', 'seo expert', 'search engine optimization', 'seo analyzt']
+          keywords: ['seo specialist', 'seo expert', 'search engine optimization', 'seo analyst']
         },
         {
           value: 'SEO Analyst',
@@ -1501,6 +1592,18 @@
           keywords: ['content marketing manager', 'content lead', 'content strategist']
         },
         {
+          value: 'Head of Content',
+          label: '✍️ Head of Content',
+          category: 'Marketing / Content',
+          keywords: ['head of content', 'content director', 'content lead']
+        },
+        {
+          value: 'Content Strategist',
+          label: '✍️ Content Strategist',
+          category: 'Marketing / Content',
+          keywords: ['content strategist', 'content strategy']
+        },
+        {
           value: 'Content Writer',
           label: '✍️ Content Writer',
           category: 'Marketing / Content',
@@ -1517,6 +1620,12 @@
           label: '📱 Social Media Manager',
           category: 'Marketing / Social',
           keywords: ['social media manager', 'social media marketer', 'social media']
+        },
+        {
+          value: 'Social Media Strategist',
+          label: '📱 Social Media Strategist',
+          category: 'Marketing / Social',
+          keywords: ['social media strategist', 'social strategy']
         },
         {
           value: 'Paid Search Specialist',
@@ -1565,6 +1674,12 @@
           label: '🔁 Lifecycle Marketing Manager',
           category: 'Marketing',
           keywords: ['lifecycle marketing', 'retention marketing', 'crm']
+        },
+        {
+          value: 'Marketing Automation Specialist',
+          label: '⚙️ Marketing Automation Specialist',
+          category: 'Marketing',
+          keywords: ['marketing automation', 'hubspot', 'marketo', 'pardot']
         },
         {
           value: 'Community Manager',
@@ -1685,6 +1800,32 @@
           keywords: ['marketing engineer', 'tracking engineer', 'adtech engineer']
         },
 
+        // OPERATIONS / STRATEGY / REVOPS
+        {
+          value: 'Operations Manager',
+          label: '⚙️ Operations Manager',
+          category: 'Operations',
+          keywords: ['operations manager', 'ops manager', 'business operations']
+        },
+        {
+          value: 'Strategy & Operations Lead',
+          label: '⚙️ Strategy & Operations Lead',
+          category: 'Operations',
+          keywords: ['strategy and operations', 'bizops', 'ops lead']
+        },
+        {
+          value: 'Chief of Staff',
+          label: '🏛️ Chief of Staff',
+          category: 'Operations / Strategy',
+          keywords: ['chief of staff', 'strategy', 'special projects']
+        },
+        {
+          value: 'Revenue Operations Manager',
+          label: '📈 Revenue Operations Manager',
+          category: 'Operations / RevOps',
+          keywords: ['revops', 'revenue operations', 'sales ops']
+        },
+
         // LEADERSHIP / HEAD OF ROLES
         {
           value: 'Head of Engineering',
@@ -1724,198 +1865,6 @@
         }
       ],
 
-      // UPDATED jobCategories with AI, Software Eng, Mobile, Web3, QA, DevRel, etc.
-      jobCategories: [
-        {
-          value: 'AI / ML',
-          label: '🤖 AI / ML / LLMs',
-          keywords: [
-            'ai', 'artificial intelligence', 'machine learning', 'ml',
-            'ml engineer', 'ml scientist', 'ml researcher',
-            'llm', 'large language model', 'gpt', 'gen ai', 'generative ai',
-            'nlp', 'computer vision', 'foundation model'
-          ]
-        },
-        {
-          value: 'Software Engineering',
-          label: '👩‍💻 Software Engineering',
-          keywords: [
-            'software engineer', 'software developer', 'swe',
-            'frontend', 'front-end', 'backend', 'back-end',
-            'fullstack', 'full stack', 'web engineer',
-            'platform engineer', 'shopify developer', 'wordpress developer'
-          ]
-        },
-        {
-          value: 'Mobile Engineering',
-          label: '📱 Mobile Engineering',
-          keywords: [
-            'mobile engineer', 'mobile developer',
-            'ios', 'swift', 'iphone',
-            'android', 'kotlin',
-            'react native', 'flutter'
-          ]
-        },
-        {
-          value: 'Data',
-          label: '🧱 Data Engineering / Platform',
-          keywords: [
-            'data engineer', 'analytics engineer', 'data platform', 'etl',
-            'elt', 'dbt', 'data pipeline', 'warehouse',
-            'snowflake', 'bigquery', 'redshift'
-          ]
-        },
-        {
-          value: 'Analytics',
-          label: '📊 Data Science & Analytics',
-          keywords: [
-            'analytics', 'data analyst', 'business intelligence', 'bi',
-            'data science', 'data scientist',
-            'product analytics', 'marketing analytics',
-            'experiment', 'a/b testing', 'ab testing'
-          ]
-        },
-        {
-          value: 'DevOps',
-          label: '🔁 DevOps / SRE / Platform',
-          keywords: [
-            'devops', 'sre', 'site reliability', 'platform engineer',
-            'infrastructure', 'infra', 'cloud', 'kubernetes', 'k8s',
-            'aws', 'gcp', 'azure', 'terraform', 'ci/cd'
-          ]
-        },
-        {
-          value: 'Security',
-          label: '🔑 Security / Cyber',
-          keywords: [
-            'security engineer', 'appsec', 'application security',
-            'infosec', 'cybersecurity', 'cloud security', 'soc analyst'
-          ]
-        },
-        {
-          value: 'QA',
-          label: '🧪 QA / Testing',
-          keywords: [
-            'qa', 'quality assurance', 'qa engineer', 'test engineer',
-            'qa automation', 'sdet', 'testing'
-          ]
-        },
-        {
-          value: 'Web3',
-          label: '⛓ Web3 / Crypto / Blockchain',
-          keywords: [
-            'web3', 'crypto', 'defi', 'nft',
-            'blockchain', 'solidity', 'smart contract'
-          ]
-        },
-        {
-          value: 'Product',
-          label: '📦 Product Management',
-          keywords: [
-            'product manager', 'pm', 'product owner',
-            'group product manager', 'gpm', 'product lead',
-            'technical product manager', 'growth pm', 'ai pm'
-          ]
-        },
-        {
-          value: 'Design',
-          label: '🎨 Design (Product / UX / UI)',
-          keywords: [
-            'designer', 'product design', 'ux', 'ui', 'ui/ux',
-            'ux researcher', 'interaction design'
-          ]
-        },
-        {
-          value: 'Growth',
-          label: '🚀 Growth (SEO / Paid / ASO)',
-          keywords: [
-            'growth', 'growth marketer', 'growth marketing',
-            'seo', 'search', 'sem',
-            'aso', 'app store optimization',
-            'paid', 'ppc', 'performance marketing',
-            'paid social', 'demand gen', 'user acquisition', 'ua'
-          ]
-        },
-        {
-          value: 'Marketing',
-          label: '📣 Marketing (Brand / Content / CRM)',
-          keywords: [
-            'marketing', 'brand', 'brand marketing',
-            'content', 'content writing', 'content marketing', 'content marketer',
-            'copywriting', 'copywriter',
-            'email marketing', 'newsletter', 'crm', 'lifecycle',
-            'community manager', 'social media manager'
-          ]
-        },
-        {
-          value: 'Sales',
-          label: '💼 Sales',
-          keywords: [
-            'sales', 'sales rep', 'sales development', 'sdr', 'bdr',
-            'account executive', 'ae', 'closer', 'inside sales',
-            'enterprise sales', 'account manager'
-          ]
-        },
-        {
-          value: 'Customer Success',
-          label: '🎧 Customer Success / Support',
-          keywords: [
-            'customer success', 'csm', 'client success',
-            'customer support', 'support specialist',
-            'technical support', 'cx', 'customer experience',
-            'implementation specialist'
-          ]
-        },
-        {
-          value: 'DevRel',
-          label: '📣 DevRel / Solutions / Sales Engineering',
-          keywords: [
-            'developer advocate', 'devrel', 'solutions architect',
-            'solutions engineer', 'sales engineer', 'pre-sales',
-            'customer success engineer'
-          ]
-        },
-        {
-          value: 'Operations',
-          label: '⚙️ Operations / Strategy',
-          keywords: [
-            'operations', 'ops', 'bizops', 'business operations',
-            'strategy', 'chief of staff', 'program manager'
-          ]
-        },
-        {
-          value: 'Finance',
-          label: '💰 Finance / Accounting',
-          keywords: [
-            'finance', 'financial analyst', 'accountant', 'accounting',
-            'fp&a', 'controller', 'cfo'
-          ]
-        },
-        {
-          value: 'HR',
-          label: '🙋 People / HR / Talent',
-          keywords: [
-            'recruiter', 'talent acquisition', 'ta', 'hr', 'people ops',
-            'people operations', 'hr manager', 'technical recruiter'
-          ]
-        },
-        {
-          value: 'Legal',
-          label: '⚖️ Legal',
-          keywords: [
-            'legal', 'counsel', 'lawyer', 'compliance'
-          ]
-        },
-        {
-          value: 'Executive',
-          label: '🏛 Executive / Leadership',
-          keywords: [
-            'founder', 'co-founder', 'ceo', 'cto', 'cpo', 'cmo',
-            'vp', 'head of', 'vp engineering', 'vp sales',
-            'executive', 'c-suite'
-          ]
-        }
-      ],
       benefits: [
         { value: 'Health insurance', label: '🩺 Health insurance' },
         { value: 'Dental insurance', label: '🦷 Dental insurance' },
@@ -2136,7 +2085,6 @@
       employment: [],
       experience: [],
       jobRoles: [],
-      jobCategories: [],
       benefits: [],
       technologies: [],
       languages: []
@@ -2146,14 +2094,13 @@
       locations: "Location",
       employment: "Employment",
       experience: "Experience",
-      jobRoles: "Job Role",
-      jobCategories: "Job Category",
+      jobRoles: "Job Roles",
       benefits: "Benefits",
       technologies: "Technologies",
       languages: "Languages"
     };
 
-    const REQUIRED_FILTERS = ["locations", "employment", "experience", "jobCategories"];
+    const REQUIRED_FILTERS = ["locations", "employment", "experience"];
 
     // ---------- Step 1: gate Step 2 ----------
 
@@ -2254,7 +2201,6 @@
         employment: "Search employment types…",
         experience: "Search levels…",
         jobRoles: "Search job titles…",
-        jobCategories: "Search job roles, categories…",
         benefits: "Search benefits…",
         technologies: "Search technologies…",
         languages: "Search languages…"
@@ -2347,6 +2293,8 @@
     const highSalaryToggle = document.getElementById("highSalaryOnly");
     const successOverlay = document.getElementById("successOverlay");
     const successCloseButton = document.getElementById("successCloseButton");
+    const frequencyRow = document.getElementById("frequencyRow");
+    const frequencyInput = document.getElementById("frequencyInput");
 
     function closeSuccessOverlay() {
       successOverlay.classList.add("hidden");
@@ -2359,6 +2307,21 @@
         closeSuccessOverlay();
       }
     });
+
+    // frequency selector logic
+    if (frequencyRow) {
+      frequencyRow.querySelectorAll(".frequency-option").forEach(btn => {
+        btn.addEventListener("click", () => {
+          frequencyRow.querySelectorAll(".frequency-option").forEach(b =>
+            b.classList.remove("selected")
+          );
+          btn.classList.add("selected");
+          if (frequencyInput) {
+            frequencyInput.value = btn.dataset.value;
+          }
+        });
+      });
+    }
 
     subscribeButton.addEventListener("click", async () => {
       const firstName = firstNameInput.value.trim();
@@ -2409,7 +2372,8 @@
         firstName,
         email,
         filters: filterState,
-        highSalaryOnly: !!highSalaryToggle.checked
+        highSalaryOnly: !!highSalaryToggle.checked,
+        frequency: frequencyInput ? frequencyInput.value : "biweekly"
       };
 
       try {
