@@ -831,8 +831,8 @@
         <div class="step2-header">
           <h2 class="step-title">Tell us what kind of roles you want.</h2>
           <p class="step2-subcopy">
-            Choose at least one option for the filters marked with *. Job roles help us match more precisely,
-            but they’re optional. Benefits, technologies and languages are optional too, but help us personalize your job alerts.
+          Choose at least one option for the filters marked with *. Location, employment, experience and job role are required
+          so we only send you relevant roles. Benefits, technologies and languages are optional but help us personalize your job alerts.
           </p>
         </div>
 
@@ -853,10 +853,11 @@
             <span class="filter-tab-summary" data-tab-summary="experience">Select…</span>
           </button>
           <button type="button" class="filter-tab" data-filter="jobRoles">
-            <span class="filter-icon">🧑‍💼</span>
-            <span class="filter-tab-label">Job Roles</span>
-            <span class="filter-tab-summary" data-tab-summary="jobRoles">Search roles…</span>
+          <span class="filter-icon">🧑‍💼</span>
+          <span class="filter-tab-label">Job Role*</span>
+          <span class="filter-tab-summary" data-tab-summary="jobRoles">Search roles…</span>
           </button>
+
           <button type="button" class="filter-tab" data-filter="benefits">
             <span class="filter-icon">🏖️</span>
             <span class="filter-tab-label">Benefits</span>
@@ -929,17 +930,16 @@
 
   <!-- Success popup overlay -->
   <div id="successOverlay" class="success-overlay hidden" role="dialog" aria-modal="true">
-    <div class="success-modal">
-      <h2 class="success-modal-title">You’re in ⚡</h2>
+    <div class="success-modal"><h2 class="success-modal-title">You’re in! 🎉</h2>
       <p class="success-modal-body">
-        We’ve saved your preferences.<br /><br />
-        1️⃣ Check your inbox for a <strong>confirmation email from ASAP Jobs</strong>.<br />
-        2️⃣ Drag it to <strong>Primary</strong> in Gmail or <strong>Focused</strong> in Outlook so you never miss new roles.<br /><br />
-        Once you confirm, we’ll start sending you <strong>hand-picked remote jobs</strong> that match your filters.
+      Thanks for subscribing to ASAP Jobs.<br />
+      In the next couple of minutes you’ll get a confirmation email. If it lands in Promotions or Spam,
+      move it to your Primary inbox so you never miss high-paying remote roles.
       </p>
       <button type="button" id="successCloseButton" class="btn btn-primary success-modal-btn">
-        Okay, get me jobs ASAP
+      Back to the site
       </button>
+
     </div>
   </div>
 
@@ -2091,16 +2091,16 @@
     };
 
     const FILTER_LABELS = {
-      locations: "Location",
-      employment: "Employment",
-      experience: "Experience",
-      jobRoles: "Job Roles",
-      benefits: "Benefits",
-      technologies: "Technologies",
-      languages: "Languages"
+    locations: "Location",
+    employment: "Employment",
+    experience: "Experience",
+    jobRoles: "Job Role",
+    benefits: "Benefits",
+    technologies: "Technologies",
+    languages: "Languages"
     };
 
-    const REQUIRED_FILTERS = ["locations", "employment", "experience"];
+    const REQUIRED_FILTERS = ["locations", "employment", "experience", "jobRoles"];
 
     // ---------- Step 1: gate Step 2 ----------
 
@@ -2408,7 +2408,7 @@
       }
     });
 
-    // ---------- Animated counter (99,950 -> 99,999) ----------
+    // ---------- Animated counter (99,950 -> 99,999, 1s per step) ----------
 
     (function initSubscriberCounter() {
       const el = document.getElementById("subscriberCount");
@@ -2416,18 +2416,21 @@
 
       const start = 99950;
       const end = 99999;
-      const duration = 2000;
-      const startTime = performance.now();
+      const stepMs = 1000; // 1 second per increment
+      let current = start;
 
-      function tick(now) {
-        const progress = Math.min((now - startTime) / duration, 1);
-        const current = Math.floor(start + (end - start) * progress);
+      el.textContent = current.toLocaleString("en-US");
+
+      const timer = setInterval(() => {
+        if (current >= end) {
+          clearInterval(timer);
+          return;
+        }
+        current += 1;
         el.textContent = current.toLocaleString("en-US");
-        if (progress < 1) requestAnimationFrame(tick);
-      }
-
-      requestAnimationFrame(tick);
+      }, stepMs);
     })();
+
   </script>
 </body>
 </html>
