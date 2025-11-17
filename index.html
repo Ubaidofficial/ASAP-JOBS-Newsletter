@@ -26,15 +26,18 @@
     }
 
     body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-      color: var(--text-main);
-      background:
-        radial-gradient(circle at 50% -10%, #22d3ee 0%, #0f172a 40%, #020617 70%, #000 100%);
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
+     margin: 0;
+     font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+       "Segoe UI", sans-serif;
+     color: var(--text-main);
+      /* New fire → sky gradient */
+     background:
+      radial-gradient(circle at 0% 0%, #ffb37a 0%, #ff8a3d 22%, transparent 55%),
+      radial-gradient(circle at 100% 0%, #7dd3fc 0%, #0ea5e9 25%, transparent 55%),
+      radial-gradient(circle at 50% 100%, #0f172a 0%, #020617 55%, #000 100%);
+     min-height: 100vh;
+     overflow-x: hidden;
+     position: relative;
     }
 
     body::before,
@@ -93,20 +96,19 @@
       margin-bottom: 1.6rem;
     }
 
-    .brand-logo {
-      width: 190px;
-      height: 190px;
-      border-radius: 2.7rem;
+      .brand-logo {
+      width: min(420px, 80vw);
+      height: auto;
       object-fit: contain;
-      background: radial-gradient(circle at 20% 0%, #f97316 0, #111827 30%, #020617 100%);
-      padding: 16px;
+      border-radius: 1.25rem;
+      /* soft fire → blue glow */
       box-shadow:
-        0 35px 90px rgba(0, 0, 0, 0.9),
-        0 0 0 1px rgba(148, 163, 184, 0.55),
-        0 0 45px rgba(250, 204, 21, 0.3);
-      animation:
-        logoFloat 7s ease-in-out infinite,
-        logoGlow 5.5s ease-in-out infinite;
+       0 40px 120px rgba(0, 0, 0, 0.9),
+       0 0 60px rgba(249, 115, 22, 0.4),
+       0 0 90px rgba(37, 99, 235, 0.4);
+    animation:
+      logoFloat 7s ease-in-out infinite,
+      logoGlow 6s ease-in-out infinite;
     }
 
     @keyframes logoFloat {
@@ -115,19 +117,19 @@
     }
 
     @keyframes logoGlow {
-      0%, 100% {
-        box-shadow:
-          0 35px 90px rgba(0, 0, 0, 0.9),
-          0 0 0 1px rgba(148, 163, 184, 0.55),
-          0 0 32px rgba(250, 204, 21, 0.2);
-      }
-      50% {
-        box-shadow:
-          0 45px 120px rgba(0, 0, 0, 1),
-          0 0 0 1px rgba(191, 219, 254, 0.8),
-          0 0 60px rgba(250, 204, 21, 0.55);
-      }
+    0%, 100% {
+     box-shadow:
+       0 35px 90px rgba(0, 0, 0, 0.9),
+       0 0 40px rgba(249, 115, 22, 0.35),
+       0 0 70px rgba(59, 130, 246, 0.35);
     }
+    50% {
+      box-shadow:
+       0 50px 130px rgba(0, 0, 0, 1),
+       0 0 70px rgba(249, 115, 22, 0.6),
+       0 0 110px rgba(37, 99, 235, 0.6);
+    }  
+   } 
 
     .brand-text-main {
       font-size: 1.15rem;
@@ -152,8 +154,8 @@
       color: #e5e7eb;
     }
 
-    .hero-title span.highlight {
-      background: linear-gradient(120deg, #22c55e, #38bdf8, #6366f1);
+      .hero-title span.highlight {
+      background: linear-gradient(120deg, #f97316, #fbbf24, #3b82f6);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -731,7 +733,7 @@
   <div class="page">
     <header>
       <div class="brand-row">
-        <img src="hero-logo.png" alt="ASAP Jobs logo" class="brand-logo" />
+        <img src="asap-logo-wide.png" alt="ASAP – remote jobs, fast" class="brand-logo" />
         <div>
           <div class="brand-text-main">ASAP JOBS</div>
           <div class="brand-text-sub">High-paying remote roles, delivered fast</div>
@@ -2415,7 +2417,7 @@
 
       const start = 99950;
       const end = 99999;
-      const stepMs = 1000; // 1 second per increment
+      const stepMs = 3000; // 1 second per increment
       let current = start;
 
       el.textContent = current.toLocaleString("en-US");
