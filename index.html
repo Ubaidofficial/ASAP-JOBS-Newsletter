@@ -37,7 +37,7 @@
       position: relative;
     }
 
-    /* Orbital arcs like AlphaSignal */
+    /* Orbital arcs */
 
     body::before,
     body::after {
@@ -82,7 +82,7 @@
       z-index: 1;
     }
 
-    /* Brand + hero (bigger, glowing logo) */
+    /* Brand + hero */
 
     header {
       text-align: center;
@@ -172,12 +172,12 @@
       margin-top: 0.45rem;
       font-size: 1rem;
       color: var(--text-muted);
-      max-width: 660px;
+      max-width: 640px;
       line-height: 1.7;
       text-align: center;
     }
 
-    /* Trust strip – now under hero, with sliders */
+    /* Minimal trust strip (single subtle row) */
 
     .trust-strip {
       margin-top: 1.75rem;
@@ -187,67 +187,56 @@
     }
 
     .trust-strip-count {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 0.6rem;
+      font-size: 0.88rem;
+      margin-bottom: 0.4rem;
     }
 
     .trust-strip-count #subscriberCount {
-      font-weight: 700;
-      color: #f9fafb;
-      text-shadow: 0 0 12px rgba(56, 189, 248, 0.55);
+      font-weight: 600;
+      color: #e5e7eb;
+      text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
     }
 
-    .trust-slider {
+    .trust-marquee {
       position: relative;
       overflow: hidden;
-      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-      margin-bottom: 0.7rem;
+      mask-image: linear-gradient(to right, transparent, black 18%, black 82%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 18%, black 82%, transparent);
+      padding: 0.3rem 0;
     }
 
-    .trust-track {
+    .trust-marquee-track {
       display: inline-flex;
-      gap: 3rem;
-      padding: 0.4rem 0;
+      gap: 2.6rem;
+      align-items: center;
       will-change: transform;
-      animation: trustMarquee 26s linear infinite;
-    }
-
-    .trust-slider--reverse .trust-track {
-      animation-direction: reverse;
-      animation-duration: 32s;
+      animation: trustMarquee 36s linear infinite;
     }
 
     @keyframes trustMarquee {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     .trust-logo {
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: 0.32em;
-      font-weight: 600;
+      letter-spacing: 0.3em;
+      font-weight: 500;
       color: #e5e7eb;
-      opacity: 0.9;
+      opacity: 0.65;
       white-space: nowrap;
-      filter: drop-shadow(0 0 12px rgba(15, 23, 42, 0.7));
     }
 
     .trust-logo--accent {
-      color: #e5e7eb;
-      text-shadow: 0 0 14px rgba(56, 189, 248, 0.9);
+      opacity: 0.9;
+      text-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
     }
 
     /* Card – glassy panel */
 
     .card {
-      margin-top: 2rem;
+      margin-top: 2.4rem;
       background: radial-gradient(circle at top, rgba(37, 99, 235, 0.25), transparent 55%)
                   , var(--surface);
       border-radius: 1.7rem;
@@ -376,7 +365,7 @@
       box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.6);
     }
 
-    /* Buttons – neon animated subscribe style */
+    /* Buttons */
 
     .btn {
       border-radius: 999px;
@@ -443,15 +432,9 @@
     }
 
     @keyframes buttonGradient {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     @keyframes buttonGlow {
@@ -497,8 +480,6 @@
       color: var(--text-muted);
     }
 
-    /* Horizontal filter tabs */
-
     .filter-tabs {
       display: flex;
       flex-wrap: wrap;
@@ -536,20 +517,12 @@
       transform: translateY(-0.5px);
     }
 
-    .filter-icon {
-      flex-shrink: 0;
-    }
-
-    .filter-tab-label {
-      font-weight: 500;
-    }
-
+    .filter-icon { flex-shrink: 0; }
+    .filter-tab-label { font-weight: 500; }
     .filter-tab-summary {
       font-size: 0.76rem;
       color: var(--text-muted);
     }
-
-    /* Missing filter highlight */
 
     .filter-tab.missing {
       border-color: #f97373 !important;
@@ -562,8 +535,6 @@
       font-size: 0.85rem;
       margin-left: 0.25rem;
     }
-
-    /* Filter panel */
 
     .filter-panel {
       border-radius: 1.1rem;
@@ -595,9 +566,7 @@
       white-space: nowrap;
     }
 
-    .filter-panel-search {
-      margin-bottom: 0.4rem;
-    }
+    .filter-panel-search { margin-bottom: 0.4rem; }
 
     .dropdown-search {
       width: 100%;
@@ -610,9 +579,7 @@
       color: #e5e7eb;
     }
 
-    .dropdown-search::placeholder {
-      color: #6b7280;
-    }
+    .dropdown-search::placeholder { color: #6b7280; }
 
     .dropdown-search:focus {
       border-color: var(--accent);
@@ -641,9 +608,7 @@
       background: rgba(37, 99, 235, 0.35);
     }
 
-    .dropdown-item input {
-      margin: 0;
-    }
+    .dropdown-item input { margin: 0; }
 
     .dropdown-item-label {
       display: inline-flex;
@@ -657,11 +622,7 @@
       color: var(--text-muted);
     }
 
-    .hidden {
-      display: none !important;
-    }
-
-    /* Salary row */
+    .hidden { display: none !important; }
 
     .salary-row {
       margin-top: 0.85rem;
@@ -677,9 +638,7 @@
       height: 16px;
     }
 
-    .salary-label span {
-      margin-right: 0.15rem;
-    }
+    .salary-label span { margin-right: 0.15rem; }
 
     .step2-footer-text {
       margin-top: 0.55rem;
@@ -687,24 +646,15 @@
       color: var(--text-muted);
     }
 
-    /* Final CTA */
-
-    .cta-row {
-      margin-top: 1rem;
-    }
+    .cta-row { margin-top: 1rem; }
 
     .status-message {
       margin-top: 0.7rem;
       font-size: 0.84rem;
     }
 
-    .status-message.success {
-      color: var(--success);
-    }
-
-    .status-message.error {
-      color: var(--danger);
-    }
+    .status-message.success { color: var(--success); }
+    .status-message.error { color: var(--danger); }
 
     /* Mobile tweaks */
 
@@ -754,15 +704,13 @@
         high-paying remote roles that match your filters.
       </p>
 
-      <!-- Trust strip on top -->
+      <!-- Minimal trust strip -->
       <section class="trust-strip">
         <p class="trust-strip-count">
-          Join <span id="subscriberCount">99,951</span> world-class remote candidates from:
+          Join <span id="subscriberCount">99,950</span> world-class remote candidates from:
         </p>
-
-        <!-- Row 1 slider -->
-        <div class="trust-slider">
-          <div class="trust-track">
+        <div class="trust-marquee">
+          <div class="trust-marquee-track">
             <span class="trust-logo trust-logo--accent">META</span>
             <span class="trust-logo">MICROSOFT</span>
             <span class="trust-logo">STRIPE</span>
@@ -771,6 +719,9 @@
             <span class="trust-logo">SHOPIFY</span>
             <span class="trust-logo">GOOGLE</span>
             <span class="trust-logo">APPLE</span>
+            <span class="trust-logo">TESLA</span>
+            <span class="trust-logo">NVIDIA</span>
+            <span class="trust-logo">PERPLEXITY</span>
 
             <!-- duplicate sequence for seamless loop -->
             <span class="trust-logo trust-logo--accent">META</span>
@@ -781,30 +732,9 @@
             <span class="trust-logo">SHOPIFY</span>
             <span class="trust-logo">GOOGLE</span>
             <span class="trust-logo">APPLE</span>
-          </div>
-        </div>
-
-        <!-- Row 2 slider -->
-        <div class="trust-slider trust-slider--reverse">
-          <div class="trust-track">
             <span class="trust-logo">TESLA</span>
             <span class="trust-logo">NVIDIA</span>
             <span class="trust-logo">PERPLEXITY</span>
-            <span class="trust-logo">AMAZON</span>
-            <span class="trust-logo">NOTION</span>
-            <span class="trust-logo">COINBASE</span>
-            <span class="trust-logo">FIGMA</span>
-            <span class="trust-logo">SPOTIFY</span>
-
-            <!-- duplicate sequence for seamless loop -->
-            <span class="trust-logo">TESLA</span>
-            <span class="trust-logo">NVIDIA</span>
-            <span class="trust-logo">PERPLEXITY</span>
-            <span class="trust-logo">AMAZON</span>
-            <span class="trust-logo">NOTION</span>
-            <span class="trust-logo">COINBASE</span>
-            <span class="trust-logo">FIGMA</span>
-            <span class="trust-logo">SPOTIFY</span>
           </div>
         </div>
       </section>
@@ -1355,7 +1285,6 @@
       languages: "Languages"
     };
 
-    // Filters that MUST have at least one selection (others optional)
     const REQUIRED_FILTERS = ["locations", "employment", "experience", "jobCategories"];
 
     // ---------- Step 1: gate Step 2 ----------
@@ -1426,18 +1355,13 @@
 
     function updateSummariesForFilter(key) {
       const summaryText = getSummaryForFilter(key);
-      // Tab summary
       const tabSummarySpan = document.querySelector(
         `[data-tab-summary="${key}"]`
       );
       if (tabSummarySpan) tabSummarySpan.textContent = summaryText;
-
-      // Panel summary (only if this filter is active)
       if (key === activeFilterKey && filterPanelSummaryEl) {
         filterPanelSummaryEl.textContent = summaryText;
       }
-
-      // If this filter now has selections, clear missing state
       if (filterState[key] && filterState[key].length > 0) {
         const tab = document.querySelector(`.filter-tab[data-filter="${key}"]`);
         if (tab) {
@@ -1452,7 +1376,6 @@
       const key = activeFilterKey;
       const options = FILTER_OPTIONS[key] || [];
 
-      // Update label + summary + search placeholder
       filterPanelLabelEl.textContent = FILTER_LABELS[key] + " preferences";
       filterPanelSummaryEl.textContent = getSummaryForFilter(key);
 
@@ -1467,7 +1390,6 @@
       };
       filterSearchInput.placeholder = placeholderMap[key] || "Search…";
 
-      // Filtered options (label + value + keywords)
       const term = (currentSearchTerm || "").toLowerCase();
       const filtered = options.filter((opt) => {
         if (!term) return true;
@@ -1522,7 +1444,6 @@
       });
     }
 
-    // Tab click behaviour
     filterTabsEl.querySelectorAll(".filter-tab").forEach((tab) => {
       tab.addEventListener("click", () => {
         const key = tab.getAttribute("data-filter");
@@ -1531,7 +1452,6 @@
         currentSearchTerm = "";
         filterSearchInput.value = "";
 
-        // Update tab active states
         filterTabsEl.querySelectorAll(".filter-tab").forEach((t) => {
           t.classList.toggle("active", t === tab);
         });
@@ -1540,13 +1460,11 @@
       });
     });
 
-    // Search in active panel
     filterSearchInput.addEventListener("input", (e) => {
       currentSearchTerm = e.target.value;
       renderActiveFilterPanel();
     });
 
-    // Initial render
     renderActiveFilterPanel();
 
     // ---------- Subscribe handler ----------
@@ -1561,26 +1479,22 @@
       statusMessageEl.textContent = "";
       statusMessageEl.className = "status-message";
 
-      // Validate email + name again
       if (!firstName || !isValidEmail(email)) {
         alert("Please enter your first name and a valid email first.");
         return;
       }
 
-      // Clear previous error states on tabs
       document.querySelectorAll(".filter-tab").forEach(tab => {
         tab.classList.remove("missing");
         const oldIcon = tab.querySelector(".filter-tab-missing-icon");
         if (oldIcon) oldIcon.remove();
       });
 
-      // Ensure at least one value per *required* filter (others stay optional)
       const missingFilters = REQUIRED_FILTERS.filter(
         (key) => !filterState[key] || filterState[key].length === 0
       );
 
       if (missingFilters.length) {
-        // Highlight missing tabs
         missingFilters.forEach(key => {
           const tab = document.querySelector(`.filter-tab[data-filter="${key}"]`);
           if (tab) {
@@ -1592,7 +1506,6 @@
           }
         });
 
-        // Scroll to the first missing tab
         const firstMissing = document.querySelector(
           `.filter-tab[data-filter="${missingFilters[0]}"]`
         );
@@ -1642,21 +1555,15 @@
       }
     });
 
-    // ---------- Animated counter under logos ----------
-
-    const SUBSCRIBER_TARGET = 99999;       // final target
-    const COUNT_START_MIN = 99951;        // minimum starting point
-    const COUNT_START_MAX = 99998;        // ensure it always animates up to 99,999
+    // ---------- Animated counter (99,950 -> 99,999) ----------
 
     (function initSubscriberCounter() {
       const el = document.getElementById("subscriberCount");
       if (!el) return;
 
-      const start =
-        Math.floor(Math.random() * (COUNT_START_MAX - COUNT_START_MIN + 1)) +
-        COUNT_START_MIN;
-      const end = SUBSCRIBER_TARGET;
-      const duration = 1800; // ms
+      const start = 99950;
+      const end = 99999;
+      const duration = 2000; // ms
       const startTime = performance.now();
 
       function tick(now) {
