@@ -1,8 +1,8 @@
 // /api/subscribe.js
 
-// Make sure these are set in Vercel → Project Settings → Environment Variables
-// BEEHIIV_API_KEY
-// BEEHIIV_PUBLICATION_ID
+// Env vars needed (set in Vercel / hosting):
+// - BEEHIIV_API_KEY
+// - BEEHIIV_PUBLICATION_ID   (looks like: pub_XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -21,16 +21,13 @@ export default async function handler(req, res) {
     const body =
       typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
 
-    // Frontend payload shape:
+    // Frontend payload:
     // {
     //   email,
     //   firstName,
-    //   filters: {
-    //     locations, employment, experience, jobRoles,
-    //     benefits, technologies, languages
-    //   },
+    //   filters: { locations, employment, experience, jobRoles, benefits, technologies, languages },
     //   highSalaryOnly,
-    //   frequency,   // 'daily' | 'biweekly' | 'weekly'
+    //   frequency,   // "2x", "daily", "weekly"
     //   searchTerm?  // optional
     // }
 
@@ -60,8 +57,7 @@ export default async function handler(req, res) {
     const join = (val) =>
       Array.isArray(val) && val.length ? val.join(" | ") : "";
 
-    // 1) Build a key → value map for Beehiiv custom fields
-    // These names MUST exactly match the custom field names in Beehiiv
+    // Map of Beehiiv custom fields (names MUST match Beehiiv exactly)
     const customFieldMap = {
       first_name: firstName || "",
       high_salary_only: highSalaryOnly ? "true" : "false",
@@ -74,21 +70,19 @@ export default async function handler(req, res) {
       employment_type: join(employment),
       experience_level: join(experience),
 
-      // NEW field you create in Beehiiv (TEXT)
+      // New fields (create as TEXT in Beehiiv)
       job_roles: join(jobRoles),
+      frequency: frequency || "",
 
       benefits_pref: join(benefits),
       technologies_pref: join(technologies),
       languages_pref: join(languages),
 
-      // NEW field you create in Beehiiv (TEXT)
-      frequency: frequency || "",
-
-      // optional, but nice to have for search/debugging
+      // optional, handy for debugging / segmentation
       search_term: searchTerm || "",
     };
 
-    // 2) Convert map → ARRAY of { name, value } objects (Beehiiv v2 expects array)
+    // Convert to Beehiiv's expected array: [{ name, value }, ...]
     const customFieldsArray = Object.entries(customFieldMap)
       .filter(([, value]) => value && String(value).trim() !== "")
       .map(([name, value]) => ({
@@ -98,14 +92,15 @@ export default async function handler(req, res) {
 
     const payload = {
       email,
-      publication_id: BEEHIIV_PUBLICATION_ID,
       reactivate_existing: true,
       send_welcome_email: true,
+      utm_source: "asap-jobs-landing",
       custom_fields: customFieldsArray,
     };
 
+    // IMPORTANT: correct Beehiiv endpoint
     const response = await fetch(
-      `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscribers`,
+      `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions`,
       {
         method: "POST",
         headers: {
@@ -118,12 +113,12 @@ export default async function handler(req, res) {
 
     const text = await response.text();
 
-    // Beehiiv returns 409 if the subscriber already exists – treat as success
-    if (!response.ok && response.status !== 409) {
+    if (!response.ok) {
       console.error("Beehiiv error:", response.status, text);
-      return res
-        .status(500)
-        .json({ error: "Failed to subscribe in Beehiiv", details: text });
+      return res.status(response.status).json({
+        error: "Failed to subscribe in Beehiiv",
+        detail: text,
+      });
     }
 
     let data;
