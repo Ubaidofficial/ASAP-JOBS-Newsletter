@@ -37,8 +37,6 @@
       position: relative;
     }
 
-    /* Orbital arcs */
-
     body::before,
     body::after {
       content: "";
@@ -82,8 +80,6 @@
       z-index: 1;
     }
 
-    /* Brand + hero */
-
     header {
       text-align: center;
       margin-bottom: 2.4rem;
@@ -114,12 +110,8 @@
     }
 
     @keyframes logoFloat {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-6px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
 
     @keyframes logoGlow {
@@ -177,8 +169,6 @@
       text-align: center;
     }
 
-    /* Minimal trust strip (single subtle row) */
-
     .trust-strip {
       margin-top: 1.75rem;
       text-align: center;
@@ -214,7 +204,7 @@
     }
 
     @keyframes trustMarquee {
-      0%   { transform: translateX(0); }
+      0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
 
@@ -232,8 +222,6 @@
       opacity: 0.9;
       text-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
     }
-
-    /* Card – glassy panel */
 
     .card {
       margin-top: 2.4rem;
@@ -303,8 +291,6 @@
       box-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
     }
 
-    /* Form basics */
-
     .field-row {
       display: flex;
       flex-direction: column;
@@ -365,92 +351,76 @@
       box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.6);
     }
 
-    /* Buttons */
-
     .btn {
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  padding: 0.78rem 1.6rem;
-  white-space: nowrap;
-  transition:
-    transform 0.12s ease,
-    box-shadow 0.12s ease,
-    filter 0.12s ease,
-    background 0.12s ease;
-}
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.78rem 1.6rem;
+      white-space: nowrap;
+      transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease,
+        filter 0.12s ease,
+        background 0.12s ease;
+    }
 
-.btn-primary {
-  position: relative;
-  background-image: linear-gradient(120deg, #1d4ed8, #38bdf8);
-  background-size: 140% 140%;
-  color: #e5e7eb;
-  border: 1px solid rgba(191, 219, 254, 0.7);
-  box-shadow:
-    0 14px 32px rgba(15, 23, 42, 0.85),
-    0 0 22px rgba(56, 189, 248, 0.55);
-  text-shadow: 0 0 10px rgba(15, 23, 42, 0.9);
-  animation: buttonGradient 5.5s ease-in-out infinite;
-}
+    .btn-primary {
+      position: relative;
+      background-image: linear-gradient(120deg, #1d4ed8, #38bdf8);
+      background-size: 140% 140%;
+      color: #e5e7eb;
+      border: 1px solid rgba(191, 219, 254, 0.7);
+      box-shadow:
+        0 14px 32px rgba(15, 23, 42, 0.85),
+        0 0 22px rgba(56, 189, 248, 0.55);
+      text-shadow: 0 0 10px rgba(15, 23, 42, 0.9);
+      animation: buttonGradient 5.5s ease-in-out infinite;
+    }
 
-.btn-primary::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  border: 1px solid rgba(248, 250, 252, 0.18);
-  opacity: 0.85;
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
+    .btn-primary::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 1px solid rgba(248, 250, 252, 0.18);
+      opacity: 0.85;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
 
-.btn-primary:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow:
-    0 18px 40px rgba(15, 23, 42, 0.9),
-    0 0 30px rgba(56, 189, 248, 0.7);
-  filter: brightness(1.03);
-}
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.9),
+        0 0 30px rgba(56, 189, 248, 0.7);
+      filter: brightness(1.03);
+    }
 
-.btn-primary:active:not(:disabled) {
-  transform: translateY(0);
-  box-shadow:
-    0 10px 24px rgba(15, 23, 42, 0.95),
-    0 0 18px rgba(56, 189, 248, 0.5);
-  filter: brightness(0.98);
-}
+    .btn-primary:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow:
+        0 10px 24px rgba(15, 23, 42, 0.95),
+        0 0 18px rgba(56, 189, 248, 0.5);
+      filter: brightness(0.98);
+    }
 
-.btn-primary:disabled {
-  opacity: 0.7;
-  cursor: default;
-  box-shadow: none;
-  animation: none;
-}
-
+    .btn-primary:disabled {
+      opacity: 0.7;
+      cursor: default;
+      box-shadow: none;
+      animation: none;
+    }
 
     @keyframes buttonGradient {
       0%   { background-position: 0% 50%; }
       50%  { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
-    }
-
-    @keyframes buttonGlow {
-      0%, 100% {
-        box-shadow:
-          0 16px 40px rgba(56, 189, 248, 0.45),
-          0 0 28px rgba(94, 234, 212, 0.5);
-      }
-      50% {
-        box-shadow:
-          0 20px 60px rgba(37, 99, 235, 0.8),
-          0 0 65px rgba(94, 234, 212, 0.8);
-      }
     }
 
     .step1-footer-text {
@@ -459,15 +429,11 @@
       color: var(--text-muted);
     }
 
-    /* Step separation */
-
     .step-divider {
       height: 1px;
       margin: 1.7rem 0 1.3rem;
       background: linear-gradient(to right, transparent, rgba(148, 163, 184, 0.7), transparent);
     }
-
-    /* Step 2 */
 
     .step2-header {
       display: flex;
@@ -659,7 +625,49 @@
     .status-message.success { color: var(--success); }
     .status-message.error { color: var(--danger); }
 
-    /* Mobile tweaks */
+    /* Success overlay modal */
+
+    .success-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+
+    .success-modal {
+      background: var(--surface);
+      border-radius: 1.5rem;
+      padding: 1.75rem 1.6rem 1.5rem;
+      max-width: 420px;
+      margin: 0 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+
+    .success-modal-title {
+      margin: 0 0 0.6rem;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #f9fafb;
+    }
+
+    .success-modal-body {
+      margin: 0 0 1.2rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .success-modal-btn {
+      margin-top: 0.4rem;
+      width: 100%;
+      justify-content: center;
+    }
 
     @media (max-width: 720px) {
       .filter-tabs {
@@ -689,7 +697,6 @@
 </head>
 <body>
   <div class="page">
-    <!-- Brand + hero -->
     <header>
       <div class="brand-row">
         <img src="hero-logo.png" alt="ASAP Jobs logo" class="brand-logo" />
@@ -700,14 +707,13 @@
       </div>
 
       <h1 class="hero-title">
-      Save hours on job hunting. Get the <span class="highlight">best remote jobs</span> in your inbox.
+        Save hours on job hunting. Get the <span class="highlight">best remote jobs</span> in your inbox.
       </h1>
       <p class="hero-subtitle">
-      We scan 100+ job boards and company pages, then send you a short list of high-quality remote roles
-      that match your filters — directly to your inbox.
+        We scan 100+ job boards and company pages, then send you a short list of high-quality remote roles
+        that match your filters — directly to your inbox.
       </p>
 
-      <!-- Minimal trust strip -->
       <section class="trust-strip">
         <p class="trust-strip-count">
           Join <span id="subscriberCount">99,950</span> world-class remote candidates from:
@@ -726,7 +732,6 @@
             <span class="trust-logo">NVIDIA</span>
             <span class="trust-logo">PERPLEXITY</span>
 
-            <!-- duplicate sequence for seamless loop -->
             <span class="trust-logo trust-logo--accent">META</span>
             <span class="trust-logo">MICROSOFT</span>
             <span class="trust-logo">STRIPE</span>
@@ -743,9 +748,7 @@
       </section>
     </header>
 
-    <!-- Card -->
     <main class="card">
-      <!-- STEP 1 -->
       <section>
         <div class="step-label">Step 1 · Your email</div>
         <h2 class="step-title">Start your personalized job feed.</h2>
@@ -780,10 +783,9 @@
           </div>
         </div>
 
-       <button type="button" class="btn btn-primary" id="nextStepButton">
-       Continue to filters ⚡
+        <button type="button" class="btn btn-primary" id="nextStepButton">
+          Continue to filters ⚡
         </button>
-
 
         <p class="step1-footer-text">
           We’ll never share your email. Next step: we’ll ask for your job preferences.
@@ -792,7 +794,6 @@
 
       <div class="step-divider"></div>
 
-      <!-- STEP 2 -->
       <section id="step2" class="hidden">
         <div class="step-label">Step 2 · Your job preferences</div>
         <div class="step2-header">
@@ -803,7 +804,6 @@
           </p>
         </div>
 
-        <!-- Horizontal filter tabs -->
         <div class="filter-tabs" id="filterTabs">
           <button type="button" class="filter-tab active" data-filter="locations">
             <span class="filter-icon">🌍</span>
@@ -819,6 +819,11 @@
             <span class="filter-icon">⭐</span>
             <span class="filter-tab-label">Experience*</span>
             <span class="filter-tab-summary" data-tab-summary="experience">Select…</span>
+          </button>
+          <button type="button" class="filter-tab" data-filter="jobRoles">
+            <span class="filter-icon">🧑‍💼</span>
+            <span class="filter-tab-label">Job Role</span>
+            <span class="filter-tab-summary" data-tab-summary="jobRoles">Search roles…</span>
           </button>
           <button type="button" class="filter-tab" data-filter="jobCategories">
             <span class="filter-icon">📦</span>
@@ -842,7 +847,6 @@
           </button>
         </div>
 
-        <!-- Active filter panel -->
         <div class="filter-panel">
           <div class="filter-panel-top">
             <div class="filter-panel-label" id="filterPanelLabel">Location preferences</div>
@@ -878,6 +882,20 @@
         </div>
       </section>
     </main>
+  </div>
+
+  <!-- Success popup overlay -->
+  <div id="successOverlay" class="success-overlay hidden" role="dialog" aria-modal="true">
+    <div class="success-modal">
+      <h2 class="success-modal-title">You’re in! 🎉</h2>
+      <p class="success-modal-body">
+        Thanks for subscribing to ASAP Jobs.<br />
+        Check your inbox for a confirmation email so we can start sending you curated remote roles ASAP.
+      </p>
+      <button type="button" id="successCloseButton" class="btn btn-primary success-modal-btn">
+        Back to the site
+      </button>
+    </div>
   </div>
 
   <script>
@@ -920,25 +938,913 @@
         { value: 'Director', label: '🎯 Director', keywords: ['director', 'head of'] },
         { value: 'Executive', label: '💼 Executive', keywords: ['vp', 'c-level', 'chief', 'executive'] }
       ],
+
+      // NEW: concrete job roles (100+), grouped via category + synonyms in keywords
+      jobRoles: [
+        // ENGINEERING / DEVELOPMENT
+        {
+          value: 'Software Engineer',
+          label: '👨‍💻 Software Engineer',
+          category: 'Engineering',
+          keywords: ['software engineer', 'software developer', 'swe', 'software dev', 'engineer']
+        },
+        {
+          value: 'Backend Engineer',
+          label: '🧱 Backend Engineer',
+          category: 'Engineering',
+          keywords: ['backend engineer', 'back-end engineer', 'backend developer', 'server-side']
+        },
+        {
+          value: 'Frontend Engineer',
+          label: '🎨 Frontend Engineer',
+          category: 'Engineering',
+          keywords: ['frontend engineer', 'front-end engineer', 'frontend developer', 'ui engineer']
+        },
+        {
+          value: 'Full-Stack Engineer',
+          label: '🧩 Full-Stack Engineer',
+          category: 'Engineering',
+          keywords: ['full-stack', 'fullstack', 'full stack developer', 'end-to-end engineer']
+        },
+        {
+          value: 'JavaScript Developer',
+          label: '✨ JavaScript Developer',
+          category: 'Engineering',
+          keywords: ['javascript developer', 'js developer', 'frontend', 'node', 'react']
+        },
+        {
+          value: 'TypeScript Developer',
+          label: '🔷 TypeScript Developer',
+          category: 'Engineering',
+          keywords: ['typescript developer', 'ts developer', 'typed js', 'frontend', 'fullstack']
+        },
+        {
+          value: 'React Developer',
+          label: '⚛️ React Developer',
+          category: 'Engineering',
+          keywords: ['react developer', 'reactjs', 'react.js', 'frontend engineer']
+        },
+        {
+          value: 'Next.js Developer',
+          label: '⏭️ Next.js Developer',
+          category: 'Engineering',
+          keywords: ['next.js', 'nextjs', 'react', 'fullstack']
+        },
+        {
+          value: 'Vue.js Developer',
+          label: '🖼️ Vue.js Developer',
+          category: 'Engineering',
+          keywords: ['vue developer', 'vue.js', 'vuejs', 'frontend']
+        },
+        {
+          value: 'Angular Developer',
+          label: '🅰️ Angular Developer',
+          category: 'Engineering',
+          keywords: ['angular developer', 'angularjs', 'angular']
+        },
+        {
+          value: 'Node.js Developer',
+          label: '🟢 Node.js Developer',
+          category: 'Engineering',
+          keywords: ['node developer', 'node.js', 'nodejs', 'backend']
+        },
+        {
+          value: 'Python Developer',
+          label: '🐍 Python Developer',
+          category: 'Engineering',
+          keywords: ['python developer', 'backend python', 'django', 'flask', 'fastapi']
+        },
+        {
+          value: 'Django Developer',
+          label: '🧱 Django Developer',
+          category: 'Engineering',
+          keywords: ['django developer', 'python', 'fullstack python']
+        },
+        {
+          value: 'Ruby on Rails Developer',
+          label: '💎 Ruby on Rails Developer',
+          category: 'Engineering',
+          keywords: ['ruby developer', 'rails developer', 'ror']
+        },
+        {
+          value: 'Go Developer',
+          label: '🐹 Go Developer',
+          category: 'Engineering',
+          keywords: ['go developer', 'golang developer', 'backend go']
+        },
+        {
+          value: 'Java Developer',
+          label: '☕ Java Developer',
+          category: 'Engineering',
+          keywords: ['java developer', 'spring', 'spring boot', 'backend java']
+        },
+        {
+          value: 'PHP Developer',
+          label: '🐘 PHP Developer',
+          category: 'Engineering',
+          keywords: ['php developer', 'laravel', 'symfony']
+        },
+        {
+          value: 'Laravel Developer',
+          label: '📦 Laravel Developer',
+          category: 'Engineering',
+          keywords: ['laravel developer', 'php laravel', 'backend']
+        },
+        {
+          value: 'C# /.NET Developer',
+          label: '💻 C# /.NET Developer',
+          category: 'Engineering',
+          keywords: ['c# developer', '.net developer', 'dotnet']
+        },
+        {
+          value: 'iOS Developer',
+          label: '📱 iOS Developer',
+          category: 'Mobile',
+          keywords: ['ios developer', 'swift developer', 'iphone', 'mobile ios']
+        },
+        {
+          value: 'Android Developer',
+          label: '🤖 Android Developer',
+          category: 'Mobile',
+          keywords: ['android developer', 'kotlin developer', 'mobile android']
+        },
+        {
+          value: 'Mobile App Developer',
+          label: '📱 Mobile App Developer',
+          category: 'Mobile',
+          keywords: ['mobile engineer', 'mobile dev', 'ios', 'android', 'cross-platform']
+        },
+        {
+          value: 'React Native Developer',
+          label: '📱 React Native Developer',
+          category: 'Mobile',
+          keywords: ['react native developer', 'rn developer', 'mobile']
+        },
+        {
+          value: 'Flutter Developer',
+          label: '📱 Flutter Developer',
+          category: 'Mobile',
+          keywords: ['flutter developer', 'dart developer', 'mobile']
+        },
+        {
+          value: 'Shopify Developer',
+          label: '🛒 Shopify Developer',
+          category: 'Engineering',
+          keywords: ['shopify developer', 'shopify engineer', 'ecommerce developer']
+        },
+        {
+          value: 'WordPress Developer',
+          label: '📰 WordPress Developer',
+          category: 'Engineering',
+          keywords: ['wordpress developer', 'wp developer', 'cms developer']
+        },
+
+        // DEVOPS / SRE / CLOUD
+        {
+          value: 'DevOps Engineer',
+          label: '🔁 DevOps Engineer',
+          category: 'DevOps / Platform',
+          keywords: ['devops engineer', 'dev ops', 'platform engineer', 'infra engineer']
+        },
+        {
+          value: 'Senior DevOps Engineer',
+          label: '🔁 Senior DevOps Engineer',
+          category: 'DevOps / Platform',
+          keywords: ['senior devops', 'lead devops', 'staff devops']
+        },
+        {
+          value: 'Site Reliability Engineer (SRE)',
+          label: '🛰️ Site Reliability Engineer (SRE)',
+          category: 'DevOps / Platform',
+          keywords: ['sre', 'site reliability', 'reliability engineer']
+        },
+        {
+          value: 'Platform Engineer',
+          label: '🧱 Platform Engineer',
+          category: 'DevOps / Platform',
+          keywords: ['platform engineer', 'platform dev', 'internal tools']
+        },
+        {
+          value: 'Cloud Engineer',
+          label: '☁️ Cloud Engineer',
+          category: 'DevOps / Platform',
+          keywords: ['cloud engineer', 'cloud developer', 'aws', 'gcp', 'azure']
+        },
+        {
+          value: 'AWS Engineer',
+          label: '☁️ AWS Engineer',
+          category: 'DevOps / Platform',
+          keywords: ['aws engineer', 'aws devops', 'aws cloud']
+        },
+        {
+          value: 'Azure Engineer',
+          label: '☁️ Azure Engineer',
+          category: 'DevOps / Platform',
+          keywords: ['azure engineer', 'azure devops', 'microsoft azure']
+        },
+        {
+          value: 'GCP Engineer',
+          label: '☁️ GCP Engineer',
+          category: 'DevOps / Platform',
+          keywords: ['gcp engineer', 'google cloud engineer']
+        },
+        {
+          value: 'Kubernetes Engineer',
+          label: '☸️ Kubernetes Engineer',
+          category: 'DevOps / Platform',
+          keywords: ['kubernetes engineer', 'k8s', 'container orchestration']
+        },
+        {
+          value: 'Infrastructure Engineer',
+          label: '🛠️ Infrastructure Engineer',
+          category: 'DevOps / Platform',
+          keywords: ['infrastructure engineer', 'infra engineer', 'systems engineer']
+        },
+
+        // DATA & ANALYTICS / AI
+        {
+          value: 'Data Engineer',
+          label: '🧱 Data Engineer',
+          category: 'Data',
+          keywords: ['data engineer', 'etl engineer', 'data pipelines']
+        },
+        {
+          value: 'Senior Data Engineer',
+          label: '🧱 Senior Data Engineer',
+          category: 'Data',
+          keywords: ['senior data engineer', 'lead data engineer']
+        },
+        {
+          value: 'Analytics Engineer',
+          label: '📊 Analytics Engineer',
+          category: 'Data',
+          keywords: ['analytics engineer', 'dbt', 'warehouse modeller']
+        },
+        {
+          value: 'Big Data Engineer',
+          label: '📊 Big Data Engineer',
+          category: 'Data',
+          keywords: ['big data', 'spark engineer', 'hadoop engineer']
+        },
+        {
+          value: 'Data Warehouse Engineer',
+          label: '🏗️ Data Warehouse Engineer',
+          category: 'Data',
+          keywords: ['data warehouse', 'snowflake', 'bigquery', 'redshift']
+        },
+        {
+          value: 'BI Engineer',
+          label: '📈 BI Engineer',
+          category: 'Data',
+          keywords: ['bi engineer', 'business intelligence', 'bi developer']
+        },
+        {
+          value: 'Data Scientist',
+          label: '📊 Data Scientist',
+          category: 'Data',
+          keywords: ['data scientist', 'ml scientist', 'quant']
+        },
+        {
+          value: 'Senior Data Scientist',
+          label: '📊 Senior Data Scientist',
+          category: 'Data',
+          keywords: ['senior data scientist', 'principal data scientist']
+        },
+        {
+          value: 'Machine Learning Engineer',
+          label: '🤖 Machine Learning Engineer',
+          category: 'AI / ML',
+          keywords: ['ml engineer', 'machine learning engineer', 'ml dev']
+        },
+        {
+          value: 'Senior Machine Learning Engineer',
+          label: '🤖 Senior Machine Learning Engineer',
+          category: 'AI / ML',
+          keywords: ['senior ml engineer', 'staff ml engineer']
+        },
+        {
+          value: 'MLOps Engineer',
+          label: '🔁 MLOps Engineer',
+          category: 'AI / ML',
+          keywords: ['mlops engineer', 'ml ops', 'ml platform']
+        },
+        {
+          value: 'NLP Engineer',
+          label: '💬 NLP Engineer',
+          category: 'AI / ML',
+          keywords: ['nlp engineer', 'natural language processing', 'language models']
+        },
+        {
+          value: 'Computer Vision Engineer',
+          label: '👁️ Computer Vision Engineer',
+          category: 'AI / ML',
+          keywords: ['computer vision', 'cv engineer', 'image processing']
+        },
+        {
+          value: 'AI Engineer',
+          label: '🧠 AI Engineer',
+          category: 'AI / ML',
+          keywords: ['ai engineer', 'ai developer', 'ml engineer']
+        },
+        {
+          value: 'Generative AI Engineer',
+          label: '✨ Generative AI Engineer',
+          category: 'AI / ML',
+          keywords: ['gen ai engineer', 'generative ai', 'llm engineer', 'gpt']
+        },
+        {
+          value: 'Prompt Engineer',
+          label: '💡 Prompt Engineer',
+          category: 'AI / ML',
+          keywords: ['prompt engineer', 'prompt designer', 'llm prompts']
+        },
+
+        // QA / SECURITY / BLOCKCHAIN
+        {
+          value: 'QA Engineer',
+          label: '🧪 QA Engineer',
+          category: 'Quality',
+          keywords: ['qa engineer', 'quality assurance', 'test engineer']
+        },
+        {
+          value: 'QA Automation Engineer',
+          label: '🤖 QA Automation Engineer',
+          category: 'Quality',
+          keywords: ['qa automation', 'test automation', 'sdet']
+        },
+        {
+          value: 'Test Engineer',
+          label: '🧪 Test Engineer',
+          category: 'Quality',
+          keywords: ['test engineer', 'testing', 'quality']
+        },
+        {
+          value: 'Security Engineer',
+          label: '🔐 Security Engineer',
+          category: 'Security',
+          keywords: ['security engineer', 'infosec engineer', 'cybersecurity']
+        },
+        {
+          value: 'Application Security Engineer',
+          label: '🛡️ Application Security Engineer',
+          category: 'Security',
+          keywords: ['appsec', 'application security', 'security engineer']
+        },
+        {
+          value: 'Cloud Security Engineer',
+          label: '☁️ Cloud Security Engineer',
+          category: 'Security',
+          keywords: ['cloud security', 'cloud infosec', 'aws security']
+        },
+        {
+          value: 'Cybersecurity Analyst',
+          label: '🕵️ Cybersecurity Analyst',
+          category: 'Security',
+          keywords: ['cybersecurity analyst', 'security analyst', 'soc analyst']
+        },
+        {
+          value: 'Blockchain Developer',
+          label: '⛓️ Blockchain Developer',
+          category: 'Web3',
+          keywords: ['blockchain developer', 'solidity', 'smart contract']
+        },
+        {
+          value: 'Web3 Developer',
+          label: '🌐 Web3 Developer',
+          category: 'Web3',
+          keywords: ['web3 dev', 'defi developer', 'crypto engineer']
+        },
+
+        // PRODUCT
+        {
+          value: 'Product Manager',
+          label: '📦 Product Manager',
+          category: 'Product',
+          keywords: ['product manager', 'pm', 'product owner']
+        },
+        {
+          value: 'Senior Product Manager',
+          label: '📦 Senior Product Manager',
+          category: 'Product',
+          keywords: ['senior pm', 'lead product manager', 'staff pm']
+        },
+        {
+          value: 'Technical Product Manager',
+          label: '⚙️ Technical Product Manager',
+          category: 'Product',
+          keywords: ['tpm', 'technical pm', 'platform pm']
+        },
+        {
+          value: 'Growth Product Manager',
+          label: '📈 Growth Product Manager',
+          category: 'Product / Growth',
+          keywords: ['growth pm', 'product growth', 'conversion']
+        },
+        {
+          value: 'Product Owner',
+          label: '📦 Product Owner',
+          category: 'Product',
+          keywords: ['product owner', 'scrum product owner']
+        },
+        {
+          value: 'Data Product Manager',
+          label: '📊 Data Product Manager',
+          category: 'Product / Data',
+          keywords: ['data pm', 'analytics pm', 'data products']
+        },
+        {
+          value: 'AI Product Manager',
+          label: '🤖 AI Product Manager',
+          category: 'Product / AI',
+          keywords: ['ai pm', 'ml product manager', 'llm product']
+        },
+
+        // DESIGN / UX
+        {
+          value: 'UX Designer',
+          label: '🎨 UX Designer',
+          category: 'Design',
+          keywords: ['ux designer', 'user experience designer']
+        },
+        {
+          value: 'UI Designer',
+          label: '🖌️ UI Designer',
+          category: 'Design',
+          keywords: ['ui designer', 'user interface designer', 'visual designer']
+        },
+        {
+          value: 'Product Designer',
+          label: '🎨 Product Designer',
+          category: 'Design',
+          keywords: ['product designer', 'ux/ui designer']
+        },
+        {
+          value: 'UX/UI Designer',
+          label: '🎨 UX/UI Designer',
+          category: 'Design',
+          keywords: ['ux ui designer', 'ui/ux']
+        },
+        {
+          value: 'UX Researcher',
+          label: '🔍 UX Researcher',
+          category: 'Design',
+          keywords: ['ux researcher', 'user research', 'design researcher']
+        },
+
+        // MARKETING / GROWTH / SEO / ASO
+        {
+          value: 'Digital Marketing Manager',
+          label: '📣 Digital Marketing Manager',
+          category: 'Marketing',
+          keywords: ['digital marketing manager', 'online marketing', 'marketing manager']
+        },
+        {
+          value: 'Marketing Manager',
+          label: '📣 Marketing Manager',
+          category: 'Marketing',
+          keywords: ['marketing manager', 'brand marketing manager']
+        },
+        {
+          value: 'Senior Marketing Manager',
+          label: '📣 Senior Marketing Manager',
+          category: 'Marketing',
+          keywords: ['senior marketing manager', 'lead marketing']
+        },
+        {
+          value: 'Head of Marketing',
+          label: '📣 Head of Marketing',
+          category: 'Marketing',
+          keywords: ['head of marketing', 'marketing lead', 'marketing director']
+        },
+        {
+          value: 'Growth Marketing Manager',
+          label: '🚀 Growth Marketing Manager',
+          category: 'Growth / Marketing',
+          keywords: ['growth marketer', 'growth marketing manager', 'performance marketing']
+        },
+        {
+          value: 'Performance Marketing Manager',
+          label: '📈 Performance Marketing Manager',
+          category: 'Growth / Marketing',
+          keywords: ['performance marketing', 'ppc manager', 'paid marketing']
+        },
+        {
+          value: 'Demand Generation Manager',
+          label: '📈 Demand Generation Manager',
+          category: 'Growth / Marketing',
+          keywords: ['demand gen', 'demand generation', 'pipeline marketing']
+        },
+
+        // SEO ROLES + SYNONYMS
+        {
+          value: 'SEO Specialist',
+          label: '🔍 SEO Specialist',
+          category: 'Growth / SEO',
+          keywords: ['seo specialist', 'seo expert', 'search engine optimization', 'seo analyzt']
+        },
+        {
+          value: 'SEO Analyst',
+          label: '📊 SEO Analyst',
+          category: 'Growth / SEO',
+          keywords: ['seo analyst', 'seo data', 'seo reporting']
+        },
+        {
+          value: 'SEO Manager',
+          label: '📈 SEO Manager',
+          category: 'Growth / SEO',
+          keywords: ['seo manager', 'seo lead', 'seo strategist']
+        },
+        {
+          value: 'Senior SEO Manager',
+          label: '📈 Senior SEO Manager',
+          category: 'Growth / SEO',
+          keywords: ['senior seo manager', 'lead seo', 'seo head']
+        },
+        {
+          value: 'SEO Team Lead',
+          label: '📈 SEO Team Lead',
+          category: 'Growth / SEO',
+          keywords: ['seo team lead', 'seo lead', 'seo manager']
+        },
+        {
+          value: 'Head of SEO',
+          label: '📈 Head of SEO',
+          category: 'Growth / SEO',
+          keywords: ['head of seo', 'seo director', 'seo lead']
+        },
+
+        // ASO ROLES
+        {
+          value: 'ASO Specialist',
+          label: '📱 ASO Specialist',
+          category: 'Growth / ASO',
+          keywords: ['aso specialist', 'app store optimization', 'aso expert']
+        },
+        {
+          value: 'ASO Expert',
+          label: '📱 ASO Expert',
+          category: 'Growth / ASO',
+          keywords: ['aso expert', 'aso manager', 'app store seo', 'aso']
+        },
+        {
+          value: 'App Store Optimization Manager',
+          label: '📱 App Store Optimization Manager',
+          category: 'Growth / ASO',
+          keywords: ['aso manager', 'app store optimization manager']
+        },
+
+        // CONTENT / SOCIAL / EMAIL
+        {
+          value: 'Content Marketing Manager',
+          label: '✍️ Content Marketing Manager',
+          category: 'Marketing / Content',
+          keywords: ['content marketing manager', 'content lead', 'content strategist']
+        },
+        {
+          value: 'Content Writer',
+          label: '✍️ Content Writer',
+          category: 'Marketing / Content',
+          keywords: ['content writer', 'blog writer', 'content creator']
+        },
+        {
+          value: 'Copywriter',
+          label: '✍️ Copywriter',
+          category: 'Marketing / Content',
+          keywords: ['copywriter', 'conversion copywriter', 'marketing copywriter']
+        },
+        {
+          value: 'Social Media Manager',
+          label: '📱 Social Media Manager',
+          category: 'Marketing / Social',
+          keywords: ['social media manager', 'social media marketer', 'social media']
+        },
+        {
+          value: 'Paid Search Specialist',
+          label: '💰 Paid Search Specialist',
+          category: 'Growth / Paid',
+          keywords: ['paid search', 'sem specialist', 'google ads', 'ppc']
+        },
+        {
+          value: 'PPC Specialist',
+          label: '💰 PPC Specialist',
+          category: 'Growth / Paid',
+          keywords: ['ppc specialist', 'pay per click', 'sem']
+        },
+        {
+          value: 'Paid Social Specialist',
+          label: '📱 Paid Social Specialist',
+          category: 'Growth / Paid',
+          keywords: ['paid social', 'facebook ads', 'meta ads', 'tiktok ads']
+        },
+        {
+          value: 'Affiliate Marketing Manager',
+          label: '🤝 Affiliate Marketing Manager',
+          category: 'Growth / Partnerships',
+          keywords: ['affiliate marketing', 'affiliate manager', 'partner marketing']
+        },
+        {
+          value: 'Partnerships Manager',
+          label: '🤝 Partnerships Manager',
+          category: 'Growth / Partnerships',
+          keywords: ['partnerships manager', 'alliances', 'business development partnerships']
+        },
+        {
+          value: 'Email Marketing Specialist',
+          label: '📧 Email Marketing Specialist',
+          category: 'Marketing',
+          keywords: ['email marketing', 'newsletter', 'crm campaigns']
+        },
+        {
+          value: 'CRM Marketing Manager',
+          label: '📧 CRM Marketing Manager',
+          category: 'Marketing',
+          keywords: ['crm manager', 'crm marketing', 'lifecycle marketing']
+        },
+        {
+          value: 'Lifecycle Marketing Manager',
+          label: '🔁 Lifecycle Marketing Manager',
+          category: 'Marketing',
+          keywords: ['lifecycle marketing', 'retention marketing', 'crm']
+        },
+        {
+          value: 'Community Manager',
+          label: '👥 Community Manager',
+          category: 'Marketing / Community',
+          keywords: ['community manager', 'community lead']
+        },
+
+        // SALES / CS / SUPPORT
+        {
+          value: 'Sales Development Representative (SDR)',
+          label: '📞 Sales Development Representative (SDR)',
+          category: 'Sales',
+          keywords: ['sdr', 'sales development', 'inbound sdr', 'outbound sdr']
+        },
+        {
+          value: 'Business Development Representative (BDR)',
+          label: '📞 Business Development Representative (BDR)',
+          category: 'Sales',
+          keywords: ['bdr', 'business development', 'prospecting', 'outbound']
+        },
+        {
+          value: 'Account Executive',
+          label: '💼 Account Executive',
+          category: 'Sales',
+          keywords: ['account executive', 'ae', 'closer', 'sales rep']
+        },
+        {
+          value: 'Senior Account Executive',
+          label: '💼 Senior Account Executive',
+          category: 'Sales',
+          keywords: ['senior ae', 'enterprise ae']
+        },
+        {
+          value: 'Enterprise Account Executive',
+          label: '🏢 Enterprise Account Executive',
+          category: 'Sales',
+          keywords: ['enterprise sales', 'enterprise ae', 'b2b enterprise']
+        },
+        {
+          value: 'Sales Manager',
+          label: '📈 Sales Manager',
+          category: 'Sales',
+          keywords: ['sales manager', 'sales lead', 'sales team lead']
+        },
+        {
+          value: 'Head of Sales',
+          label: '📈 Head of Sales',
+          category: 'Sales',
+          keywords: ['head of sales', 'sales director', 'vp sales']
+        },
+        {
+          value: 'Account Manager',
+          label: '🤝 Account Manager',
+          category: 'Sales / CS',
+          keywords: ['account manager', 'customer account manager', 'farmer']
+        },
+        {
+          value: 'Customer Success Manager',
+          label: '🎧 Customer Success Manager',
+          category: 'Customer Success',
+          keywords: ['customer success manager', 'csm', 'client success manager']
+        },
+        {
+          value: 'Customer Success Specialist',
+          label: '🎧 Customer Success Specialist',
+          category: 'Customer Success',
+          keywords: ['cs specialist', 'customer success']
+        },
+        {
+          value: 'Customer Support Specialist',
+          label: '🎧 Customer Support Specialist',
+          category: 'Support',
+          keywords: ['customer support', 'support agent', 'support specialist']
+        },
+        {
+          value: 'Technical Support Engineer',
+          label: '🛠️ Technical Support Engineer',
+          category: 'Support / Engineering',
+          keywords: ['technical support', 'support engineer', 'tier 2 support']
+        },
+
+        // HYBRID / TECH-BUSINESS
+        {
+          value: 'Technical Evangelist / Developer Advocate',
+          label: '📣 Developer Advocate',
+          category: 'Hybrid / DevRel',
+          keywords: ['developer advocate', 'devrel', 'technical evangelist', 'community engineer']
+        },
+        {
+          value: 'Solutions Architect',
+          label: '🏗️ Solutions Architect',
+          category: 'Hybrid / Pre-sales',
+          keywords: ['solutions architect', 'solution architect', 'sa']
+        },
+        {
+          value: 'Pre-Sales Engineer',
+          label: '🤝 Pre-Sales Engineer',
+          category: 'Hybrid / Pre-sales',
+          keywords: ['pre-sales engineer', 'sales engineer', 'solutions engineer']
+        },
+        {
+          value: 'Customer Success Engineer',
+          label: '🎧 Customer Success Engineer',
+          category: 'Hybrid / CS',
+          keywords: ['customer success engineer', 'solutions engineer cs']
+        },
+        {
+          value: 'Growth Engineer',
+          label: '🚀 Growth Engineer',
+          category: 'Hybrid / Growth',
+          keywords: ['growth engineer', 'experimentation engineer', 'product growth engineer']
+        },
+        {
+          value: 'Performance Marketing Engineer',
+          label: '📈 Performance Marketing Engineer',
+          category: 'Hybrid / Growth',
+          keywords: ['marketing engineer', 'tracking engineer', 'adtech engineer']
+        },
+
+        // LEADERSHIP / HEAD OF ROLES
+        {
+          value: 'Head of Engineering',
+          label: '🏛️ Head of Engineering',
+          category: 'Leadership',
+          keywords: ['head of engineering', 'engineering director', 'vp engineering']
+        },
+        {
+          value: 'VP of Engineering',
+          label: '🏛️ VP of Engineering',
+          category: 'Leadership',
+          keywords: ['vp engineering', 'vice president engineering']
+        },
+        {
+          value: 'CTO',
+          label: '🏛️ CTO',
+          category: 'Leadership',
+          keywords: ['cto', 'chief technology officer']
+        },
+        {
+          value: 'Head of Data & Analytics',
+          label: '🏛️ Head of Data & Analytics',
+          category: 'Leadership / Data',
+          keywords: ['head of data', 'head of analytics', 'director of data']
+        },
+        {
+          value: 'Head of AI',
+          label: '🏛️ Head of AI',
+          category: 'Leadership / AI',
+          keywords: ['head of ai', 'head of machine learning', 'ai director']
+        },
+        {
+          value: 'Head of Product',
+          label: '🏛️ Head of Product',
+          category: 'Leadership / Product',
+          keywords: ['head of product', 'director of product', 'vp product']
+        }
+      ],
+
+      // UPDATED jobCategories with AI, Software Eng, Mobile, Web3, QA, DevRel, etc.
       jobCategories: [
         {
-          value: 'Growth',
-          label: '🚀 Growth (SEO / Paid)',
+          value: 'AI / ML',
+          label: '🤖 AI / ML / LLMs',
           keywords: [
-            'seo', 'search', 'sem', 'paid', 'ppc', 'performance', 'performance marketing',
-            'paid social', 'growth', 'growth marketer', 'growth marketing',
-            'demand gen', 'user acquisition', 'ua'
+            'ai', 'artificial intelligence', 'machine learning', 'ml',
+            'ml engineer', 'ml scientist', 'ml researcher',
+            'llm', 'large language model', 'gpt', 'gen ai', 'generative ai',
+            'nlp', 'computer vision', 'foundation model'
+          ]
+        },
+        {
+          value: 'Software Engineering',
+          label: '👩‍💻 Software Engineering',
+          keywords: [
+            'software engineer', 'software developer', 'swe',
+            'frontend', 'front-end', 'backend', 'back-end',
+            'fullstack', 'full stack', 'web engineer',
+            'platform engineer', 'shopify developer', 'wordpress developer'
+          ]
+        },
+        {
+          value: 'Mobile Engineering',
+          label: '📱 Mobile Engineering',
+          keywords: [
+            'mobile engineer', 'mobile developer',
+            'ios', 'swift', 'iphone',
+            'android', 'kotlin',
+            'react native', 'flutter'
+          ]
+        },
+        {
+          value: 'Data',
+          label: '🧱 Data Engineering / Platform',
+          keywords: [
+            'data engineer', 'analytics engineer', 'data platform', 'etl',
+            'elt', 'dbt', 'data pipeline', 'warehouse',
+            'snowflake', 'bigquery', 'redshift'
+          ]
+        },
+        {
+          value: 'Analytics',
+          label: '📊 Data Science & Analytics',
+          keywords: [
+            'analytics', 'data analyst', 'business intelligence', 'bi',
+            'data science', 'data scientist',
+            'product analytics', 'marketing analytics',
+            'experiment', 'a/b testing', 'ab testing'
+          ]
+        },
+        {
+          value: 'DevOps',
+          label: '🔁 DevOps / SRE / Platform',
+          keywords: [
+            'devops', 'sre', 'site reliability', 'platform engineer',
+            'infrastructure', 'infra', 'cloud', 'kubernetes', 'k8s',
+            'aws', 'gcp', 'azure', 'terraform', 'ci/cd'
+          ]
+        },
+        {
+          value: 'Security',
+          label: '🔑 Security / Cyber',
+          keywords: [
+            'security engineer', 'appsec', 'application security',
+            'infosec', 'cybersecurity', 'cloud security', 'soc analyst'
+          ]
+        },
+        {
+          value: 'QA',
+          label: '🧪 QA / Testing',
+          keywords: [
+            'qa', 'quality assurance', 'qa engineer', 'test engineer',
+            'qa automation', 'sdet', 'testing'
+          ]
+        },
+        {
+          value: 'Web3',
+          label: '⛓ Web3 / Crypto / Blockchain',
+          keywords: [
+            'web3', 'crypto', 'defi', 'nft',
+            'blockchain', 'solidity', 'smart contract'
+          ]
+        },
+        {
+          value: 'Product',
+          label: '📦 Product Management',
+          keywords: [
+            'product manager', 'pm', 'product owner',
+            'group product manager', 'gpm', 'product lead',
+            'technical product manager', 'growth pm', 'ai pm'
+          ]
+        },
+        {
+          value: 'Design',
+          label: '🎨 Design (Product / UX / UI)',
+          keywords: [
+            'designer', 'product design', 'ux', 'ui', 'ui/ux',
+            'ux researcher', 'interaction design'
+          ]
+        },
+        {
+          value: 'Growth',
+          label: '🚀 Growth (SEO / Paid / ASO)',
+          keywords: [
+            'growth', 'growth marketer', 'growth marketing',
+            'seo', 'search', 'sem',
+            'aso', 'app store optimization',
+            'paid', 'ppc', 'performance marketing',
+            'paid social', 'demand gen', 'user acquisition', 'ua'
           ]
         },
         {
           value: 'Marketing',
-          label: '📣 Marketing (Brand / Content)',
+          label: '📣 Marketing (Brand / Content / CRM)',
           keywords: [
             'marketing', 'brand', 'brand marketing',
             'content', 'content writing', 'content marketing', 'content marketer',
             'copywriting', 'copywriter',
             'email marketing', 'newsletter', 'crm', 'lifecycle',
-            'social media manager', 'community manager'
+            'community manager', 'social media manager'
           ]
         },
         {
@@ -947,79 +1853,26 @@
           keywords: [
             'sales', 'sales rep', 'sales development', 'sdr', 'bdr',
             'account executive', 'ae', 'closer', 'inside sales',
-            'outbound', 'inbound', 'account manager'
+            'enterprise sales', 'account manager'
           ]
         },
         {
           value: 'Customer Success',
           label: '🎧 Customer Success / Support',
           keywords: [
-            'customer success', 'cs', 'customer support', 'support',
-            'cx', 'customer experience', 'implementation specialist'
+            'customer success', 'csm', 'client success',
+            'customer support', 'support specialist',
+            'technical support', 'cx', 'customer experience',
+            'implementation specialist'
           ]
         },
         {
-          value: 'Analytics',
-          label: '📊 Data & Analytics',
+          value: 'DevRel',
+          label: '📣 DevRel / Solutions / Sales Engineering',
           keywords: [
-            'analytics', 'data analyst', 'business intelligence', 'bi',
-            'data science', 'product analytics', 'marketing analytics',
-            'experiment', 'a/b testing', 'ab testing'
-          ]
-        },
-        {
-          value: 'Engineering',
-          label: '👨‍💻 Engineering',
-          keywords: [
-            'software engineer', 'developer', 'frontend', 'front-end',
-            'backend', 'back-end', 'fullstack', 'full stack',
-            'mobile engineer', 'ios', 'android'
-          ]
-        },
-        {
-          value: 'Product',
-          label: '📦 Product Management',
-          keywords: [
-            'product manager', 'pm', 'product owner', 'group product manager', 'gpm', 'product lead'
-          ]
-        },
-        {
-          value: 'Design',
-          label: '🎨 Design (Product / UI/UX)',
-          keywords: [
-            'designer', 'product design', 'ux', 'ui', 'ui/ux',
-            'ux researcher', 'interaction design'
-          ]
-        },
-        {
-          value: 'Data',
-          label: '🧱 Data Engineering / Platform',
-          keywords: [
-            'data engineer', 'analytics engineer', 'data platform', 'etl',
-            'elt', 'dbt', 'data pipeline'
-          ]
-        },
-        {
-          value: 'DevOps',
-          label: '🔁 DevOps / SRE / Platform',
-          keywords: [
-            'devops', 'sre', 'site reliability', 'platform engineer',
-            'infrastructure', 'infra', 'cloud', 'kubernetes', 'k8s'
-          ]
-        },
-        {
-          value: 'Security',
-          label: '🔑 Security',
-          keywords: [
-            'security engineer', 'appsec', 'application security', 'infosec', 'cybersecurity'
-          ]
-        },
-        {
-          value: 'Finance',
-          label: '💰 Finance / Accounting',
-          keywords: [
-            'finance', 'financial analyst', 'accountant', 'accounting',
-            'fp&a', 'controller', 'cfo'
+            'developer advocate', 'devrel', 'solutions architect',
+            'solutions engineer', 'sales engineer', 'pre-sales',
+            'customer success engineer'
           ]
         },
         {
@@ -1031,11 +1884,19 @@
           ]
         },
         {
+          value: 'Finance',
+          label: '💰 Finance / Accounting',
+          keywords: [
+            'finance', 'financial analyst', 'accountant', 'accounting',
+            'fp&a', 'controller', 'cfo'
+          ]
+        },
+        {
           value: 'HR',
           label: '🙋 People / HR / Talent',
           keywords: [
             'recruiter', 'talent acquisition', 'ta', 'hr', 'people ops',
-            'people operations', 'hr manager'
+            'people operations', 'hr manager', 'technical recruiter'
           ]
         },
         {
@@ -1047,10 +1908,11 @@
         },
         {
           value: 'Executive',
-          label: '🏛️ Executive / Leadership',
+          label: '🏛 Executive / Leadership',
           keywords: [
             'founder', 'co-founder', 'ceo', 'cto', 'cpo', 'cmo',
-            'vp', 'head of', 'executive', 'c-suite'
+            'vp', 'head of', 'vp engineering', 'vp sales',
+            'executive', 'c-suite'
           ]
         }
       ],
@@ -1273,6 +2135,7 @@
       locations: [],
       employment: [],
       experience: [],
+      jobRoles: [],
       jobCategories: [],
       benefits: [],
       technologies: [],
@@ -1283,6 +2146,7 @@
       locations: "Location",
       employment: "Employment",
       experience: "Experience",
+      jobRoles: "Job Role",
       jobCategories: "Job Category",
       benefits: "Benefits",
       technologies: "Technologies",
@@ -1342,7 +2206,9 @@
     const filterOptionsBody = document.getElementById("filterOptionsBody");
 
     function baseSummaryForEmpty(key) {
-      return key === "locations" ? "Any location" : "Select…";
+      if (key === "locations") return "Any location";
+      if (key === "jobRoles") return "Search roles…";
+      return "Select…";
     }
 
     function getSummaryForFilter(key) {
@@ -1387,6 +2253,7 @@
         locations: "Search locations…",
         employment: "Search employment types…",
         experience: "Search levels…",
+        jobRoles: "Search job titles…",
         jobCategories: "Search job roles, categories…",
         benefits: "Search benefits…",
         technologies: "Search technologies…",
@@ -1400,10 +2267,12 @@
         const label = (opt.label || "").toLowerCase();
         const value = (opt.value || "").toLowerCase();
         const keywords = (opt.keywords || []).join(" ").toLowerCase();
+        const category = (opt.category || "").toLowerCase();
         return (
           label.includes(term) ||
           value.includes(term) ||
-          keywords.includes(term)
+          keywords.includes(term) ||
+          category.includes(term)
         );
       });
 
@@ -1427,7 +2296,7 @@
 
         const label = document.createElement("span");
         label.className = "dropdown-item-label";
-        label.textContent = opt.label;
+        label.textContent = opt.label + (opt.category ? ` · ${opt.category}` : "");
 
         item.appendChild(checkbox);
         item.appendChild(label);
@@ -1471,11 +2340,25 @@
 
     renderActiveFilterPanel();
 
-    // ---------- Subscribe handler ----------
+    // ---------- Subscribe handler + success overlay ----------
 
     const subscribeButton = document.getElementById("subscribeButton");
     const statusMessageEl = document.getElementById("statusMessage");
     const highSalaryToggle = document.getElementById("highSalaryOnly");
+    const successOverlay = document.getElementById("successOverlay");
+    const successCloseButton = document.getElementById("successCloseButton");
+
+    function closeSuccessOverlay() {
+      successOverlay.classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    successCloseButton.addEventListener("click", closeSuccessOverlay);
+    successOverlay.addEventListener("click", (e) => {
+      if (e.target === successOverlay) {
+        closeSuccessOverlay();
+      }
+    });
 
     subscribeButton.addEventListener("click", async () => {
       const firstName = firstNameInput.value.trim();
@@ -1546,9 +2429,11 @@
           statusMessageEl.textContent = msg;
           statusMessageEl.classList.add("error");
         } else {
-          statusMessageEl.textContent =
-            "You’re in! Check your inbox for a confirmation email from ASAP.";
-          statusMessageEl.classList.add("success");
+          // success: show full-screen popup, no inline text
+          statusMessageEl.textContent = "";
+          statusMessageEl.classList.remove("error", "success");
+          successOverlay.classList.remove("hidden");
+          document.body.style.overflow = "hidden";
         }
       } catch (err) {
         statusMessageEl.textContent =
@@ -1567,7 +2452,7 @@
 
       const start = 99950;
       const end = 99999;
-      const duration = 2000; // ms
+      const duration = 2000;
       const startTime = performance.now();
 
       function tick(now) {
