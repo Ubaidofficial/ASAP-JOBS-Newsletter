@@ -32,9 +32,9 @@
      color: var(--text-main);
       /* New fire → sky gradient */
      background:
-      radial-gradient(circle at 0% 0%, #ffb37a 0%, #ff8a3d 22%, transparent 55%),
-      radial-gradient(circle at 100% 0%, #7dd3fc 0%, #0ea5e9 25%, transparent 55%),
-      radial-gradient(circle at 50% 100%, #0f172a 0%, #020617 55%, #000 100%);
+      radial-gradient(circle at 0% 0%, #ffb37a 0%, #ff8a3d 14%, #ff5a1f 30%, transparent 60%),
+      radial-gradient(circle at 100% 0%, #94e2ff 0%, #38bdf8 24%, #0ea5e9 40%, transparent 62%),
+      radial-gradient(circle at 50% 115%, #020617 0%, #020617 40%, #000 85%);
      min-height: 100vh;
      overflow-x: hidden;
      position: relative;
@@ -103,9 +103,10 @@
       border-radius: 1.25rem;
       /* soft fire → blue glow */
       box-shadow:
-       0 40px 120px rgba(0, 0, 0, 0.9),
-       0 0 60px rgba(249, 115, 22, 0.4),
-       0 0 90px rgba(37, 99, 235, 0.4);
+        0 0 60px rgba(255, 115, 21, 0.45),
+        0 0 120px rgba(255, 80, 0, 0.35),
+        0 35px 90px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(148, 163, 184, 0.55);
     animation:
       logoFloat 7s ease-in-out infinite,
       logoGlow 6s ease-in-out infinite;
@@ -400,8 +401,9 @@
       transform: translateY(-1px);
       box-shadow:
         0 18px 40px rgba(15, 23, 42, 0.9),
-        0 0 30px rgba(56, 189, 248, 0.7);
-      filter: brightness(1.03);
+        0 0 30px rgba(255, 115, 21, 0.55),
+        0 0 16px rgba(255, 80, 0, 0.4);
+    filter: brightness(1.06);
     }
 
     .btn-primary:active:not(:disabled) {
@@ -512,11 +514,11 @@
     }
 
     .filter-tab.active {
-      border-color: rgba(56, 189, 248, 0.9);
+      border-color: rgba(255, 90, 0, 0.85);
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9));
-      box-shadow:
-        0 0 0 1px rgba(56, 189, 248, 0.4),
-        0 0 18px rgba(56, 189, 248, 0.55);
+     box-shadow:
+         0 0 0 1px rgba(255, 115, 21, 0.45),
+         0 0 18px rgba(255, 95, 0, 0.55);
       transform: translateY(-0.5px);
     }
 
