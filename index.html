@@ -30,7 +30,6 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Segoe UI", sans-serif;
       color: var(--text-main);
-      /* Deeper fire → midnight gradient for night mode */
       background:
         radial-gradient(circle at 0% 0%, #7a1b00 0%, #3b1302 26%, transparent 60%),
         radial-gradient(circle at 100% 0%, #0f3c68 0%, #020c2b 28%, transparent 60%),
@@ -97,36 +96,14 @@
     }
 
     .brand-logo {
-      width: clamp(210px, 22vw, 300px); /* smaller, less dominant */
+      width: clamp(210px, 22vw, 300px);
       height: auto;
       object-fit: contain;
       border-radius: 1.6rem;
       box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.85),
         0 0 26px rgba(59, 130, 246, 0.35),
-        0 0 0 1px rgba(148, 163, 184, 0.45); /* removed one orange glow */
-    }
-
-    @keyframes logoFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-
-    @keyframes logoGlow {
-      0%, 100% {
-        box-shadow:
-          0 28px 90px rgba(0, 0, 0, 0.95),
-          0 0 30px rgba(249, 115, 22, 0.32),
-          0 0 58px rgba(59, 130, 246, 0.35),
-          0 0 0 1px rgba(148, 163, 184, 0.55);
-      }
-      50% {
-        box-shadow:
-          0 44px 118px rgba(0, 0, 0, 1),
-          0 0 65px rgba(249, 115, 22, 0.5),
-          0 0 105px rgba(37, 99, 235, 0.55),
-          0 0 0 1px rgba(191, 219, 254, 0.7);
-      }
+        0 0 0 1px rgba(148, 163, 184, 0.45);
     }
 
     .brand-text-main {
@@ -229,26 +206,24 @@
       color: rgba(226, 232, 240, 0.88);
     }
 
-    /* Base hover: small lift & brighter */
     .trust-logo:hover {
-    opacity: 1;
-    transform: translateY(-1px);
+      opacity: 1;
+      transform: translateY(-1px);
     }
 
-    /* Brand colors on hover */
     .trust-logo-meta:hover {
-    color: #0866ff;
-    text-shadow: 0 0 10px rgba(8, 102, 255, 0.8);
+      color: #0866ff;
+      text-shadow: 0 0 10px rgba(8, 102, 255, 0.8);
     }
 
     .trust-logo-microsoft:hover {
-    color: #f3f4f6;
-    text-shadow: 0 0 10px rgba(243, 244, 246, 0.7);
+      color: #f3f4f6;
+      text-shadow: 0 0 10px rgba(243, 244, 246, 0.7);
     }
 
     .trust-logo-stripe:hover {
       color: #635bff;
-      text-shadow: 0 0 10px rgba(99, 91, 255, 0.8);    
+      text-shadow: 0 0 10px rgba(99, 91, 255, 0.8);
     }
 
     .trust-logo-airbnb:hover {
@@ -386,6 +361,12 @@
       color: #e5e7eb;
     }
 
+    .field-helper {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
     .input {
       width: 100%;
       border-radius: 999px;
@@ -508,7 +489,6 @@
       }
     }
 
-    /* Frequency selector */
     .frequency-row {
       margin-top: 0.4rem;
       display: inline-flex;
@@ -742,7 +722,20 @@
     .status-message.success { color: var(--success); }
     .status-message.error { color: var(--danger); }
 
-    /* Success overlay modal */
+    .advanced-section {
+      margin-top: 1.1rem;
+      padding-top: 0.8rem;
+      border-top: 1px dashed rgba(148, 163, 184, 0.65);
+      margin-bottom: 0.6rem;
+    }
+
+    .advanced-section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
 
     .success-overlay {
       position: fixed;
@@ -829,7 +822,8 @@
 
       <h1 class="hero-title">
         Save hours on job hunting.<br />
-        Get the <span class="highlight">Best REMOTE JOBS</span> in your inbox.      </h1>
+        Get the <span class="highlight">Best REMOTE JOBS</span> in your inbox.
+      </h1>
       <p class="hero-subtitle">
         We scan 100+ job boards and company pages, then send you a short list of high-quality remote roles
         that match your filters — directly to your inbox.
@@ -921,7 +915,20 @@
           <h2 class="step-title">Tell us what kind of roles you want.</h2>
           <p class="step2-subcopy">
             Choose at least one option for the filters marked with *. Location, employment, experience and job role are required
-            so we only send you relevant roles. Benefits, technologies and languages are optional but help us personalize your job alerts.
+            so we only send you relevant roles. Salary, industries and company size are optional but help us hyper-personalize your job alerts.
+          </p>
+        </div>
+
+        <div class="field" style="margin-bottom: 1rem;">
+          <label class="field-label" for="residenceInput">Where do you live / pay taxes most of the year?</label>
+          <input
+            id="residenceInput"
+            type="text"
+            class="input"
+            placeholder="United States, Canada, United Kingdom, Germany, Australia…"
+          />
+          <p class="field-helper">
+            Used to match “remote but must be in X country” jobs.
           </p>
         </div>
 
@@ -957,10 +964,15 @@
             <span class="filter-tab-label">Technologies</span>
             <span class="filter-tab-summary" data-tab-summary="technologies">Select…</span>
           </button>
-          <button type="button" class="filter-tab" data-filter="languages">
-            <span class="filter-icon">🗣️</span>
-            <span class="filter-tab-label">Languages</span>
-            <span class="filter-tab-summary" data-tab-summary="languages">Select…</span>
+          <button type="button" class="filter-tab" data-filter="industries">
+            <span class="filter-icon">🏢</span>
+            <span class="filter-tab-label">Industries</span>
+            <span class="filter-tab-summary" data-tab-summary="industries">Select…</span>
+          </button>
+          <button type="button" class="filter-tab" data-filter="companySizes">
+            <span class="filter-icon">🏛️</span>
+            <span class="filter-tab-label">Company size</span>
+            <span class="filter-tab-summary" data-tab-summary="companySizes">Select…</span>
           </button>
         </div>
 
@@ -980,31 +992,122 @@
           <div id="filterOptionsBody" class="dropdown-body"></div>
         </div>
 
-        <div class="salary-row">
-          <input type="checkbox" id="highSalaryOnly" />
-          <label for="highSalaryOnly" class="salary-label">
-            <span>💰</span> High salary only ($100k+)
-          </label>
+        <div class="advanced-section">
+          <div class="advanced-section-title">Advanced filters (optional)</div>
+
+          <div class="field" style="margin-top: 0.4rem;">
+            <label class="field-label">Salary range you care about (USD)</label>
+            <div class="frequency-row" id="salaryRow">
+              <button
+                type="button"
+                class="frequency-option"
+                data-min="25000"
+                data-max="49999"
+                data-currency="USD"
+              >
+                $25k–$49k
+              </button>
+              <button
+                type="button"
+                class="frequency-option"
+                data-min="50000"
+                data-max="74999"
+                data-currency="USD"
+              >
+                $50k–$74k
+              </button>
+              <button
+                type="button"
+                class="frequency-option"
+                data-min="75000"
+                data-max="99999"
+                data-currency="USD"
+              >
+                $75k–$99k
+              </button>
+              <button
+                type="button"
+                class="frequency-option selected"
+                data-min="100000"
+                data-max=""
+                data-currency="USD"
+              >
+                $100k+
+              </button>
+            </div>
+            <input type="hidden" id="salaryInput" value="100000-plus" />
+          </div>
+
+          <div class="salary-row">
+            <input type="checkbox" id="highSalaryOnly" />
+            <label for="highSalaryOnly" class="salary-label">
+              <span>💰</span> Only show high-paying roles ($100k+)
+            </label>
+          </div>
+
+          <div class="field" style="margin-top: 0.9rem;">
+            <label class="field-label" for="excludeKeywordsInput">
+              Exclude roles containing these words (optional)
+            </label>
+            <input
+              id="excludeKeywordsInput"
+              type="text"
+              class="input"
+              placeholder="e.g. internship, recruiter, unpaid"
+            />
+            <p class="field-helper">
+              We’ll try to skip jobs with these words in the title or description.
+            </p>
+          </div>
+
+          <div class="field" style="margin-top: 1rem;">
+            <label class="field-label">How active is your job search?</label>
+            <div class="frequency-row" id="urgencyRow">
+              <button
+                type="button"
+                class="frequency-option selected"
+                data-value="actively_looking"
+              >
+                Actively looking
+              </button>
+              <button
+                type="button"
+                class="frequency-option"
+                data-value="open_to_offers"
+              >
+                Open to offers
+              </button>
+              <button
+                type="button"
+                class="frequency-option"
+                data-value="just_browsing"
+              >
+                Just browsing
+              </button>
+            </div>
+            <input type="hidden" id="urgencyInput" value="actively_looking" />
+          </div>
         </div>
 
         <div class="field" style="margin-top: 1.1rem;">
           <label class="field-label">How often should we send you remote jobs?</label>
           <div class="frequency-row" id="frequencyRow">
-            <button type="button" class="frequency-option selected" data-value="biweekly">
-              2× per week
-            </button>
-            <button type="button" class="frequency-option" data-value="daily">
+            <button type="button" class="frequency-option selected" data-value="daily">
               Daily
+            </button>
+            <button type="button" class="frequency-option" data-value="biweekly">
+              2× per week
             </button>
             <button type="button" class="frequency-option" data-value="weekly">
               Weekly
             </button>
           </div>
-          <input type="hidden" id="frequencyInput" value="biweekly" />
+          <input type="hidden" id="frequencyInput" value="daily" />
         </div>
 
         <p class="step2-footer-text">
           No spam, ever. Unsubscribe in one click. You’ll only receive remote jobs and occasional job-search tips from ASAP.
+          You can edit your filters or frequency any time from a link in our emails.
         </p>
 
         <div class="cta-row">
@@ -1017,7 +1120,6 @@
     </main>
   </div>
 
-  <!-- Success popup overlay -->
   <div id="successOverlay" class="success-overlay hidden" role="dialog" aria-modal="true">
     <div class="success-modal">
       <h2 class="success-modal-title">You’re in! 🎉</h2>
@@ -1034,7 +1136,15 @@
   </div>
 
   <script>
-    // ---------- Filter data (with emojis + keywords) ----------
+    // Timezone detection
+    let userTimezone = null;
+    try {
+      userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || null;
+    } catch (e) {
+      userTimezone = null;
+    }
+
+    // ---------- Filter data ----------
 
     const FILTER_OPTIONS = {
       locations: [
@@ -1102,7 +1212,6 @@
         }
       ],
 
-      // CONCRETE job roles (engineering, data, AI, growth, content, social, email, etc.)
       jobRoles: [
         // ENGINEERING / DEVELOPMENT
         {
@@ -2159,14 +2268,22 @@
           keywords: ['llm', 'large language model', 'gpt', 'gen ai', 'generative ai']
         }
       ],
-      languages: [
-        { value: 'English', label: '🇬🇧 English', keywords: ['english', 'en'] },
-        { value: 'Spanish', label: '🇪🇸 Spanish', keywords: ['spanish', 'es', 'español'] },
-        { value: 'Portuguese', label: '🇧🇷 Portuguese', keywords: ['portuguese', 'pt', 'português'] },
-        { value: 'French', label: '🇫🇷 French', keywords: ['french', 'fr', 'français'] },
-        { value: 'German', label: '🇩🇪 German', keywords: ['german', 'de', 'deutsch'] },
-        { value: 'Italian', label: '🇮🇹 Italian', keywords: ['italian', 'it', 'italiano'] },
-        { value: 'Dutch', label: '🇳🇱 Dutch', keywords: ['dutch', 'nl', 'nederlands'] }
+      industries: [
+        { value: 'SaaS / B2B Software', label: '💻 SaaS / B2B Software' },
+        { value: 'AI / Machine Learning', label: '🤖 AI / Machine Learning' },
+        { value: 'Fintech', label: '💸 Fintech' },
+        { value: 'E-commerce / DTC', label: '🛒 E-commerce / DTC' },
+        { value: 'Gaming', label: '🎮 Gaming' },
+        { value: 'Agency / Services', label: '🏢 Agency / Services' },
+        { value: 'Healthcare / Medtech', label: '🏥 Healthcare / Medtech' },
+        { value: 'Crypto / Web3', label: '⛓️ Crypto / Web3' }
+      ],
+      companySizes: [
+        { value: '1-10', label: '🌱 1–10 employees (tiny startup)' },
+        { value: '11-50', label: '🚀 11–50 (early-stage startup)' },
+        { value: '51-250', label: '📈 51–250 (growth stage)' },
+        { value: '251-1000', label: '🏢 251–1000 (scaleup)' },
+        { value: '1000+', label: '🏛️ 1000+ (enterprise)' }
       ]
     };
 
@@ -2177,7 +2294,8 @@
       jobRoles: [],
       benefits: [],
       technologies: [],
-      languages: []
+      industries: [],
+      companySizes: []
     };
 
     const FILTER_LABELS = {
@@ -2187,7 +2305,8 @@
       jobRoles: "Job Role",
       benefits: "Benefits",
       technologies: "Technologies",
-      languages: "Languages"
+      industries: "Industries",
+      companySizes: "Company size"
     };
 
     const REQUIRED_FILTERS = ["locations", "employment", "experience", "jobRoles"];
@@ -2293,7 +2412,8 @@
         jobRoles: "Search job titles…",
         benefits: "Search benefits…",
         technologies: "Search technologies…",
-        languages: "Search languages…"
+        industries: "Search industries…",
+        companySizes: "Search company sizes…"
       };
       filterSearchInput.placeholder = placeholderMap[key] || "Search…";
 
@@ -2311,7 +2431,6 @@
           category.includes(term)
         );
       });
-
 
       filterOptionsBody.innerHTML = "";
 
@@ -2387,6 +2506,12 @@
     const frequencyRow = document.getElementById("frequencyRow");
     const frequencyInput = document.getElementById("frequencyInput");
     const successFirstName = document.getElementById("successFirstName");
+    const salaryRow = document.getElementById("salaryRow");
+    const salaryInput = document.getElementById("salaryInput");
+    const urgencyRow = document.getElementById("urgencyRow");
+    const urgencyInput = document.getElementById("urgencyInput");
+    const excludeKeywordsInput = document.getElementById("excludeKeywordsInput");
+    const residenceInput = document.getElementById("residenceInput");
 
     function closeSuccessOverlay() {
       successOverlay.classList.add("hidden");
@@ -2410,6 +2535,38 @@
           btn.classList.add("selected");
           if (frequencyInput) {
             frequencyInput.value = btn.dataset.value;
+          }
+        });
+      });
+    }
+
+    // salary band selector logic
+    if (salaryRow) {
+      salaryRow.querySelectorAll(".frequency-option").forEach(btn => {
+        btn.addEventListener("click", () => {
+          salaryRow.querySelectorAll(".frequency-option").forEach(b =>
+            b.classList.remove("selected")
+          );
+          btn.classList.add("selected");
+          if (salaryInput) {
+            const min = btn.dataset.min || "";
+            const max = btn.dataset.max || "plus";
+            salaryInput.value = `${min}-${max}`;
+          }
+        });
+      });
+    }
+
+    // urgency selector logic
+    if (urgencyRow) {
+      urgencyRow.querySelectorAll(".frequency-option").forEach(btn => {
+        btn.addEventListener("click", () => {
+          urgencyRow.querySelectorAll(".frequency-option").forEach(b =>
+            b.classList.remove("selected")
+          );
+          btn.classList.add("selected");
+          if (urgencyInput) {
+            urgencyInput.value = btn.dataset.value;
           }
         });
       });
@@ -2460,12 +2617,37 @@
 
       subscribeButton.disabled = true;
 
+      let salaryBand = null;
+      if (salaryRow) {
+        const selectedSalaryBtn = salaryRow.querySelector(".frequency-option.selected");
+        if (selectedSalaryBtn) {
+          const min = selectedSalaryBtn.dataset.min
+            ? Number(selectedSalaryBtn.dataset.min)
+            : null;
+          const max = selectedSalaryBtn.dataset.max
+            ? Number(selectedSalaryBtn.dataset.max)
+            : null;
+          const currency = selectedSalaryBtn.dataset.currency || "USD";
+          salaryBand = { min, max, currency };
+        }
+      }
+
       const payload = {
         firstName,
         email,
+        countryOfResidence: residenceInput ? residenceInput.value.trim() : "",
+        timezone: userTimezone,
+        sendWindow: "morning",
+        alertsPlan: "free_daily_digest",
+        asapModeEnabled: false,
+        instantAlerts: false,
+        hourlyAlerts: false,
         filters: filterState,
         highSalaryOnly: !!highSalaryToggle.checked,
-        frequency: frequencyInput ? frequencyInput.value : "biweekly"
+        salaryBand,
+        frequency: frequencyInput ? frequencyInput.value : "daily",
+        urgency: urgencyInput ? urgencyInput.value : "actively_looking",
+        excludeKeywords: excludeKeywordsInput ? excludeKeywordsInput.value.trim() : ""
       };
 
       try {
@@ -2485,7 +2667,6 @@
           statusMessageEl.textContent = msg;
           statusMessageEl.classList.add("error");
         } else {
-          // success: show full-screen popup, no inline text
           statusMessageEl.textContent = "";
           statusMessageEl.classList.remove("error", "success");
           if (successFirstName) {
