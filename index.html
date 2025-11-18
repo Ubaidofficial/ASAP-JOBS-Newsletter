@@ -32,9 +32,9 @@
       color: var(--text-main);
       /* Deeper fire → midnight gradient for night mode */
       background:
-        radial-gradient(circle at 0% 0%, #442012 0%, #2c1206 22%, transparent 56%),
-        radial-gradient(circle at 100% 0%, #0b4579 0%, #032239 30%, transparent 60%),
-        radial-gradient(circle at 50% 100%, #020617 0%, #020617 52%, #000 100%);
+        radial-gradient(circle at 0% 0%, #7a1b00 0%, #3b1302 26%, transparent 60%),
+        radial-gradient(circle at 100% 0%, #0f3c68 0%, #020c2b 28%, transparent 60%),
+        radial-gradient(circle at 50% 100%, #020617 0%, #020617 50%, #000 100%);
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
@@ -78,7 +78,7 @@
     .page {
       max-width: 1120px;
       margin: 0 auto;
-      padding: 1.8rem 1.25rem 3rem;
+      padding: 1.8rem 1.25rem 3.2rem;
       position: relative;
       z-index: 1;
     }
@@ -97,21 +97,14 @@
     }
 
     .brand-logo {
-      width: clamp(220px, 23vw, 310px);
+      width: clamp(210px, 22vw, 300px); /* smaller, less dominant */
       height: auto;
       object-fit: contain;
       border-radius: 1.6rem;
       box-shadow:
-        0 22px 80px rgba(0, 0, 0, 0.95),
-        0 0 40px rgba(249, 115, 22, 0.35),
-        0 0 70px rgba(59, 130, 246, 0.38),
-        0 0 0 1px rgba(148, 163, 184, 0.5);
-      animation:
-        logoFloat 7s ease-in-out infinite,
-        logoGlow 6s ease-in-out infinite;
-      background:
-        radial-gradient(circle at 0 0, rgba(248, 113, 22, 0.18), transparent 55%),
-        radial-gradient(circle at 100% 0, rgba(59, 130, 246, 0.24), transparent 55%);
+        0 20px 60px rgba(0, 0, 0, 0.85),
+        0 0 26px rgba(59, 130, 246, 0.35),
+        0 0 0 1px rgba(148, 163, 184, 0.45); /* removed one orange glow */
     }
 
     @keyframes logoFloat {
@@ -205,7 +198,7 @@
 
     .trust-marquee-track {
       display: inline-flex;
-      gap: 2.6rem;
+      gap: 2rem;
       align-items: center;
       will-change: transform;
       animation: trustMarquee 34s linear infinite;
@@ -222,7 +215,7 @@
       letter-spacing: 0.28em;
       font-weight: 500;
       color: rgba(226, 232, 240, 0.55);
-      opacity: 0.8;
+      opacity: 0.93;
       white-space: nowrap;
       transition:
         color 0.18s ease,
@@ -240,16 +233,14 @@
       opacity: 1;
       color: #e5e7eb;
       transform: translateY(-1px);
-      text-shadow:
-        0 0 10px rgba(56, 189, 248, 0.7),
-        0 0 18px rgba(129, 140, 248, 0.75);
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.06);
     }
 
     .card {
       margin-top: 1.7rem;
       background:
         radial-gradient(circle at top, rgba(37, 99, 235, 0.18), transparent 55%),
-        var(--surface);
+        rgba(6, 12, 28, 0.98);
       border-radius: 1.6rem;
       padding: 1.7rem 1.35rem 1.9rem;
       box-shadow: var(--shadow-soft);
@@ -293,7 +284,7 @@
     }
 
     .step-copy {
-      margin: 0 0 1rem;
+      margin: 0 0 0.5rem;
       font-size: 0.9rem;
       color: var(--text-muted);
       max-width: 640px;
@@ -782,8 +773,8 @@
       </div>
 
       <h1 class="hero-title">
-        Save hours on job hunting. Get the <span class="highlight">best remote jobs</span> in your inbox.
-      </h1>
+        Save hours on job hunting.<br />
+        Get the <span class="highlight">best remote jobs</span> in your inbox.      </h1>
       <p class="hero-subtitle">
         We scan 100+ job boards and company pages, then send you a short list of high-quality remote roles
         that match your filters — directly to your inbox.
