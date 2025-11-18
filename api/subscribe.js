@@ -25,18 +25,47 @@ export default async function handler(req, res) {
     // {
     //   email,
     //   firstName,
-    //   filters: { locations, employment, experience, jobRoles, benefits, technologies, languages },
+    //   countryOfResidence,
+    //   timezone,
+    //   sendWindow,
+    //   alertsPlan,
+    //   asapModeEnabled,
+    //   instantAlerts,
+    //   hourlyAlerts,
+    //   filters: {
+    //     locations,
+    //     employment,
+    //     experience,
+    //     jobRoles,
+    //     benefits,
+    //     technologies,
+    //     industries,
+    //     companySizes
+    //   },
     //   highSalaryOnly,
-    //   frequency,   // "2x", "daily", "weekly"
+    //   salaryBand: { min, max, currency } | null,
+    //   frequency,   // "daily" | "biweekly" | "weekly"
+    //   urgency,     // "actively_looking" | "open_to_offers" | "just_browsing"
+    //   excludeKeywords,
     //   searchTerm?  // optional
     // }
 
     const {
       email,
       firstName,
+      countryOfResidence = "",
+      timezone = "",
+      sendWindow = "",
+      alertsPlan = "",
+      asapModeEnabled = false,
+      instantAlerts = false,
+      hourlyAlerts = false,
       filters = {},
       highSalaryOnly = false,
+      salaryBand = null,
       frequency = "",
+      urgency = "",
+      excludeKeywords = "",
       searchTerm = "",
     } = body;
 
@@ -51,7 +80,8 @@ export default async function handler(req, res) {
       jobRoles = [],
       benefits = [],
       technologies = [],
-      languages = [],
+      industries = [],
+      companySizes = [],
     } = filters || {};
 
     const join = (val) =>
@@ -59,8 +89,22 @@ export default async function handler(req, res) {
 
     // Map of Beehiiv custom fields (names MUST match Beehiiv exactly)
     const customFieldMap = {
+      // core profile
       first_name: firstName || "",
+      country_of_residence: countryOfResidence || "",
+      timezone: timezone || "",
+      send_window: sendWindow || "",
+      alerts_plan: alertsPlan || "",
+
+      asap_mode_enabled: asapModeEnabled ? "true" : "false",
+      instant_alerts: instantAlerts ? "true" : "false",
+      hourly_alerts: hourlyAlerts ? "true" : "false",
+
+      // preferences
       high_salary_only: highSalaryOnly ? "true" : "false",
+      frequency: frequency || "",
+      urgency: urgency || "",
+      exclude_keywords: excludeKeywords || "",
 
       active_filters: Object.keys(filters)
         .filter((k) => Array.isArray(filters[k]) && filters[k].length)
@@ -69,14 +113,23 @@ export default async function handler(req, res) {
       location_pref: join(locations),
       employment_type: join(employment),
       experience_level: join(experience),
-
-      // New fields (create as TEXT in Beehiiv)
       job_roles: join(jobRoles),
-      frequency: frequency || "",
-
       benefits_pref: join(benefits),
       technologies_pref: join(technologies),
-      languages_pref: join(languages),
+      industries_pref: join(industries),
+      company_sizes_pref: join(companySizes),
+
+      // salary band
+      salary_band_min:
+        salaryBand && typeof salaryBand.min === "number"
+          ? String(salaryBand.min)
+          : "",
+      salary_band_max:
+        salaryBand && typeof salaryBand.max === "number"
+          ? String(salaryBand.max)
+          : "",
+      salary_band_currency:
+        salaryBand && salaryBand.currency ? salaryBand.currency : "",
 
       // optional, handy for debugging / segmentation
       search_term: searchTerm || "",
@@ -98,7 +151,6 @@ export default async function handler(req, res) {
       custom_fields: customFieldsArray,
     };
 
-    // IMPORTANT: correct Beehiiv endpoint
     const response = await fetch(
       `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions`,
       {

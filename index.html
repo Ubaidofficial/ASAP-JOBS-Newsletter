@@ -541,9 +541,26 @@
       margin-bottom: 0.8rem;
     }
 
+    .step2-title {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .step2-heading {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #f9fafb;
+      margin-top: 0.4rem;
+    }
+
     .step2-subcopy {
       font-size: 0.84rem;
       color: var(--text-muted);
+      max-width: 650px;
+      margin-top: 0.2rem;
     }
 
     .filter-tabs {
@@ -609,6 +626,7 @@
       padding: 0.8rem 1rem 0.9rem;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
+      margin-bottom: 1rem;
     }
 
     .filter-panel-top {
@@ -691,20 +709,30 @@
     .hidden { display: none !important; }
 
     .salary-row {
-      margin-top: 0.85rem;
+      margin-top: 0.5rem;
       display: flex;
-      align-items: center;
+      flex-wrap: wrap;
       gap: 0.45rem;
       font-size: 0.88rem;
       color: #f9fafb;
     }
 
-    .salary-row input {
-      width: 16px;
-      height: 16px;
+    .salary-label span { margin-right: 0.15rem; }
+
+    .advanced-section {
+      margin-top: 1.1rem;
+      padding-top: 0.8rem;
+      border-top: 1px dashed rgba(148, 163, 184, 0.65);
+      margin-bottom: 0.6rem;
     }
 
-    .salary-label span { margin-right: 0.15rem; }
+    .advanced-section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
 
     .step2-footer-text {
       margin-top: 0.55rem;
@@ -721,21 +749,6 @@
 
     .status-message.success { color: var(--success); }
     .status-message.error { color: var(--danger); }
-
-    .advanced-section {
-      margin-top: 1.1rem;
-      padding-top: 0.8rem;
-      border-top: 1px dashed rgba(148, 163, 184, 0.65);
-      margin-bottom: 0.6rem;
-    }
-
-    .advanced-section-title {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--text-muted);
-      margin-bottom: 0.4rem;
-    }
 
     .success-overlay {
       position: fixed;
@@ -864,6 +877,7 @@
     </header>
 
     <main class="card">
+      <!-- STEP 1 -->
       <section>
         <div class="step-label">Step 1 · Your email</div>
         <h2 class="step-title">Start your personalized job feed.</h2>
@@ -909,73 +923,82 @@
 
       <div class="step-divider"></div>
 
+      <!-- STEP 2 — YOUR JOB PREFERENCES -->
       <section id="step2" class="hidden">
-        <div class="step-label">Step 2 · Your job preferences</div>
         <div class="step2-header">
-          <h2 class="step-title">Tell us what kind of roles you want.</h2>
-          <p class="step2-subcopy">
-            Choose at least one option for the filters marked with *. Location, employment, experience and job role are required
-            so we only send you relevant roles. Salary, industries and company size are optional but help us hyper-personalize your job alerts.
-          </p>
+          <div>
+            <div class="step2-title">Step 2 · Your job preferences</div>
+            <div class="step2-heading">Tell us what kind of roles you want.</div>
+          </div>
         </div>
+        <p class="step2-subcopy">
+          Choose at least one option for the filters marked with *. Location, employment, experience and job role
+          are required so we only send you relevant roles. Salary, industries and company size are optional but help
+          us hyper-personalize your job alerts.
+        </p>
 
-        <div class="field" style="margin-bottom: 1rem;">
-          <label class="field-label" for="residenceInput">Where do you live / pay taxes most of the year?</label>
-          <input
-            id="residenceInput"
-            type="text"
-            class="input"
-            placeholder="United States, Canada, United Kingdom, Germany, Australia…"
-          />
+        <!-- Country of Residence -->
+        <div style="margin-top: 1.1rem; margin-bottom: 1rem;">
+          <label class="field-label" for="residenceInput">
+            Where are you based?
+          </label>
           <p class="field-helper">
-            Used to match “remote but must be in X country” jobs.
+            The country where you live and pay taxes most of the year. Used to match “US-only”, “EU-only” etc. roles.
           </p>
+          <input
+            type="text"
+            id="residenceInput"
+            name="countryOfResidence"
+            placeholder="e.g. United States, United Kingdom, Germany"
+            class="input"
+          />
         </div>
 
-        <div class="filter-tabs" id="filterTabs">
-          <button type="button" class="filter-tab active" data-filter="locations">
+        <!-- FILTER TABS -->
+        <div id="filterTabs" class="filter-tabs">
+          <button class="filter-tab active" data-filter="locations">
             <span class="filter-icon">🌍</span>
             <span class="filter-tab-label">Location*</span>
             <span class="filter-tab-summary" data-tab-summary="locations">Any location</span>
           </button>
-          <button type="button" class="filter-tab" data-filter="employment">
+          <button class="filter-tab" data-filter="employment">
             <span class="filter-icon">💼</span>
             <span class="filter-tab-label">Employment*</span>
             <span class="filter-tab-summary" data-tab-summary="employment">Select…</span>
           </button>
-          <button type="button" class="filter-tab" data-filter="experience">
+          <button class="filter-tab" data-filter="experience">
             <span class="filter-icon">⭐</span>
             <span class="filter-tab-label">Experience*</span>
             <span class="filter-tab-summary" data-tab-summary="experience">Select…</span>
           </button>
-          <button type="button" class="filter-tab" data-filter="jobRoles">
-            <span class="filter-icon">🧑‍💼</span>
-            <span class="filter-tab-label">Job Role*</span>
+          <button class="filter-tab" data-filter="jobRoles">
+            <span class="filter-icon">👷</span>
+            <span class="filter-tab-label">Job role*</span>
             <span class="filter-tab-summary" data-tab-summary="jobRoles">Search roles…</span>
           </button>
-
-          <button type="button" class="filter-tab" data-filter="benefits">
-            <span class="filter-icon">🏖️</span>
+          <button class="filter-tab" data-filter="benefits">
+            <span class="filter-icon">🎁</span>
             <span class="filter-tab-label">Benefits</span>
-            <span class="filter-tab-summary" data-tab-summary="benefits">Select…</span>
+            <span class="filter-tab-summary" data-tab-summary="benefits">Optional</span>
           </button>
-          <button type="button" class="filter-tab" data-filter="technologies">
-            <span class="filter-icon">👾</span>
+          <button class="filter-tab" data-filter="technologies">
+            <span class="filter-icon">🧪</span>
             <span class="filter-tab-label">Technologies</span>
-            <span class="filter-tab-summary" data-tab-summary="technologies">Select…</span>
+            <span class="filter-tab-summary" data-tab-summary="technologies">Optional</span>
           </button>
-          <button type="button" class="filter-tab" data-filter="industries">
-            <span class="filter-icon">🏢</span>
+          <button class="filter-tab" data-filter="industries">
+            <span class="filter-icon">🏭</span>
             <span class="filter-tab-label">Industries</span>
-            <span class="filter-tab-summary" data-tab-summary="industries">Select…</span>
+            <span class="filter-tab-summary" data-tab-summary="industries">Optional</span>
           </button>
-          <button type="button" class="filter-tab" data-filter="companySizes">
-            <span class="filter-icon">🏛️</span>
+          <button class="filter-tab" data-filter="companySizes">
+            <span class="filter-icon">🏢</span>
             <span class="filter-tab-label">Company size</span>
-            <span class="filter-tab-summary" data-tab-summary="companySizes">Select…</span>
+            <span class="filter-tab-summary" data-tab-summary="companySizes">Optional</span>
           </button>
         </div>
 
+        <!-- FILTER PANEL -->
         <div class="filter-panel">
           <div class="filter-panel-top">
             <div class="filter-panel-label" id="filterPanelLabel">Location preferences</div>
@@ -989,137 +1012,89 @@
               placeholder="Search locations…"
             />
           </div>
-          <div id="filterOptionsBody" class="dropdown-body"></div>
+          <div class="dropdown-body" id="filterOptionsBody"></div>
         </div>
 
+        <!-- ADVANCED OPTIONS SECTION -->
         <div class="advanced-section">
           <div class="advanced-section-title">Advanced filters (optional)</div>
 
-          <div class="field" style="margin-top: 0.4rem;">
+          <!-- Salary Selector -->
+          <div class="field">
             <label class="field-label">Salary range you care about (USD)</label>
-            <div class="frequency-row" id="salaryRow">
-              <button
-                type="button"
-                class="frequency-option"
-                data-min="25000"
-                data-max="49999"
-                data-currency="USD"
-              >
-                $25k–$49k
-              </button>
-              <button
-                type="button"
-                class="frequency-option"
-                data-min="50000"
-                data-max="74999"
-                data-currency="USD"
-              >
-                $50k–$74k
-              </button>
-              <button
-                type="button"
-                class="frequency-option"
-                data-min="75000"
-                data-max="99999"
-                data-currency="USD"
-              >
-                $75k–$99k
-              </button>
-              <button
-                type="button"
-                class="frequency-option selected"
-                data-min="100000"
-                data-max=""
-                data-currency="USD"
-              >
-                $100k+
-              </button>
+            <div id="salaryRow" class="salary-row">
+              <button class="frequency-option" data-min="25000" data-max="49000">$25k–$49k</button>
+              <button class="frequency-option" data-min="50000" data-max="74000">$50k–$74k</button>
+              <button class="frequency-option" data-min="75000" data-max="99000">$75k–$99k</button>
+              <button class="frequency-option" data-min="100000" data-max="null">$100k+</button>
             </div>
-            <input type="hidden" id="salaryInput" value="100000-plus" />
+            <input type="hidden" id="salaryInput" />
           </div>
 
-          <div class="salary-row">
-            <input type="checkbox" id="highSalaryOnly" />
-            <label for="highSalaryOnly" class="salary-label">
-              <span>💰</span> Only show high-paying roles ($100k+)
-            </label>
-          </div>
+          <!-- High Salary Toggle -->
+          <label class="field-helper" style="display:flex; align-items:center; gap:0.45rem; margin-top:0.9rem; cursor:pointer;">
+            <input
+              type="checkbox"
+              id="highSalaryOnly"
+              style="width:16px; height:16px; accent-color:#22c55e;"
+            />
+            <span class="field-helper">$ Only show high-paying roles ($100k+)</span>
+          </label>
 
-          <div class="field" style="margin-top: 0.9rem;">
+          <!-- Excluded Keywords -->
+          <div class="field" style="margin-top:1rem;">
             <label class="field-label" for="excludeKeywordsInput">
               Exclude roles containing these words (optional)
             </label>
             <input
-              id="excludeKeywordsInput"
               type="text"
-              class="input"
+              id="excludeKeywordsInput"
+              name="excludeKeywords"
               placeholder="e.g. internship, recruiter, unpaid"
+              class="input"
             />
-            <p class="field-helper">
-              We’ll try to skip jobs with these words in the title or description.
-            </p>
           </div>
 
-          <div class="field" style="margin-top: 1rem;">
+          <!-- Job Search Urgency -->
+          <div class="field" style="margin-top:1rem;">
             <label class="field-label">How active is your job search?</label>
-            <div class="frequency-row" id="urgencyRow">
-              <button
-                type="button"
-                class="frequency-option selected"
-                data-value="actively_looking"
-              >
-                Actively looking
-              </button>
-              <button
-                type="button"
-                class="frequency-option"
-                data-value="open_to_offers"
-              >
-                Open to offers
-              </button>
-              <button
-                type="button"
-                class="frequency-option"
-                data-value="just_browsing"
-              >
-                Just browsing
-              </button>
+            <div id="urgencyRow" class="frequency-row">
+              <button class="frequency-option" data-value="actively_looking">Actively looking</button>
+              <button class="frequency-option" data-value="open_to_offers">Open to offers</button>
+              <button class="frequency-option" data-value="just_browsing">Just browsing</button>
             </div>
             <input type="hidden" id="urgencyInput" value="actively_looking" />
           </div>
-        </div>
 
-        <div class="field" style="margin-top: 1.1rem;">
-          <label class="field-label">How often should we send you remote jobs?</label>
-          <div class="frequency-row" id="frequencyRow">
-            <button type="button" class="frequency-option selected" data-value="daily">
-              Daily
-            </button>
-            <button type="button" class="frequency-option" data-value="biweekly">
-              2× per week
-            </button>
-            <button type="button" class="frequency-option" data-value="weekly">
-              Weekly
-            </button>
+          <!-- Frequency -->
+          <div class="field" style="margin-top:1rem;">
+            <label class="field-label">How often should we send you remote jobs?</label>
+            <div id="frequencyRow" class="frequency-row">
+              <button class="frequency-option selected" data-value="daily">Daily</button>
+              <button class="frequency-option" data-value="2x">2× per week</button>
+              <button class="frequency-option" data-value="weekly">Weekly</button>
+            </div>
+            <input type="hidden" id="frequencyInput" value="daily" />
           </div>
-          <input type="hidden" id="frequencyInput" value="daily" />
+
+          <p class="step2-footer-text">
+            No spam, ever. Unsubscribe in one click. You’ll only receive remote jobs and occasional job-search tips from ASAP.
+            You can edit your filters or frequency any time from a link in our emails.
+          </p>
         </div>
 
-        <p class="step2-footer-text">
-          No spam, ever. Unsubscribe in one click. You’ll only receive remote jobs and occasional job-search tips from ASAP.
-          You can edit your filters or frequency any time from a link in our emails.
-        </p>
-
+        <!-- CTA -->
         <div class="cta-row">
-          <button type="button" id="subscribeButton" class="btn btn-primary">
+          <button id="subscribeButton" class="btn btn-primary" style="width:100%;">
             Get remote jobs ASAP ⚡
           </button>
-          <p id="statusMessage" class="status-message"></p>
+          <div id="statusMessage" class="status-message"></div>
         </div>
       </section>
     </main>
   </div>
 
+  <!-- SUCCESS OVERLAY -->
   <div id="successOverlay" class="success-overlay hidden" role="dialog" aria-modal="true">
     <div class="success-modal">
       <h2 class="success-modal-title">You’re in! 🎉</h2>
@@ -2583,6 +2558,7 @@
         return;
       }
 
+      // validate required filters
       document.querySelectorAll(".filter-tab").forEach(tab => {
         tab.classList.remove("missing");
         const oldIcon = tab.querySelector(".filter-tab-missing-icon");
@@ -2624,7 +2600,7 @@
           const min = selectedSalaryBtn.dataset.min
             ? Number(selectedSalaryBtn.dataset.min)
             : null;
-          const max = selectedSalaryBtn.dataset.max
+          const max = selectedSalaryBtn.dataset.max && selectedSalaryBtn.dataset.max !== "null"
             ? Number(selectedSalaryBtn.dataset.max)
             : null;
           const currency = selectedSalaryBtn.dataset.currency || "USD";
